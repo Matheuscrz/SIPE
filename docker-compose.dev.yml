@@ -1,0 +1,96 @@
+version: "1.0.0"
+
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - ponto
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: backend/Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - backend:/app
+      - ./db/scripts:/app/db/scripts
+      - ./db/config:/app/db/config
+    environment:
+      - NODE_ENV=development
+      - DB_CONFIG_PATH=/app/db/config/config.json
+    depends_on:
+      - db
+      - redis
+    networks:
+      - ponto
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: frontend/Dockerfile.dev
+    ports:
+      - "3001:3001"
+    volumes:
+      - frontend:/app
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - backend
+    networks:
+      - ponto
+
+  db:
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres2416
+      POSTGRES_DB: ponto
+    ports:
+      - "5432:5432"
+    volumes:
+      - db:/var/lib/postgresql/data
+    networks:
+      - ponto
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis:/data
+    networks:
+      - ponto
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@sergipetec.org.br
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    depends_on:
+      - db
+    networks:
+      - ponto
+
+networks:
+  ponto:
+    driver: bridge
+
+volumes:
+  db:
+  redis:
+  pgadmin:
+  frontend:
+  backend:
