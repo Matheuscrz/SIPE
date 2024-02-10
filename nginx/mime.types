@@ -8,8 +8,6 @@ types {
     application/atom+xml                 atom;
     application/rss+xml                  rss;
 
-    application/json                     json; # Adicionado para suportar JSON
-
     text/mathml                          mml;
     text/plain                           txt;
     text/vnd.sun.j2me.app-descriptor     jad;

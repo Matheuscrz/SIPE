@@ -31,6 +31,3 @@ RUN echo "shared_preload_libraries = 'pg_cron'" >> /usr/local/share/postgresql/p
 
 # Expor a porta do PostgreSQL
 EXPOSE 5432
-
-# Habilita a extensão pgcrypto
-COPY ./scripts/enable_pgcrypto.sql /docker-entrypoint-initdb.d/

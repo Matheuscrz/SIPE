@@ -6,8 +6,8 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx:/etc/nginx/conf.d
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/mime.types:/etc/nginx/mime.types
     depends_on:
       - backend
       - frontend
@@ -17,7 +17,7 @@ services:
   backend:
     build:
       context: ./backend
-      dockerfile: backend/Dockerfile.dev
+      dockerfile: Dockerfile.dev
     ports:
       - "3000:3000"
     volumes:
@@ -36,7 +36,7 @@ services:
   frontend:
     build:
       context: ./frontend
-      dockerfile: frontend/Dockerfile.dev
+      dockerfile: Dockerfile.dev
     ports:
       - "3001:3001"
     volumes:
@@ -50,7 +50,7 @@ services:
 
   db:
     build:
-      context: ./db/config/Dockerfile
+      context: ./db/config
       dockerfile: Dockerfile
     environment:
       POSTGRES_DB: ponto
