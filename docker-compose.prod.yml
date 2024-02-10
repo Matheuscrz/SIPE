@@ -73,7 +73,9 @@ services:
       - ponto
 
   db:
-    image: postgres:alpine
+    build:
+      context: ./db/config/Dockerfile
+      dockerfile: Dockerfile
     environment:
       POSTGRES_DB: ponto
       POSTGRES_USER: postgres

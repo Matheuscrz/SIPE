@@ -49,11 +49,13 @@ services:
       - ponto
 
   db:
-    image: postgres:alpine
+    build:
+      context: ./db/config/Dockerfile
+      dockerfile: Dockerfile
     environment:
+      POSTGRES_DB: ponto
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres2416
-      POSTGRES_DB: ponto
     ports:
       - "5432:5432"
     volumes:
