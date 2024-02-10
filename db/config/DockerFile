@@ -1,0 +1,36 @@
+# Use an official PostgreSQL image from the Docker Hub
+FROM postgres:alpine
+
+# Adiciona a extensão pg_cron
+RUN apk add --no-cache \
+    build-base \
+    git \
+    postgresql-dev \
+    openssl-dev
+
+# Clone pg_cron do GitHub
+RUN git clone https://github.com/citusdata/pg_cron.git
+
+# Muda para o diretório pg_cron
+WORKDIR pg_cron
+
+# Compila e instala o pg_cron
+RUN make && make install
+
+# Limpa dependências de compilação e código-fonte
+WORKDIR /
+RUN apk del \
+    build-base \
+    git \
+    postgresql-dev \
+    openssl-dev \
+    && rm -rf pg_cron
+
+# Adiciona cron ao pg_config
+RUN echo "shared_preload_libraries = 'pg_cron'" >> /usr/local/share/postgresql/postgresql.conf.sample
+
+# Expor a porta do PostgreSQL
+EXPOSE 5432
+
+# Habilita a extensão pgcrypto
+COPY ./scripts/enable_pgcrypto.sql /docker-entrypoint-initdb.d/
