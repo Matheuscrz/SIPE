@@ -136,6 +136,17 @@ CREATE INDEX IF NOT EXISTS idx_absence_justifications_employee_id ON point.absen
 ALTER TABLE point.time_records
 ADD COLUMN absence_justification_id UUID REFERENCES point.absence_justifications(id);
 
+-- Tabela de Tokens Revogados
+-- Armazena tokens JWT revogados para gerenciamento de logout.
+CREATE TABLE IF NOT EXISTS point.revoked_tokens (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  token VARCHAR(500) UNIQUE NOT NULL,
+  expires_at TIMESTAMP NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_revoked_tokens_token ON point.revoked_tokens (token);
+
 -- Tabela de Logs
 -- Registra alterações em outras tabelas.
 CREATE TABLE IF NOT EXISTS point.logs(
@@ -187,6 +198,15 @@ CREATE TRIGGER log_time_records
 AFTER INSERT OR UPDATE OR DELETE ON point.time_records
 FOR EACH ROW
 EXECUTE FUNCTION log_alteracao('employee_id', 'record_time', 'record_type', 'absence_justification_id', 'record_date', 'location');
+
+-- Função para revogar um token
+CREATE OR REPLACE FUNCTION revoke_token(p_token VARCHAR(500), p_expires_at TIMESTAMP)
+RETURNS VOID AS $$
+BEGIN
+  INSERT INTO point.revoked_tokens (token, expires_at)
+  VALUES (p_token, p_expires_at);
+END;
+$$ LANGUAGE plpgsql;
 
 -- Tabela de Dispositivos (Relógios de Ponto)
 -- Armazena informações sobre os relógios de ponto físicos utilizados para registros.
