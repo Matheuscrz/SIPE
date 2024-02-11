@@ -1,71 +1,36 @@
-import express, { Application, Router } from "express";
+import express, { Express } from "express";
 import cors from "cors";
 import helmet from "helmet";
-import {
-  logger,
-  httpLogger,
-  errorLogger,
-} from "../middlewares/loggerMiddleware";
+import Routes from "../routes/Routes";
 
-export class Server {
-  private app: Application;
+class Server {
+  private readonly app: Express;
+  private readonly port: number;
 
-  constructor() {
-    // Inicializar a aplicação Express
+  constructor(port: number) {
     this.app = express();
+    this.port = port;
 
-    // Configurar middlewares
     this.setupMiddlewares();
+    this.setupRoutes();
   }
 
-  // Método privado para configurar os middlewares da aplicação
   private setupMiddlewares(): void {
-    // Adicionar middleware Helmet para segurança HTTP
-    this.app.use(helmet());
-
-    // Adicionar middleware para logs HTTP
-    this.app.use(httpLogger);
-
-    // Adicionar middleware para tratamento de erros
-    this.app.use(errorLogger);
-
-    // Permitir o uso de JSON no corpo das solicitações
     this.app.use(express.json());
-
-    // Habilitar o CORS para permitir solicitações de diferentes origens
-    this.app.use(
-      cors({
-        methods: ["GET", "POST", "PUT", "DELETE"],
-        credentials: true,
-      })
-    );
-
-    // Adicionar middleware para tratamento de erros
-    this.app.use(this.errorHandler.bind(this));
+    this.app.use(cors());
+    this.app.use(helmet());
   }
 
-  // Middleware para tratamento de erros
-  private errorHandler(
-    err: Error,
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction
-  ): void {
-    console.error(err);
-
-    // Responder com status 500 (Internal Server Error) em caso de erro interno
-    res.status(500).send({ message: "Internal server error" });
+  private setupRoutes(): void {
+    const routes = new Routes();
+    this.app.use("/api", routes.getRouter());
   }
 
-  // Método público para adicionar rotas à aplicação
-  public addRoutes(route: Router, basePath: string): void {
-    this.app.use(basePath, route);
-  }
-
-  // Método público para iniciar o servidor na porta especificada
-  public start(port: number): void {
-    this.app.listen(port, () => {
-      console.log(`Servidor iniciado na porta ${port}`);
+  public start(): void {
+    this.app.listen(this.port, () => {
+      console.log(`Server is running on port ${this.port}`);
     });
   }
 }
+
+export default Server;
