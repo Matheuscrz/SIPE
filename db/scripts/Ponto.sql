@@ -23,7 +23,6 @@ CREATE TABLE IF NOT EXISTS point.roles (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   name VARCHAR(255) UNIQUE NOT NULL,
   department_id UUID REFERENCES point.departments(id),
-  salary DECIMAL(10, 2) NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
