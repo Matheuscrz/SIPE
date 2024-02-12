@@ -1,50 +1,53 @@
-// routes/Routes.ts
-import express, { Router, Request, Response } from "express";
-import { authenticationMiddleware } from "../middlewares/AuthMiddleware";
+import express from "express";
 import { AuthService } from "../services/AuthService";
+import { isAuthenticatedMiddleware } from "../middlewares/isAuthenticatedMiddleware";
 
-class Routes {
-  private readonly router: Router;
+export class Routes {
+  private router: express.Router;
 
   constructor() {
     this.router = express.Router();
-    this.setupRoutes();
+    this.configureRoutes();
   }
 
-  private setupRoutes(): void {
-    this.router.post("/login", this.loginHandler);
-    this.router.get(
-      "/protected",
-      authenticationMiddleware,
-      this.protectedRouteHandler
-    );
-  }
+  private configureRoutes(): void {
+    // Rota de login
+    this.router.post("/login", async (req, res) => {
+      const { cpf, password } = req.body;
 
-  private async loginHandler(req: Request, res: Response): Promise<void> {
-    const { cpf, password } = req.body;
-
-    try {
-      const refreshToken = await AuthService.authenticateUser(cpf, password);
-
-      if (refreshToken) {
-        res.status(200).json({ refreshToken });
-      } else {
-        res.status(401).json({ message: "Invalid credentials" });
+      if (!cpf || !password) {
+        return res
+          .status(400)
+          .json({ message: "CPF e senha são obrigatórios" });
       }
-    } catch (error) {
-      res.status(401).json({ message: error.message });
-    }
+
+      try {
+        const userWithToken = await AuthService.authenticate(cpf, password);
+
+        if (userWithToken) {
+          return res.json(userWithToken);
+        } else {
+          return res.status(401).json({ message: "Credenciais inválidas" });
+        }
+      } catch (error) {
+        console.error("Erro durante o login:", error);
+        return res.status(500).json({ message: "Erro interno do servidor" });
+      }
+    });
+
+    // Rota protegida "hello"
+    this.router.get("/hello", isAuthenticatedMiddleware, (req, res) => {
+      return res.json({ message: "Hello, user!" });
+    });
+
+    // Rota de logout
+    this.router.post("/logout", isAuthenticatedMiddleware, async (req, res) => {
+      // Lógica de logout, remoção de tokens, etc.
+      return res.json({ message: "Logout realizado com sucesso" });
+    });
   }
 
-  private protectedRouteHandler(req: Request, res: Response): void {
-    res
-      .status(200)
-      .json({ message: "You have access to this protected route!" });
-  }
-
-  public getRouter(): Router {
+  public getRouter(): express.Router {
     return this.router;
   }
 }
-
-export default Routes;

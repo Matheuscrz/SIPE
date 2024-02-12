@@ -59,3 +59,23 @@ export interface User {
   employmentData: EmploymentData; // Informações de emprego do usuário.
   permissions: UserPermissions; // Permissões e informações de login do usuário.
 }
+
+/**
+ * Interface AccessToken representa um token de acesso JWT.
+ */
+export interface AccessToken {
+  accessToken: string;
+}
+
+/**
+ * Interface AccessToken representa um token de acesso JWT.
+ */
+export interface RefreshToken {
+  refreshToken: string;
+}
+
+/**
+ * Interface UserWithToken representa a estrutura completa de dados para um usuário
+ * incluindo um token de acesso.
+ */
+export interface UserWithToken extends User, AccessToken, RefreshToken {}

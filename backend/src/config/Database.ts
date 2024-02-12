@@ -1,4 +1,7 @@
 import { Pool, PoolConfig, QueryResult } from "pg";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * Classe Database responsável pela interação com o banco de dados PostgreSQL.
@@ -12,25 +15,24 @@ export class Database {
    */
   public static configure(config: PoolConfig): void {
     if (!this.pool) {
-      // Cria uma instância única do pool de conexões
       this.pool = new Pool(config);
-
-      // Lida com o evento 'beforeExit' para encerrar o pool antes de encerrar o aplicativo
       process.on("beforeExit", async () => {
         await this.pool.end();
-        console.log("Database pool closed");
+        console.log("Pool de banco de dados fechado");
       });
-
-      // Lida com eventos de exceção não capturados para encerrar o pool e encerrar o aplicativo
       process.on("uncaughtException", async (error) => {
-        console.error("Uncaught exception, closing database pool", error);
+        console.error(
+          "Exceção não capturada, fechando pool de banco de dados",
+          error
+        );
         await this.pool.end();
         process.exit(1);
       });
-
-      // Lida com rejeições não tratadas de promessas para encerrar o pool e encerrar o aplicativo
       process.on("unhandledRejection", async (reason) => {
-        console.error("Unhandled rejection, closing database pool", reason);
+        console.error(
+          "Rejeição não tratada, fechando pool de banco de dados",
+          reason
+        );
         await this.pool.end();
         process.exit(1);
       });
@@ -44,7 +46,7 @@ export class Database {
    */
   public static getPool(): Pool {
     if (!this.pool) {
-      throw new Error("Database pool not initialized");
+      throw new Error("Pool de banco de dados não inicializado");
     }
     return this.pool;
   }
@@ -59,6 +61,9 @@ export class Database {
     const client = await this.pool.connect();
     try {
       return await client.query(sql, values);
+    } catch (error) {
+      console.error("Erro ao executar consulta SQL", error);
+      throw error; // Propaga o erro para o chamador
     } finally {
       client.release();
     }
@@ -71,6 +76,9 @@ export class Database {
     const client = await this.pool.connect();
     try {
       await client.query("BEGIN");
+    } catch (error) {
+      console.error("Erro ao iniciar transação", error);
+      throw error;
     } finally {
       client.release();
     }
@@ -83,6 +91,9 @@ export class Database {
     const client = await this.pool.connect();
     try {
       await client.query("COMMIT");
+    } catch (error) {
+      console.error("Erro ao confirmar transação", error);
+      throw error;
     } finally {
       client.release();
     }
@@ -95,6 +106,9 @@ export class Database {
     const client = await this.pool.connect();
     try {
       await client.query("ROLLBACK");
+    } catch (error) {
+      console.error("Erro ao reverter transação", error);
+      throw error;
     } finally {
       client.release();
     }
