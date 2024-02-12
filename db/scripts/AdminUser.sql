@@ -29,7 +29,7 @@ INSERT INTO point.employees (
   uuid_generate_v4(),  -- UUID do usuário admin
   'admin',     -- Nome do usuário admin
   crypt('admin', gen_salt('bf')), -- Senha criptografada usando bcrypt
-  'admin-cpf', 
+  '00000000000', 
   '00000000000', 
   '0000',       
   'Outros',    

@@ -54,6 +54,21 @@ CREATE TABLE IF NOT EXISTS point.employees (
   max_login_attempts INT DEFAULT 5
 );
 
+CREATE TABLE IF NOT EXISTS point.login_tokens (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  user_id UUID REFERENCES point.employees(id) UNIQUE NOT NULL,
+  refresh_token VARCHAR(500) UNIQUE NOT NULL,
+  expires_at TIMESTAMP NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Criação de um índice na coluna user_id da tabela login_tokens
+CREATE INDEX idx_user_id ON point.login_tokens (user_id);
+-- Criação de um índice na coluna refresh_token da tabela login_tokens
+CREATE INDEX idx_refresh_token ON point.login_tokens (refresh_token);
+
+
+
 CREATE INDEX IF NOT EXISTS idx_name ON point.employees (name);
 CREATE INDEX IF NOT EXISTS idx_cpf ON point.employees (cpf);
 CREATE INDEX IF NOT EXISTS idx_password ON point.employees (password);
