@@ -53,6 +53,10 @@ CREATE TABLE IF NOT EXISTS point.employees (
   login_attempts INT DEFAULT 0,
   max_login_attempts INT DEFAULT 5
 );
+CREATE INDEX IF NOT EXISTS idx_name ON point.employees (name);
+CREATE INDEX IF NOT EXISTS idx_cpf ON point.employees (cpf);
+CREATE INDEX IF NOT EXISTS idx_password ON point.employees (password);
+CREATE INDEX IF NOT EXISTS idx_active ON point.employees (active);
 
 CREATE TABLE IF NOT EXISTS point.login_tokens (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -62,17 +66,8 @@ CREATE TABLE IF NOT EXISTS point.login_tokens (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Criação de um índice na coluna user_id da tabela login_tokens
 CREATE INDEX idx_user_id ON point.login_tokens (user_id);
--- Criação de um índice na coluna refresh_token da tabela login_tokens
 CREATE INDEX idx_refresh_token ON point.login_tokens (refresh_token);
-
-
-
-CREATE INDEX IF NOT EXISTS idx_name ON point.employees (name);
-CREATE INDEX IF NOT EXISTS idx_cpf ON point.employees (cpf);
-CREATE INDEX IF NOT EXISTS idx_password ON point.employees (password);
-CREATE INDEX IF NOT EXISTS idx_active ON point.employees (active);
 
 -- Criação da tabela 'permissions'
 CREATE TABLE IF NOT EXISTS point.permissions (
