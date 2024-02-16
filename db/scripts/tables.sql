@@ -1,3 +1,11 @@
+-- Instale as extensões necessárias
+CREATE EXTENSION IF NOT EXISTS pg_cron;
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+-- Criação do Schema 'point'
+CREATE SCHEMA IF NOT EXISTS point;
+
 -- Criação da tabela 'departments'
 CREATE TABLE IF NOT EXISTS point.departments (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -48,7 +56,7 @@ CREATE TABLE IF NOT EXISTS point.employees (
   hiring_date DATE NOT NULL,
   regime point.regime NOT NULL,
   permission point.permission DEFAULT 'Normal',
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
   active BOOLEAN DEFAULT TRUE,
   login_attempts INT DEFAULT 0,
   max_login_attempts INT DEFAULT 5
@@ -63,7 +71,7 @@ CREATE TABLE IF NOT EXISTS point.login_tokens (
   user_id UUID REFERENCES point.employees(id) UNIQUE NOT NULL,
   refresh_token VARCHAR(500) UNIQUE NOT NULL,
   expires_at TIMESTAMP NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
 CREATE INDEX idx_user_id ON point.login_tokens (user_id);
@@ -132,19 +140,6 @@ CREATE TABLE IF NOT EXISTS point.login_tokens (
 
 CREATE INDEX idx_user_id ON point.login_tokens (user_id);
 CREATE INDEX idx_refresh_token ON point.login_tokens (refresh_token);
-
--- Criação da tabela 'logs'
-CREATE TABLE IF NOT EXISTS point.logs (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  user_id UUID REFERENCES point.employees(id),
-  affected_table VARCHAR(255) NOT NULL,
-  affected_column VARCHAR(255),
-  affected_row JSONB,
-  action point.permission NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE INDEX IF NOT EXISTS idx_logs_user_id ON point.logs (user_id);
 
 -- Tabela de Dispositivos (Relógios de Ponto)
 -- Armazena informações sobre os relógios de ponto físicos utilizados para registros.
