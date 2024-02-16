@@ -1,34 +1,34 @@
 # Use an official PostgreSQL image from the Docker Hub
 FROM postgres:alpine
 
-# Adiciona a extensão pg_cron
+# Instalação de dependências e clonagem do pg_cron
 RUN apk add --no-cache \
     build-base \
     git \
     postgresql-dev \
-    openssl-dev
+    openssl-dev \
+  && git clone https://github.com/citusdata/pg_cron.git /pg_cron
 
-# Clone pg_cron do GitHub
-RUN git clone https://github.com/citusdata/pg_cron.git
-
-# Muda para o diretório pg_cron
-WORKDIR pg_cron
-
-# Compila e instala o pg_cron
+# Compilação e instalação do pg_cron
+WORKDIR /pg_cron
 RUN make && make install
 
-# Limpa dependências de compilação e código-fonte
+# Limpeza de dependências de compilação e código-fonte
 WORKDIR /
-RUN apk del \
-    build-base \
-    git \
-    postgresql-dev \
-    openssl-dev \
-    && rm -rf pg_cron
+RUN apk del build-base git postgresql-dev openssl-dev \
+  && rm -rf /pg_cron
 
-# Adiciona cron ao pg_config
-RUN echo "shared_preload_libraries = 'pg_cron'" >> /usr/local/share/postgresql/postgresql.conf.sample
-RUN echo "cron.database_name = 'ponto'" >> /usr/local/share/postgresql/postgresql.conf.sample
+# Configuração do PostgreSQL
+RUN echo "shared_preload_libraries = 'pg_cron'" >> /usr/local/share/postgresql/postgresql.conf
+RUN echo "cron.database_name = 'ponto'" >> /usr/local/share/postgresql/postgresql.conf
+RUN echo "shared_preload_libraries = 'pg_cron'" >> /usr/local/share/postgresql/postgresql.conf
+RUN echo "log_statement = 'all'" >> /usr/local/share/postgresql/postgresql.conf
+RUN echo "logging_collector = on" >> /usr/local/share/postgresql/postgresql.conf
+RUN echo "log_directory = '/var/log/postgresql'" >> /usr/local/share/postgresql/postgresql.conf
+RUN echo "log_filename = 'postgresql.log'" >> /usr/local/share/postgresql/postgresql.conf
 
-# Expor a porta do PostgreSQL
+# Exposição da porta do PostgreSQL
 EXPOSE 5432
+
+# Inicialização do banco de dados
+CMD ["postgres", "-c", "config_file=/usr/local/share/postgresql/postgresql.conf"]

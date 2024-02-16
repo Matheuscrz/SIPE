@@ -59,7 +59,8 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - db:/var/lib/postgresql/data
+      - ./data:/var/lib/postgresql/data
+      - ./logs:/var/log/postgresql
     networks:
       - ponto
 
@@ -94,5 +95,5 @@ volumes:
   db:
   redis:
   pgadmin:
-  frontend:
-  backend:
+  # frontend:
+  # backend:
