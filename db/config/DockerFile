@@ -28,6 +28,7 @@ RUN apk del \
 
 # Adiciona cron ao pg_config
 RUN echo "shared_preload_libraries = 'pg_cron'" >> /usr/local/share/postgresql/postgresql.conf.sample
+RUN echo "cron.database_name = 'ponto'" >> /usr/local/share/postgresql/postgresql.conf.sample
 
 # Expor a porta do PostgreSQL
 EXPOSE 5432
