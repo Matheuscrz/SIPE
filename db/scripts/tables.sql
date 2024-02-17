@@ -1,5 +1,4 @@
 -- Instale as extensões necessárias
-CREATE EXTENSION IF NOT EXISTS pg_cron;
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
@@ -39,6 +38,15 @@ CREATE TABLE IF NOT EXISTS point.work_schedules (
 CREATE INDEX IF NOT EXISTS idx_work_schedules_name ON point.work_schedules (name);
 CREATE INDEX IF NOT EXISTS idx_work_schedules_start_time ON point.work_schedules (start_time);
 CREATE INDEX IF NOT EXISTS idx_work_schedules_end_time ON point.work_schedules (end_time);
+
+-- Criar um tipo gender
+CREATE TYPE point.gender AS ENUM ('Masculino', 'Feminino', 'Outro');
+
+-- Criar um tipo regime
+CREATE TYPE point.regime AS ENUM ('CLT', 'PJ', 'Estágio', 'Outro');
+
+-- Criar um tipo permission
+CREATE TYPE point.permission AS ENUM ('Normal', 'RH', 'Admin');
 
 -- Criação da tabela 'employees'
 CREATE TABLE IF NOT EXISTS point.employees (
@@ -138,8 +146,9 @@ CREATE TABLE IF NOT EXISTS point.login_tokens (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX idx_user_id ON point.login_tokens (user_id);
-CREATE INDEX idx_refresh_token ON point.login_tokens (refresh_token);
+-- Criação do índice
+CREATE INDEX IF NOT EXISTS idx_user_id ON point.login_tokens (user_id);
+CREATE INDEX IF NOT EXISTS idx_refresh_token ON point.login_tokens (refresh_token);
 
 -- Tabela de Dispositivos (Relógios de Ponto)
 -- Armazena informações sobre os relógios de ponto físicos utilizados para registros.

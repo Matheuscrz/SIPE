@@ -14,6 +14,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+-- Criação do Trigger
 CREATE TRIGGER after_failed_login
     AFTER UPDATE OF login_attempts ON point.employees
     FOR EACH ROW

@@ -1,12 +1,3 @@
--- Criação do tipo ENUM para 'gender'
-CREATE TYPE point.gender AS ENUM ('Masculino', 'Feminino', 'Outros');
-
--- Criação do tipo ENUM para 'regime'
-CREATE TYPE point.regime AS ENUM ('CLT', 'PJ');
-
--- Criação do tipo ENUM para 'permission'
-CREATE TYPE point.permission AS ENUM ('Normal', 'RH', 'Admin');
-
 -- Inserir usuário admin
 -- Inserir departamento exclusivo para o usuário admin
 INSERT INTO point.departments (id, name, created_at) VALUES (uuid_generate_v4(), 'Admin Department', CURRENT_TIMESTAMP);
@@ -41,7 +32,7 @@ INSERT INTO point.employees (
   '00000000000', 
   '00000000000', 
   '0000',       
-  'Outros',    
+  'Outro',    -- Valor do ENUM 'Outro'
   '2024-01-01', 
   (SELECT id FROM point.departments WHERE name = 'Admin Department'), 
   (SELECT id FROM point.roles WHERE name = 'Admin Role'),     
@@ -50,4 +41,3 @@ INSERT INTO point.employees (
   'CLT',
   'Admin'   
 );
-

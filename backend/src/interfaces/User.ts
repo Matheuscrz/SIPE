@@ -2,18 +2,18 @@
  * Enum Gender representa os possíveis valores de gênero para um usuário.
  */
 export enum Gender {
-  Masculino = "Masculino",
-  Feminino = "Feminino",
-  Outros = "Outros",
+  Masculino = "Masculino", // Gênero Masculino
+  Feminino = "Feminino", // Gênero Feminino
+  Outros = "Outros", // Outros Gêneros
 }
 
 /**
  * Enum Permission representa os níveis de permissão para um usuário.
  */
 export enum Permission {
-  Normal = "Normal",
-  RH = "RH",
-  Admin = "Admin",
+  Normal = "Normal", // Permissão Normal
+  RH = "RH", // Permissão para Recursos Humanos
+  Admin = "Admin", // Permissão de Administrador
 }
 
 /**
@@ -21,7 +21,7 @@ export enum Permission {
  */
 export interface PersonalData {
   name: string; // Nome do usuário.
-  password: string; // Senha do usuário.
+  password: string; // Senha do usuário. (Nota: Considerar práticas seguras para senha)
   cpf: string; // CPF do usuário.
   pis: string; // PIS do usuário.
   pin: string; // PIN do usuário.
@@ -64,18 +64,29 @@ export interface User {
  * Interface AccessToken representa um token de acesso JWT.
  */
 export interface AccessToken {
-  accessToken: string;
+  accessToken: string; // Token de acesso.
 }
 
 /**
- * Interface AccessToken representa um token de acesso JWT.
+ * Interface RefreshToken representa um token de atualização JWT.
  */
 export interface RefreshToken {
-  refreshToken: string;
+  refreshToken: string; // Token de atualização.
+}
+
+/**
+ * Interface JwtTokenData representa os dados armazenados em um token JWT.
+ */
+export interface JwtTokenData {
+  id: string; // Identificador único do usuário.
+  personalData: PersonalData; // Informações pessoais do usuário.
+  employmentData: EmploymentData; // Informações de emprego do usuário.
+  permissions: UserPermissions; // Permissões e informações de login do usuário.
+  iss: string; // Emissor do token (issuer).
 }
 
 /**
  * Interface UserWithToken representa a estrutura completa de dados para um usuário
- * incluindo um token de acesso.
+ * incluindo um token de acesso e um token de atualização.
  */
 export interface UserWithToken extends User, AccessToken, RefreshToken {}
