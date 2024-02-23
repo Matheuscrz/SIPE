@@ -1,5 +1,10 @@
-# Use an official PostgreSQL image from the Docker Hub
+# Use uma imagem oficial do PostgreSQL a partir do Docker Hub
 FROM postgres:alpine
+
+# Adicione as configurações de locale
+RUN apk --update add --no-cache postgresql-contrib
+RUN apk add --no-cache libc6-compat
+ENV LANG en_US.utf8
 
 # Instalação de dependências e clonagem do pg_cron
 RUN apk add --no-cache \
@@ -18,8 +23,18 @@ WORKDIR /
 RUN apk del build-base git postgresql-dev openssl-dev \
   && rm -rf /pg_cron
 
-# Configuração do PostgreSQL
+# Switch para o usuário root para realizar operações com permissões elevadas
+USER root
+
+# Crie um diretório para os logs e ajuste as permissões
+RUN mkdir -p /var/log/postgresql && chown -R postgres:postgres /var/log/postgresql
+
+# Ajuste de permissões do diretório de dados
+RUN chown -R postgres:postgres /var/lib/postgresql/data
+
+# Configurações do PostgreSQL
 RUN echo "shared_preload_libraries = 'pg_cron'" >> /usr/local/share/postgresql/postgresql.conf
+RUN echo "cron.database_name = 'ponto'" >> /usr/local/share/postgresql/postgresql.conf
 RUN echo "log_statement = 'all'" >> /usr/local/share/postgresql/postgresql.conf
 RUN echo "logging_collector = on" >> /usr/local/share/postgresql/postgresql.conf
 RUN echo "log_directory = '/var/log/postgresql'" >> /usr/local/share/postgresql/postgresql.conf
@@ -27,6 +42,9 @@ RUN echo "log_filename = 'postgresql.log'" >> /usr/local/share/postgresql/postgr
 
 # Exposição da porta do PostgreSQL
 EXPOSE 5432
+
+# Switch de volta para o usuário postgres
+USER postgres
 
 # Inicialização do banco de dados
 CMD ["postgres", "-c", "config_file=/usr/local/share/postgresql/postgresql.conf"]
