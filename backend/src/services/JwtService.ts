@@ -1,6 +1,6 @@
 import jwt, { Secret, SignOptions, VerifyOptions } from "jsonwebtoken";
 import { RedisCache } from "../config/Redis";
-import { TokenRevocationController } from "../controllers/TokenRevocationController";
+import { TokenRevocationController } from "../controller/TokenRevocationController";
 import { User as UserType } from "../interfaces/User";
 
 export default class JwtService {
