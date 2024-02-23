@@ -1,116 +1,53 @@
-import { Pool, PoolConfig, QueryResult } from "pg";
+import { Pool, PoolClient, QueryResult } from "pg";
 import dotenv from "dotenv";
 
 dotenv.config();
 
-/**
- * Classe Database responsável pela interação com o banco de dados PostgreSQL.
- */
 export class Database {
   private static pool: Pool;
+  private static readonly user = process.env.DB_USER;
+  private static readonly host = process.env.DB_HOST;
+  private static readonly database = process.env.DB_DATABASE;
+  private static readonly password = process.env.DB_PASSWORD;
+  private static readonly port = process.env.DB_PORT || "5432";
 
-  /**
-   * Configura o pool de conexões do banco de dados.
-   * @param config - Configurações para o pool de conexões.
-   */
-  public static configure(config: PoolConfig): void {
-    if (!this.pool) {
-      this.pool = new Pool(config);
-      process.on("beforeExit", async () => {
-        await this.pool.end();
-        console.log("Pool de banco de dados fechado");
-      });
-      process.on("uncaughtException", async (error) => {
-        console.error(
-          "Exceção não capturada, fechando pool de banco de dados",
-          error
-        );
-        await this.pool.end();
-        process.exit(1);
-      });
-      process.on("unhandledRejection", async (reason) => {
-        console.error(
-          "Rejeição não tratada, fechando pool de banco de dados",
-          reason
-        );
-        await this.pool.end();
-        process.exit(1);
-      });
-    }
+  static initialize() {
+    Database.pool = new Pool({
+      user: Database.user,
+      host: Database.host,
+      database: Database.database,
+      password: Database.password,
+      port: parseInt(Database.port, 10),
+    });
+    Database.testConnection();
   }
 
-  /**
-   * Obtém o pool de conexões do banco de dados.
-   * @returns Pool de conexões do banco de dados.
-   * @throws Error se o pool não estiver inicializado.
-   */
-  public static getPool(): Pool {
-    if (!this.pool) {
-      throw new Error("Pool de banco de dados não inicializado");
-    }
-    return this.pool;
-  }
-
-  /**
-   * Executa uma consulta SQL no banco de dados.
-   * @param sql - Consulta SQL a ser executada.
-   * @param values - Valores a serem usados na consulta (opcional).
-   * @returns Resultado da consulta.
-   */
-  public static async query(sql: string, values?: any[]): Promise<QueryResult> {
-    const client = await this.pool.connect();
+  private static async testConnection() {
+    let client: PoolClient | null = null;
     try {
-      return await client.query(sql, values);
+      client = await Database.pool.connect();
+      console.log("Conexão de teste ao banco de dados realizada com sucesso!");
     } catch (error) {
-      console.error("Erro ao executar consulta SQL", error);
-      throw error; // Propaga o erro para o chamador
+      console.error("Erro ao conectar ao banco de dados: ", error);
     } finally {
-      client.release();
+      if (client) {
+        client.release();
+      }
     }
   }
 
-  /**
-   * Inicia uma transação no banco de dados.
-   */
-  public static async beginTransaction(): Promise<void> {
-    const client = await this.pool.connect();
+  static async query(query: string, params: any[] = []): Promise<QueryResult> {
+    let client: PoolClient | null = null;
     try {
-      await client.query("BEGIN");
-    } catch (error) {
-      console.error("Erro ao iniciar transação", error);
-      throw error;
+      client = await Database.pool.connect();
+      return await client.query(query, params);
     } finally {
-      client.release();
-    }
-  }
-
-  /**
-   * Confirma uma transação no banco de dados.
-   */
-  public static async commitTransaction(): Promise<void> {
-    const client = await this.pool.connect();
-    try {
-      await client.query("COMMIT");
-    } catch (error) {
-      console.error("Erro ao confirmar transação", error);
-      throw error;
-    } finally {
-      client.release();
-    }
-  }
-
-  /**
-   * Reverte uma transação no banco de dados.
-   */
-  public static async rollbackTransaction(): Promise<void> {
-    const client = await this.pool.connect();
-    try {
-      await client.query("ROLLBACK");
-    } catch (error) {
-      console.error("Erro ao reverter transação", error);
-      throw error;
-    } finally {
-      client.release();
+      if (client) {
+        client.release();
+      }
     }
   }
 }
+
+// Inicialize a conexão quando o arquivo for carregado
+Database.initialize();
