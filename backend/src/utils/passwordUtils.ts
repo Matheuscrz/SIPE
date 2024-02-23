@@ -4,10 +4,10 @@ export class PasswordUtils {
   private static readonly saltRounds: number = 10;
 
   /**
-   * Hashes a password using bcrypt.
-   * @param password - The plain text password to hash.
-   * @param saltRounds - The number of salt rounds for bcrypt hashing.
-   * @returns A promise that resolves to the hashed password.
+   * Criptografa uma senha com bcrypt.
+   * @param password - A senha a ser criptografada.
+   * @param saltRounds - O número de salt rounds a serem utilizados na criptografia.
+   * @returns Uma promise que resolve para a senha criptografada.
    */
   static async hashPassword(
     password: string,
@@ -17,10 +17,10 @@ export class PasswordUtils {
   }
 
   /**
-   * Compares a plain text password with a hashed password.
-   * @param password - The plain text password to compare.
-   * @param hashedPassword - The hashed password to compare against.
-   * @returns A promise that resolves to a boolean indicating whether the passwords match.
+   * Compara uma senha em texto plano com uma senha criptografada.
+   * @param password - A senha em texto plano a ser comparada.
+   * @param hashedPassword - A senha criptografada a ser comparada.
+   * @returns Uma promise que resolve para um boolean indicando se as senhas são iguais.
    */
   static async comparePasswords(
     password: string,
@@ -30,9 +30,9 @@ export class PasswordUtils {
   }
 
   /**
-   * Validates a password based on specific criteria.
-   * @param password - The password to validate.
-   * @returns An array of strings containing error messages or an empty array if the password is valid.
+   * Valida uma senha de acordo com as regras de segurança.
+   * @param password - A senha a ser validada.
+   * @returns Uma promise que resolve para um array de strings contendo os erros encontrados.
    */
   static async validatePassword(password: string): Promise<string[]> {
     const errors: string[] = [];
