@@ -44,29 +44,6 @@ export class RedisCache {
   }
 
   /**
-   * Define um valor no cache do Redis com um tempo de expiração.
-   * @param {string} key - Chave do cache a ser definida.
-   * @param {number} seconds - Tempo de expiração em segundos.
-   * @param {string} value - Valor a ser associado à chave.
-   * @returns {Promise<void>}
-   */
-  static async setex(
-    key: string,
-    seconds: number,
-    value: string
-  ): Promise<void> {
-    try {
-      await this.redisClient.setex(key, seconds, value);
-    } catch (error) {
-      console.error(
-        "Erro ao definir valor no cache do Redis com expiração",
-        error
-      );
-      throw error;
-    }
-  }
-
-  /**
    * Remove uma chave do cache do Redis.
    * @param {string} key - Chave a ser removida.
    * @returns {Promise<void>}
