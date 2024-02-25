@@ -66,9 +66,8 @@ CREATE TABLE IF NOT EXISTS point.employees (
   permission point.permission DEFAULT 'Normal',
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
   active BOOLEAN DEFAULT TRUE,
-  login_attempts INT DEFAULT 0,
-  max_login_attempts INT DEFAULT 5
 );
+
 CREATE INDEX IF NOT EXISTS idx_name ON point.employees (name);
 CREATE INDEX IF NOT EXISTS idx_cpf ON point.employees (cpf);
 CREATE INDEX IF NOT EXISTS idx_password ON point.employees (password);
