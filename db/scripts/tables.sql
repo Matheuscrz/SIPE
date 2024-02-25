@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS point.employees (
   regime point.regime NOT NULL,
   permission point.permission DEFAULT 'Normal',
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-  active BOOLEAN DEFAULT TRUE,
+  active BOOLEAN DEFAULT TRUE
 );
 
 CREATE INDEX IF NOT EXISTS idx_name ON point.employees (name);
