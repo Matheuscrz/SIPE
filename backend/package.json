@@ -4,11 +4,12 @@
   "description": "",
   "main": "src/App.ts",
   "scripts": {
-    "start": "npm run build && node build/server/App.js",
+    "start": "node build/src/App.js",
     "dev": "nodemon",
-    "build": "rimraf build/server && tsc",
+    "build": "rimraf build/src && tsc",
     "test": "jest"
   },
+  "keywords": [],
   "author": "Matheus Lima da Cruz <matheuslimasof.eng@gmail.com>",
   "license": "ISC",
   "devDependencies": {
