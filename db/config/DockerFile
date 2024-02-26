@@ -16,7 +16,7 @@ RUN echo "log_statement = 'all'" >> /usr/local/share/postgresql/postgresql.conf 
     echo "log_autovacuum_min_duration = 0" >> /usr/local/share/postgresql/postgresql.conf && \
     echo "log_checkpoints = on" >> /usr/local/share/postgresql/postgresql.conf && \
     echo "log_error_verbosity = default" >> /usr/local/share/postgresql/postgresql.conf && \
-    echo "log_timezone = 'America/Sao_Paulo'" >> /usr/local/share/postgresql/postgresql.conf && \
+    echo "log_timezone = 'America/Sao_Paulo'" >> /usr/local/share/postgresql/postgresql.conf && 
 
 # Exemplo: instale extensões ou faça outras personalizações, se necessário
 RUN apk --no-cache add postgresql-contrib
