@@ -50,6 +50,9 @@ export class Routes {
    */
   private configureRoutes(): void {
     const router = Router();
+    router.get("/exemplo", (req, res) => {
+      res.send("Hello World!");
+    });
     this.app.use("/api", router);
   }
 
@@ -60,6 +63,6 @@ export class Routes {
    * @returns um objeto Router
    */
   public getRouter(): express.Router {
-    return express.Router();
+    return Router();
   }
 }
