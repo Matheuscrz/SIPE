@@ -1,5 +1,6 @@
 import { RedisCache } from "../config/Redis";
 import { Database } from "../config/Database";
+import { AppLogger } from "../config/AppLogger";
 
 /*
  * Classe de controle para revogação de tokens
@@ -19,12 +20,16 @@ export class TokenRevocationController {
     try {
       const result = await Database.query(query, [token]);
       if (result.rows.length > 0) {
+        AppLogger.getInstance().info(`Token revogado: ${token}`);
         return true;
       } else {
+        AppLogger.getInstance().info(`Token não revogado: ${token}`);
         return false;
       }
     } catch (error) {
-      console.error("Erro ao verificar token revogado: ", error);
+      AppLogger.getInstance().error(
+        `Erro ao verificar token revogado. ID: ${id}. Erro: ${error}`
+      );
       throw error;
     }
   }
@@ -41,8 +46,11 @@ export class TokenRevocationController {
       await Database.query(deleteQuery, [id, token]);
       await Database.query(insertQuery, [token]);
       await RedisCache.set(id, token);
+      AppLogger.getInstance().info(`Token revogado com sucesso. ID: ${id}`);
     } catch (error) {
-      console.error("Erro ao revogar token: ", error);
+      AppLogger.getInstance().error(
+        `Erro ao revogar token. ID: ${id}. Erro: ${error}`
+      );
       throw error;
     }
   }

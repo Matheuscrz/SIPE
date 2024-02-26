@@ -1,5 +1,6 @@
 import { Pool, PoolClient, QueryResult } from "pg";
 import dotenv from "dotenv";
+import { AppLogger } from "./AppLogger";
 
 dotenv.config();
 
@@ -12,23 +13,36 @@ export class Database {
   private static readonly port = process.env.DB_PORT || "5432";
 
   static initialize() {
-    Database.pool = new Pool({
-      user: Database.user,
-      host: Database.host,
-      database: Database.database,
-      password: Database.password,
-      port: parseInt(Database.port, 10),
-    });
-    Database.testConnection();
+    try {
+      Database.pool = new Pool({
+        user: Database.user,
+        host: Database.host,
+        database: Database.database,
+        password: Database.password,
+        port: parseInt(Database.port, 10),
+      });
+      AppLogger.getInstance().info("Conexão com o banco de dados inicializada");
+      Database.testConnection();
+    } catch (error) {
+      AppLogger.getInstance().error(
+        "Erro ao inicializar conexão com o banco de dados: ",
+        error
+      );
+    }
   }
 
   private static async testConnection() {
     let client: PoolClient | null = null;
     try {
       client = await Database.pool.connect();
-      console.log("Conexão de teste ao banco de dados realizada com sucesso!");
+      AppLogger.getInstance().info(
+        "Conexão com o banco de dados realizada com sucesso"
+      );
     } catch (error) {
-      console.error("Erro ao conectar ao banco de dados: ", error);
+      AppLogger.getInstance().error(
+        "Erro ao testar conexão com o banco de dados: ",
+        error
+      );
     } finally {
       if (client) {
         client.release();
@@ -40,7 +54,14 @@ export class Database {
     let client: PoolClient | null = null;
     try {
       client = await Database.pool.connect();
+      AppLogger.getInstance().info(
+        "Consulta executada com sucesso. Query: ",
+        query
+      );
       return await client.query(query, params);
+    } catch (error) {
+      AppLogger.getInstance().error("Erro ao executar a consulta: ", error);
+      throw error;
     } finally {
       if (client) {
         client.release();

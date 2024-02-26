@@ -1,6 +1,7 @@
 import jwt, { Secret, SignOptions, VerifyOptions } from "jsonwebtoken";
 import { TokenRevocationController } from "../controller/TokenRevocationController";
 import { User as UserType } from "../interfaces/User";
+import { AppLogger } from "../config/AppLogger";
 
 export default class JwtService {
   private static readonly secretKey: Secret =
@@ -21,6 +22,7 @@ export default class JwtService {
       issuer: this.issuer,
       subject: payload.id,
     };
+    AppLogger.getInstance().info("Token de acesso gerado com sucesso");
     return jwt.sign(payload, refreshToken, options);
   }
 
@@ -43,6 +45,7 @@ export default class JwtService {
       issuer: this.issuer,
       subject: user.id,
     };
+    AppLogger.getInstance().info("Token de atualização gerado com sucesso");
     return jwt.sign(payload, this.secretKey, options);
   }
 
@@ -74,7 +77,9 @@ export default class JwtService {
         return true;
       }
     } catch (error) {
-      console.error("Erro ao verificar token: ", error);
+      AppLogger.getInstance().error(
+        `Erro ao verificar token de atualização. Token: ${token}, Erro: ${error}`
+      );
       return false;
     }
   }
@@ -97,7 +102,9 @@ export default class JwtService {
       jwt.verify(token, refreshToken, options);
       return true;
     } catch (error) {
-      console.error("Erro ao verificar token: ", error);
+      AppLogger.getInstance().error(
+        `Erro ao verificar token de acesso. Token: ${token}, Erro: ${error}`
+      );
       return false;
     }
   }

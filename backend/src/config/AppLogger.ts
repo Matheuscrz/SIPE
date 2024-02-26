@@ -21,7 +21,7 @@ const logFormat = winston.format.printf(
   }
 );
 
-class AppLogger {
+export class AppLogger {
   private static instance: winston.Logger = winston.createLogger({
     level: "info",
     format: winston.format.combine(winston.format.timestamp(), logFormat),

@@ -1,3 +1,4 @@
+import { AppLogger } from "../config/AppLogger";
 import { Database } from "../config/Database";
 import { RedisCache } from "../config/Redis";
 import { User as UserType } from "../interfaces/User";
@@ -18,9 +19,17 @@ export default class UserModel {
     try {
       const result = await Database.query(query, values);
       const user = result.rows.length ? result.rows[0] : null;
+      AppLogger.getInstance().info(
+        `Consulta getByCpf executada com sucesso. CPF: ${cpf}`
+      );
       return user;
     } catch (error) {
-      throw new Error(`Erro ao buscar usuário por CPF: ${error}`);
+      AppLogger.getInstance().error(
+        `Erro ao buscar usuário por CPF. CPF: ${cpf}. Error: ${error}`
+      );
+      throw new Error(
+        `Erro ao buscar usuário por CPF. CPF: ${cpf}. Error: ${error}`
+      );
     }
   }
 
@@ -35,9 +44,13 @@ export default class UserModel {
     try {
       const result = await Database.query(query, values);
       const user = result.rows.length ? result.rows[0] : null;
+      AppLogger.getInstance().info(
+        `Consulta getById executada com sucesso. ID: ${id}`
+      );
       return user;
     } catch (error) {
-      throw new Error(`Erro ao buscar usuário por ID: ${error}`);
+      AppLogger.getInstance().error(`Erro ao buscar usuário.  Error: ${error}`);
+      throw new Error(`Erro ao buscar usuário.  Error: ${error}`);
     }
   }
 
@@ -64,9 +77,15 @@ export default class UserModel {
     ];
     try {
       const result = await Database.query(query, values);
+      AppLogger.getInstance().info(
+        `Usuário adicionado com sucesso. ID: ${result.rows[0].id}`
+      );
       return result.rows[0];
     } catch (error) {
-      throw new Error(`Erro ao adicionar usuário: ${error}`);
+      AppLogger.getInstance().error(
+        `Erro ao adicionar usuário. Erro: ${error}`
+      );
+      throw new Error(`Erro ao adicionar usuário. Erro: ${error}`);
     }
   }
 
@@ -92,9 +111,15 @@ export default class UserModel {
     ];
     try {
       const result = await Database.query(query, values);
+      AppLogger.getInstance().info(
+        `Usuário atualizado com sucesso. ID: ${result.rows[0].id}`
+      );
       return result.rows[0];
     } catch (error) {
-      throw new Error(`Erro ao atualizar usuário: ${error}`);
+      AppLogger.getInstance().error(
+        `Erro ao atualizar usuário. Erro: ${error}`
+      );
+      throw new Error(`Erro ao atualizar usuário. Erro: ${error}`);
     }
   }
 
@@ -108,8 +133,12 @@ export default class UserModel {
     const values = [id];
     try {
       await Database.query(query, values);
+      AppLogger.getInstance().info(`Usuário removido com sucesso. ID: ${id}`);
     } catch (error) {
-      throw new Error(`Erro ao remover usuário: ${error}`);
+      AppLogger.getInstance().error(
+        `Erro ao remover usuário. ID: ${id}. Erro: ${error}`
+      );
+      throw new Error(`Erro ao remover usuário. ID: ${id}. Erro: ${error}`);
     }
   }
 
@@ -129,8 +158,14 @@ export default class UserModel {
     try {
       await Database.query(query, values);
       await RedisCache.set(id, refreshToken);
+      AppLogger.getInstance().info(
+        `Token refresh armazenado com sucesso. ID: ${id}`
+      );
     } catch (error) {
-      throw new Error(`Erro ao armazenar token refresh: ${error}`);
+      AppLogger.getInstance().error(
+        `Erro ao armazenar token refresh. Erro: ${error}`
+      );
+      throw new Error(`Erro ao armazenar token refresh. Erro: ${error}`);
     }
   }
 
@@ -146,7 +181,12 @@ export default class UserModel {
   ): Promise<void> {
     try {
       await RedisCache.set(id, accessToken);
+      AppLogger.getInstance().info(`Token de acesso armazenado com sucesso.`);
     } catch (error) {
+      AppLogger.getInstance().error(
+        "Erro ao armazenar token de acesso: ",
+        error
+      );
       throw new Error(`Erro ao armazenar token de acesso: ${error}`);
     }
   }
@@ -167,12 +207,18 @@ export default class UserModel {
         const revokedTokenValues = [id, refreshToken, expires_at];
         await Database.query(insertRevokedQuery, revokedTokenValues);
         await RedisCache.del(id);
+        AppLogger.getInstance().info(
+          `Token refresh removido com sucesso. ID: ${id}`
+        );
         return true;
       } else {
         return false;
       }
     } catch (error) {
-      throw new Error(`Erro ao remover token refresh: ${error}`);
+      AppLogger.getInstance().error(
+        `Erro ao remover token refresh. Erro: ${error}`
+      );
+      throw new Error(`Erro ao remover token refresh. Erro: ${error}`);
     }
   }
 }
