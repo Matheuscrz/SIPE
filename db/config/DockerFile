@@ -25,4 +25,4 @@ RUN apk --no-cache add postgresql-contrib
 VOLUME ["/var/lib/postgresql/data", "/var/log/postgresql"]
 
 # CMD padrão fornecido pela imagem oficial do PostgreSQL
-CMD ["postgres", "-c", "config_file=/usr/local/share/postgresql/postgresql.conf.sample"]
+CMD ["postgres", "-c", "config_file=/usr/local/share/postgresql/postgresql.conf"]
