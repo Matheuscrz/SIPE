@@ -54,6 +54,10 @@ export class Database {
     let client: PoolClient | null = null;
     try {
       client = await Database.pool.connect();
+      AppLogger.getInstance().info(
+        "Consulta executada com sucesso. Query: ",
+        query
+      );
       return await client.query(query, params);
     } catch (error) {
       AppLogger.getInstance().error("Erro ao executar a consulta: ", error);
