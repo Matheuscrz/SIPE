@@ -1,6 +1,7 @@
 import express, { Router } from "express";
 import cors, { CorsOptions } from "cors";
 import loggerMiddleware from "../middlewares/loggerMiddleware";
+import { PostRoutes } from "./Post.routes";
 
 /**
  * Classe de configuração de rotas
@@ -49,11 +50,8 @@ export class Routes {
    * @name Routes.configureRoutes
    */
   private configureRoutes(): void {
-    const router = Router();
-    router.get("/exemplo", (req, res) => {
-      res.send("Hello World!");
-    });
-    this.app.use("/api", router);
+    const postRoutes = new PostRoutes();
+    this.app.use(postRoutes.getRouter());
   }
 
   /**
