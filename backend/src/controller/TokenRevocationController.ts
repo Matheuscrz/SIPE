@@ -45,7 +45,7 @@ export class TokenRevocationController {
     try {
       await Database.query(deleteQuery, [id, token]);
       await Database.query(insertQuery, [token]);
-      await RedisCache.set(id, token);
+      // await RedisCache.set(id, token);
       AppLogger.getInstance().info(`Token revogado com sucesso. ID: ${id}`);
     } catch (error) {
       AppLogger.getInstance().error(
