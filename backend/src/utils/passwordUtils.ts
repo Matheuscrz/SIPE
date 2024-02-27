@@ -28,33 +28,4 @@ export class PasswordUtils {
   ): Promise<boolean> {
     return await bcrypt.compare(password, hashedPassword);
   }
-
-  /**
-   * Valida uma senha de acordo com as regras de segurança.
-   * @param password - A senha a ser validada.
-   * @returns Uma promise que resolve para um array de strings contendo os erros encontrados.
-   */
-  static async validatePassword(password: string): Promise<string[]> {
-    const errors: string[] = [];
-    // Verifica se a senha tem pelo menos 8 caracteres.
-    if (password.length < 8) {
-      errors.push("A senha deve ter pelo menos 8 caracteres.");
-    }
-    // Verifica se a senha tem pelo menos um número.
-    const digitRegex = /\d/;
-    if (!digitRegex.test(password)) {
-      errors.push("A senha deve conter pelo menos um número.");
-    }
-    // Verifica se a senha tem pelo menos uma letra.
-    const letterRegex = /[a-zA-Z]/;
-    if (!letterRegex.test(password)) {
-      errors.push("A senha deve conter pelo menos uma letra.");
-    }
-    // Verifica se a senha tem pelo menos um caractere especial.
-    const specialCharRegex = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-    if (!specialCharRegex.test(password)) {
-      errors.push("A senha precisa conter pelo menos um caractere especial.");
-    }
-    return errors;
-  }
 }
