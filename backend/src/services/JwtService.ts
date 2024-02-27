@@ -61,27 +61,35 @@ export default class JwtService {
   /**
    * Verifica se um token é válido
    * @param token - token a ser verificado
-   * @returns true se o token for válido, false caso contrário
+   * @param secretOrPublicKey - chave secreta ou pública
+   * @returns - true se o token for válido, false caso contrário
    */
-  private static async verifyRefreshToken(token: string): Promise<boolean> {
+  private static async verifyToken(
+    token: string,
+    secretOrPublicKey: Secret
+  ): Promise<boolean> {
     const options: VerifyOptions = {
       algorithms: [this.algorithm as jwt.Algorithm],
       issuer: this.issuer,
     };
+
     try {
-      const decoded = jwt.verify(token, this.secretKey, options);
-      const id = (decoded as UserType).id;
-      if (await TokenRevocationController.isTokenRevoked(id, token)) {
-        return false;
-      } else {
-        return true;
-      }
+      jwt.verify(token, secretOrPublicKey, options);
+      return true;
     } catch (error) {
       AppLogger.getInstance().error(
-        `Erro ao verificar token de atualização. Token: ${token}, Erro: ${error}`
+        `Erro ao verificar token. Token: ${token}, Erro: ${error}`
       );
       return false;
     }
+  }
+  /**
+   * Verifica se um token é válido
+   * @param token - token a ser verificado
+   * @returns true se o token for válido, false caso contrário
+   */
+  private static async verifyRefreshToken(token: string): Promise<boolean> {
+    return this.verifyToken(token, this.secretKey);
   }
 
   /**
@@ -94,19 +102,7 @@ export default class JwtService {
     token: string,
     refreshToken: string
   ): Promise<boolean> {
-    const options: VerifyOptions = {
-      algorithms: [this.algorithm as jwt.Algorithm],
-      issuer: this.issuer,
-    };
-    try {
-      jwt.verify(token, refreshToken, options);
-      return true;
-    } catch (error) {
-      AppLogger.getInstance().error(
-        `Erro ao verificar token de acesso. Token: ${token}, Erro: ${error}`
-      );
-      return false;
-    }
+    return this.verifyToken(token, refreshToken);
   }
 
   /**
