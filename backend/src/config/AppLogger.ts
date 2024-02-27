@@ -1,16 +1,14 @@
 import * as winston from "winston";
-import { format as formatDate } from "date-fns";
-import { utcToZonedTime } from "date-fns-tz";
+import { DateTime } from "luxon";
 
 const logFormat = winston.format.printf(
   ({ level, message, timestamp, ...meta }) => {
     const logInfo = {
       level,
       message,
-      timestamp: formatDate(
-        utcToZonedTime(timestamp, "America/Sao_Paulo"),
-        "yyyy-MM-dd HH:mm:ss"
-      ),
+      timestamp: DateTime.fromJSDate(timestamp)
+        .setZone("America/Sao_Paulo")
+        .toFormat("yyyy-MM-dd HH:mm:ss"),
       method: meta.method,
       url: meta.url,
       status: meta.status,
