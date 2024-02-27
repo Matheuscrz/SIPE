@@ -46,8 +46,6 @@ export interface EmploymentData {
 export interface UserPermissions {
   permission: Permission; // Nível de permissão do usuário (Normal, RH, Admin).
   createdAt: Date; // Data de criação do registro do usuário.
-  loginAttempts: number; // Número de tentativas de login do usuário.
-  maxLoginAttempts: number; // Número máximo permitido de tentativas de login.
 }
 
 /**
