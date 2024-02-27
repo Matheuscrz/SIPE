@@ -1,2 +1,34 @@
 {"level":"info","message":"Solicitação GET para /api/exemplo em Tue Feb 27 2024 08:16:26 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
 {"level":"info","message":"Solicitação GET para /favicon.ico em Tue Feb 27 2024 08:16:27 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /api/exemplo em Tue Feb 27 2024 09:09:44 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /createuser em Tue Feb 27 2024 11:04:03 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /createuser em Tue Feb 27 2024 11:10:02 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /createuser em Tue Feb 27 2024 11:14:07 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /createuser em Tue Feb 27 2024 11:19:10 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /createuser em Tue Feb 27 2024 11:24:08 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /createuser em Tue Feb 27 2024 11:24:59 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao executar a consulta:  valor de entrada é inválido para enum point.gender: \"Outros\"","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao adicionar usuário. Erro: error: valor de entrada é inválido para enum point.gender: \"Outros\"","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao criar usuário. Erro: Error: Erro ao adicionar usuário. Erro: error: valor de entrada é inválido para enum point.gender: \"Outros\"","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /createuser em Tue Feb 27 2024 11:25:06 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao executar a consulta:  valor de entrada é inválido para enum point.gender: \"Outros\"","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao adicionar usuário. Erro: error: valor de entrada é inválido para enum point.gender: \"Outros\"","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao criar usuário. Erro: Error: Erro ao adicionar usuário. Erro: error: valor de entrada é inválido para enum point.gender: \"Outros\"","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /createuser em Tue Feb 27 2024 11:26:25 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao executar a consulta:  valor de entrada é inválido para enum point.gender: \"Outros\"","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao adicionar usuário. Erro: error: valor de entrada é inválido para enum point.gender: \"Outros\"","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao criar usuário. Erro: Error: Erro ao adicionar usuário. Erro: error: valor de entrada é inválido para enum point.gender: \"Outros\"","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /createuser em Tue Feb 27 2024 11:27:21 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Usuário adicionado com sucesso. ID: 35fa15e0-1391-4944-94b8-7af8825bc959","timestamp":"Invalid DateTime"}
