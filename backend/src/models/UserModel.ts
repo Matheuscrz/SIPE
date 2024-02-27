@@ -3,7 +3,7 @@ import { Database } from "../config/Database";
 import { RedisCache } from "../config/Redis";
 import { User as UserType } from "../interfaces/User";
 
-export default class UserModel {
+export class UserModel {
   private static readonly TABLE_USER = "point.employees";
   private static readonly TABLE_REFRESH_TOKEN = "point.login_tokens";
   private static readonly TABLE_REVOKED_TOKEN = "point.revoked_tokens";
