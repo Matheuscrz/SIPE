@@ -4,7 +4,7 @@
 export enum Gender {
   Masculino = "Masculino", // Gênero Masculino
   Feminino = "Feminino", // Gênero Feminino
-  Outros = "Outros", // Outros Gêneros
+  Outros = "Outro", // Outros Gêneros
 }
 
 /**
@@ -46,8 +46,6 @@ export interface EmploymentData {
 export interface UserPermissions {
   permission: Permission; // Nível de permissão do usuário (Normal, RH, Admin).
   createdAt: Date; // Data de criação do registro do usuário.
-  loginAttempts: number; // Número de tentativas de login do usuário.
-  maxLoginAttempts: number; // Número máximo permitido de tentativas de login.
 }
 
 /**

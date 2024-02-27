@@ -3,7 +3,7 @@ import { Database } from "../config/Database";
 import { RedisCache } from "../config/Redis";
 import { User as UserType } from "../interfaces/User";
 
-export default class UserModel {
+export class UserModel {
   private static readonly TABLE_USER = "point.employees";
   private static readonly TABLE_REFRESH_TOKEN = "point.login_tokens";
   private static readonly TABLE_REVOKED_TOKEN = "point.revoked_tokens";
@@ -157,7 +157,7 @@ export default class UserModel {
     const values = [id, refreshToken, expiresAt];
     try {
       await Database.query(query, values);
-      await RedisCache.set(id, refreshToken);
+      // await RedisCache.set(id, refreshToken);
       AppLogger.getInstance().info(
         `Token refresh armazenado com sucesso. ID: ${id}`
       );
@@ -180,7 +180,7 @@ export default class UserModel {
     accessToken: string
   ): Promise<void> {
     try {
-      await RedisCache.set(id, accessToken);
+      // await RedisCache.set(id, accessToken);
       AppLogger.getInstance().info(`Token de acesso armazenado com sucesso.`);
     } catch (error) {
       AppLogger.getInstance().error(
@@ -206,7 +206,7 @@ export default class UserModel {
         const insertRevokedQuery = `INSERT INTO ${this.TABLE_REVOKED_TOKEN} (id, token, expires_at) VALUES ($1, $2, $3)`;
         const revokedTokenValues = [id, refreshToken, expires_at];
         await Database.query(insertRevokedQuery, revokedTokenValues);
-        await RedisCache.del(id);
+        // await RedisCache.del(id);
         AppLogger.getInstance().info(
           `Token refresh removido com sucesso. ID: ${id}`
         );
