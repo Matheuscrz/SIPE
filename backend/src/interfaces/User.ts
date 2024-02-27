@@ -4,7 +4,7 @@
 export enum Gender {
   Masculino = "Masculino", // Gênero Masculino
   Feminino = "Feminino", // Gênero Feminino
-  Outros = "Outros", // Outros Gêneros
+  Outros = "Outro", // Outros Gêneros
 }
 
 /**
