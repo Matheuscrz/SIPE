@@ -2,6 +2,8 @@ import { AppLogger } from "../config/AppLogger";
 import { Database } from "../config/Database";
 import { RedisCache } from "../config/Redis";
 import { User as UserType } from "../interfaces/User";
+import { UserUtils } from "../utils/UserUtils";
+import { ErrorHandler } from "../config/ErroHandler";
 
 export class UserModel {
   private static readonly TABLE_USER = "point.employees";
@@ -24,8 +26,9 @@ export class UserModel {
       );
       return user;
     } catch (error) {
-      AppLogger.getInstance().error(
-        `Erro ao buscar usuário por CPF. CPF: ${cpf}. Error: ${error}`
+      ErrorHandler.handleGenericError(
+        `Erro ao buscar usuário por CPF. CPF: ${cpf}. Error: `,
+        error
       );
       throw new Error(
         `Erro ao buscar usuário por CPF. CPF: ${cpf}. Error: ${error}`
@@ -43,14 +46,21 @@ export class UserModel {
     const values = [id];
     try {
       const result = await Database.query(query, values);
-      const user = result.rows.length ? result.rows[0] : null;
+      const userFromDb = result.rows.length ? result.rows[0] : null;
+      const user: UserType = {
+        id: userFromDb.id,
+        personalData: UserUtils.transformPersonalData(userFromDb),
+        employmentData: UserUtils.transformEmploymentData(userFromDb),
+        permissions: UserUtils.transformUserPermissions(userFromDb),
+        active: userFromDb.active,
+      };
       AppLogger.getInstance().info(
         `Consulta getById executada com sucesso. ID: ${id}`
       );
       return user;
     } catch (error) {
-      AppLogger.getInstance().error(`Erro ao buscar usuário.  Error: ${error}`);
-      throw new Error(`Erro ao buscar usuário.  Error: ${error}`);
+      ErrorHandler.handleGenericError(`Erro ao buscar usuário. Error: `, error);
+      throw new Error(`Erro ao buscar usuário. Error: ${error}`);
     }
   }
 
@@ -60,7 +70,7 @@ export class UserModel {
    * @returns - Objeto User inserido no banco de dados
    */
   static async addUser(user: UserType): Promise<UserType> {
-    const query = `INSERT INTO ${this.TABLE_USER} (name, password, cpf, pis, pin, gender, birth_date, department_id, roles_id, work_schedule_id, hiring_date, regime, permission) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *`;
+    const query = `INSERT INTO ${this.TABLE_USER} (name, password, cpf, pis, pin, gender, birth_date, department_id, roles_id, work_schedule_id, hiring_date, regime) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *`;
     const values = [
       user.personalData.name,
       user.personalData.password,
@@ -74,7 +84,6 @@ export class UserModel {
       user.employmentData.workScheduleId,
       user.employmentData.hiringDate,
       user.employmentData.regime,
-      user.permissions.permission,
     ];
     try {
       const result = await Database.query(query, values);
@@ -83,8 +92,9 @@ export class UserModel {
       );
       return result.rows[0];
     } catch (error) {
-      AppLogger.getInstance().error(
-        `Erro ao adicionar usuário. Erro: ${error}`
+      ErrorHandler.handleGenericError(
+        `Erro ao adicionar usuário. Erro: `,
+        error
       );
       throw new Error(`Erro ao adicionar usuário. Erro: ${error}`);
     }
@@ -117,8 +127,9 @@ export class UserModel {
       );
       return result.rows[0];
     } catch (error) {
-      AppLogger.getInstance().error(
-        `Erro ao atualizar usuário. Erro: ${error}`
+      ErrorHandler.handleGenericError(
+        `Erro ao atualizar usuário. Erro: `,
+        error
       );
       throw new Error(`Erro ao atualizar usuário. Erro: ${error}`);
     }
@@ -136,8 +147,9 @@ export class UserModel {
       await Database.query(query, values);
       AppLogger.getInstance().info(`Usuário removido com sucesso. ID: ${id}`);
     } catch (error) {
-      AppLogger.getInstance().error(
-        `Erro ao remover usuário. ID: ${id}. Erro: ${error}`
+      ErrorHandler.handleGenericError(
+        `Erro ao remover usuário. ID: ${id}. Erro: `,
+        error
       );
       throw new Error(`Erro ao remover usuário. ID: ${id}. Erro: ${error}`);
     }
@@ -163,8 +175,9 @@ export class UserModel {
         `Token refresh armazenado com sucesso. ID: ${id}`
       );
     } catch (error) {
-      AppLogger.getInstance().error(
-        `Erro ao armazenar token refresh. Erro: ${error}`
+      ErrorHandler.handleGenericError(
+        `Erro ao armazenar token refresh. Erro: `,
+        error
       );
       throw new Error(`Erro ao armazenar token refresh. Erro: ${error}`);
     }
@@ -184,7 +197,7 @@ export class UserModel {
       // await RedisCache.set(id, accessToken);
       AppLogger.getInstance().info(`Token de acesso armazenado com sucesso.`);
     } catch (error) {
-      AppLogger.getInstance().error(
+      ErrorHandler.handleGenericError(
         "Erro ao armazenar token de acesso: ",
         error
       );
@@ -216,8 +229,9 @@ export class UserModel {
         return false;
       }
     } catch (error) {
-      AppLogger.getInstance().error(
-        `Erro ao remover token refresh. Erro: ${error}`
+      ErrorHandler.handleGenericError(
+        `Erro ao remover token refresh. Erro: `,
+        error
       );
       throw new Error(`Erro ao remover token refresh. Erro: ${error}`);
     }
