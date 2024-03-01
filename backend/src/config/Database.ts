@@ -1,6 +1,7 @@
 import { Pool, PoolClient, QueryResult } from "pg";
 import dotenv from "dotenv";
 import { AppLogger } from "./AppLogger";
+import { ErrorHandler } from "./ErroHandler";
 
 dotenv.config();
 
@@ -24,8 +25,8 @@ export class Database {
       AppLogger.getInstance().info("Conexão com o banco de dados inicializada");
       Database.testConnection();
     } catch (error) {
-      AppLogger.getInstance().error(
-        "Erro ao inicializar conexão com o banco de dados: ",
+      ErrorHandler.handleGenericError(
+        "Erro ao inicializar conexão com o banco de dados:",
         error
       );
     }
@@ -39,7 +40,7 @@ export class Database {
         "Conexão com o banco de dados realizada com sucesso"
       );
     } catch (error) {
-      AppLogger.getInstance().error(
+      ErrorHandler.handleGenericError(
         "Erro ao testar conexão com o banco de dados: ",
         error
       );
@@ -60,7 +61,7 @@ export class Database {
       );
       return await client.query(query, params);
     } catch (error) {
-      AppLogger.getInstance().error("Erro ao executar a consulta: ", error);
+      ErrorHandler.handleGenericError("Erro ao executar a consulta: ", error);
       throw error;
     } finally {
       if (client) {
