@@ -2,6 +2,7 @@ import express, { Router } from "express";
 import cors, { CorsOptions } from "cors";
 import loggerMiddleware from "../middlewares/loggerMiddleware";
 import { PostRoutes } from "./Post.routes";
+import { GetRoutes } from "./Get.routes";
 
 /**
  * Classe de configuração de rotas
@@ -51,7 +52,9 @@ export class Routes {
    */
   private configureRoutes(): void {
     const postRoutes = new PostRoutes();
+    const getRoutes = new GetRoutes();
     this.app.use(postRoutes.getRouter());
+    this.app.use(getRoutes.getRouter());
   }
 
   /**
