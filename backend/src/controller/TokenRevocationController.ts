@@ -1,6 +1,7 @@
 import { RedisCache } from "../config/Redis";
 import { Database } from "../config/Database";
 import { AppLogger } from "../config/AppLogger";
+import { ErrorHandler } from "../config/ErroHandler";
 
 /*
  * Classe de controle para revogação de tokens
@@ -27,8 +28,9 @@ export class TokenRevocationController {
         return false;
       }
     } catch (error) {
-      AppLogger.getInstance().error(
-        `Erro ao verificar token revogado. ID: ${id}. Erro: ${error}`
+      ErrorHandler.handleGenericError(
+        `Erro ao verificar token revogado. ID: ${id}. Erro:`,
+        error
       );
       throw error;
     }
@@ -48,8 +50,9 @@ export class TokenRevocationController {
       // await RedisCache.set(id, token);
       AppLogger.getInstance().info(`Token revogado com sucesso. ID: ${id}`);
     } catch (error) {
-      AppLogger.getInstance().error(
-        `Erro ao revogar token. ID: ${id}. Erro: ${error}`
+      ErrorHandler.handleGenericError(
+        `Erro ao revogar token. ID: ${id}. Erro: `,
+        error
       );
       throw error;
     }
