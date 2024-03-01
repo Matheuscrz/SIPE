@@ -60,7 +60,7 @@ export class UserModel {
    * @returns - Objeto User inserido no banco de dados
    */
   static async addUser(user: UserType): Promise<UserType> {
-    const query = `INSERT INTO ${this.TABLE_USER} (name, password, cpf, pis, pin, gender, birth_date, department_id, roles_id, work_schedule_id, hiring_date, regime) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *`;
+    const query = `INSERT INTO ${this.TABLE_USER} (name, password, cpf, pis, pin, gender, birth_date, department_id, roles_id, work_schedule_id, hiring_date, regime, permission) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *`;
     const values = [
       user.personalData.name,
       user.personalData.password,
@@ -74,6 +74,7 @@ export class UserModel {
       user.employmentData.workScheduleId,
       user.employmentData.hiringDate,
       user.employmentData.regime,
+      user.permissions.permission,
     ];
     try {
       const result = await Database.query(query, values);
