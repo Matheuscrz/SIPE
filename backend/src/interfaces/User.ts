@@ -8,15 +8,6 @@ export enum Gender {
 }
 
 /**
- * Enum Permission representa os níveis de permissão para um usuário.
- */
-export enum Permission {
-  Normal = "Normal", // Permissão Normal
-  RH = "RH", // Permissão para Recursos Humanos
-  Admin = "Admin", // Permissão de Administrador
-}
-
-/**
  * Interface PersonalData representa informações pessoais de um usuário.
  */
 export interface PersonalData {
@@ -44,7 +35,7 @@ export interface EmploymentData {
  * Interface UserPermissions representa as permissões e informações de login de um usuário.
  */
 export interface UserPermissions {
-  permission: Permission; // Nível de permissão do usuário (Normal, RH, Admin).
+  permission: string; // Nível de permissão do usuário (Normal, RH, Admin).
   createdAt: Date; // Data de criação do registro do usuário.
 }
 
@@ -56,6 +47,7 @@ export interface User {
   personalData: PersonalData; // Informações pessoais do usuário.
   employmentData: EmploymentData; // Informações de emprego do usuário.
   permissions: UserPermissions; // Permissões e informações de login do usuário.
+  active: boolean; // Indica se o usuário está ativo ou não.
 }
 
 /**
