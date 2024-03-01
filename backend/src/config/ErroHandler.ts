@@ -21,7 +21,7 @@ export class ErrorHandler {
    * @param res - Response
    * @param error - Erro
    */
-  static handleGenericError(error: any, message: string): void {
+  static handleGenericError(message: string, error: any): void {
     ErrorHandler.logError(message, error);
   }
 
