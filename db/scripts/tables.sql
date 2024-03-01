@@ -1,5 +1,4 @@
--- Instale as extensões necessárias
-CREATE EXTENSION IF NOT EXISTS pgcrypto;
+    -- Instale as extensões necessárias
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- Criação do Schema 'point'
