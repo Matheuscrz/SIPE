@@ -39,13 +39,43 @@ CREATE INDEX IF NOT EXISTS idx_work_schedules_start_time ON point.work_schedules
 CREATE INDEX IF NOT EXISTS idx_work_schedules_end_time ON point.work_schedules (end_time);
 
 -- Criar um tipo gender
-CREATE TYPE point.gender AS ENUM ('Masculino', 'Feminino', 'Outro');
+CREATE TYPE point.gender AS ENUM ('Masculino', 'Feminino', 'Outros');
 
 -- Criar um tipo regime
 CREATE TYPE point.regime AS ENUM ('CLT', 'PJ', 'Estágio', 'Outro');
 
 -- Criar um tipo permission
 CREATE TYPE point.permission AS ENUM ('Normal', 'RH', 'Admin');
+
+-- Função para retornar o id da permissão padrão
+CREATE OR REPLACE FUNCTION get_default_permission_id() RETURNS UUID AS $$
+BEGIN
+  RETURN (SELECT id FROM point.permissions WHERE name = 'Normal');
+END;
+$$ LANGUAGE plpgsql;
+
+-- Criação da tabela 'permissions'
+CREATE TABLE IF NOT EXISTS point.permissions (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name point.permission UNIQUE NOT NULL,
+  can_manage_users BOOLEAN DEFAULT FALSE,
+  can_manage_departments BOOLEAN DEFAULT FALSE,
+  can_manage_work_schedules BOOLEAN DEFAULT FALSE,
+  can_approve_absences BOOLEAN DEFAULT FALSE,
+  can_generate_reports BOOLEAN DEFAULT FALSE,
+  can_view_all_time_records BOOLEAN DEFAULT FALSE,
+  can_manage_device_configuration BOOLEAN DEFAULT FALSE,
+  can_manage_company_info BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+-- Criação de índice
+CREATE INDEX IF NOT EXISTS idx_permissions_name ON point.permissions (name);
+-- Inserir permissões padrão
+INSERT INTO point.permissions (name, can_view_all_time_records) VALUES ('Normal', TRUE);
+-- Inserir permissões padrão
+INSERT INTO point.permissions (name, can_manage_users, can_manage_departments, can_manage_work_schedules, can_approve_absences, can_generate_reports, can_view_all_time_records) VALUES ('RH', TRUE, TRUE, TRUE, TRUE, TRUE, TRUE);
+-- Inserir permissões padrão
+INSERT INTO point.permissions (name, can_manage_users, can_manage_departments, can_manage_work_schedules, can_approve_absences, can_generate_reports, can_view_all_time_records, can_manage_device_configuration, can_manage_company_info) VALUES ('Admin', TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE);
 
 -- Criação da tabela 'employees'
 CREATE TABLE IF NOT EXISTS point.employees (
@@ -62,7 +92,7 @@ CREATE TABLE IF NOT EXISTS point.employees (
   work_schedule_id UUID REFERENCES point.work_schedules(id),
   hiring_date DATE NOT NULL,
   regime point.regime NOT NULL,
-  permission point.permission DEFAULT 'Normal',
+  permission_id UUID DEFAULT get_default_permission_id() REFERENCES point.permissions(id) NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
   active BOOLEAN DEFAULT TRUE
 );
@@ -82,28 +112,6 @@ CREATE TABLE IF NOT EXISTS point.login_tokens (
 
 CREATE INDEX idx_user_id ON point.login_tokens (user_id);
 CREATE INDEX idx_refresh_token ON point.login_tokens (refresh_token);
-
--- Criação da tabela 'permissions'
-CREATE TABLE IF NOT EXISTS point.permissions (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  name VARCHAR(255) UNIQUE NOT NULL,
-  can_manage_users BOOLEAN DEFAULT FALSE,
-  can_manage_departments BOOLEAN DEFAULT FALSE,
-  can_manage_work_schedules BOOLEAN DEFAULT FALSE,
-  can_approve_absences BOOLEAN DEFAULT FALSE,
-  can_generate_reports BOOLEAN DEFAULT FALSE,
-  can_view_all_time_records BOOLEAN DEFAULT FALSE,
-  can_manage_device_configuration BOOLEAN DEFAULT FALSE,
-  can_manage_company_info BOOLEAN DEFAULT FALSE,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE INDEX IF NOT EXISTS idx_permissions_name ON point.permissions (name);
-
--- Inserir permissões padrão
-INSERT INTO point.permissions (name, can_view_all_time_records) VALUES ('Normal', TRUE);
-INSERT INTO point.permissions (name, can_manage_users, can_manage_departments, can_manage_work_schedules, can_approve_absences, can_generate_reports, can_view_all_time_records) VALUES ('RH', TRUE, TRUE, TRUE, TRUE, TRUE, TRUE);
-INSERT INTO point.permissions (name, can_manage_users, can_manage_departments, can_manage_work_schedules, can_approve_absences, can_generate_reports, can_view_all_time_records, can_manage_device_configuration, can_manage_company_info) VALUES ('Admin', TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE);
 
 -- Criação da tabela 'time_records'
 CREATE TABLE IF NOT EXISTS point.time_records (
@@ -164,3 +172,14 @@ CREATE TABLE IF NOT EXISTS point.revoked_tokens (
 );
 
 CREATE INDEX IF NOT EXISTS idx_revoked_tokens_token ON point.revoked_tokens (token);
+
+
+-- Inserir departamento exclusivo para o usuário admin
+INSERT INTO point.departments (id, name, created_at) VALUES (uuid_generate_v4(), 'Admin Department', CURRENT_TIMESTAMP);
+
+-- Inserir cargo exclusivo para o usuário admin
+INSERT INTO point.roles (id, name, department_id, created_at) VALUES (uuid_generate_v4(), 'Admin Role', (SELECT id FROM point.departments WHERE name = 'Admin Department'), CURRENT_TIMESTAMP);
+
+-- Inserir jornada de trabalho exclusiva para o usuário admin
+INSERT INTO point.work_schedules (id, name, start_time, end_time, lunch_start_time, lunch_end_time, created_at) 
+VALUES (uuid_generate_v4(), 'Admin Work Schedule', '08:00:00', '17:00:00', '12:00:00', '13:00:00', CURRENT_TIMESTAMP);
