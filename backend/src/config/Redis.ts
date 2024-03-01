@@ -1,6 +1,7 @@
 import Redis from "ioredis";
 import dotenv from "dotenv";
 import { AppLogger } from "./AppLogger";
+import { ErrorHandler } from "./ErroHandler";
 
 dotenv.config();
 
@@ -27,7 +28,7 @@ export class RedisCache {
       );
       return await this.redisClient.get(key);
     } catch (error) {
-      AppLogger.getInstance().error(
+      ErrorHandler.handleGenericError(
         "Erro ao obter valor do cache do Redis",
         error
       );
@@ -48,7 +49,7 @@ export class RedisCache {
       );
       await this.redisClient.set(key, value);
     } catch (error) {
-      AppLogger.getInstance().error(
+      ErrorHandler.handleGenericError(
         "Erro ao definir valor no cache do Redis",
         error
       );
@@ -68,7 +69,7 @@ export class RedisCache {
       );
       await this.redisClient.unlink(key);
     } catch (error) {
-      AppLogger.getInstance().error(
+      ErrorHandler.handleGenericError(
         "Erro ao remover chave do cache do Redis",
         error
       );
