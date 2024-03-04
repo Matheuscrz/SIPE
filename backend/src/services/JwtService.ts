@@ -3,7 +3,7 @@ import { TokenRevocationController } from "../controller/TokenRevocationControll
 import { User as UserType } from "../interfaces/User";
 import { AppLogger } from "../config/AppLogger";
 
-export default class JwtService {
+export class JwtService {
   private static readonly secretKey: Secret =
     process.env.JWT_SECRET_KEY_REFRESH || "secret-key";
   private static readonly algorithm: string = "HS256";
@@ -14,7 +14,9 @@ export default class JwtService {
    * @param refreshToken - token de atualização
    * @returns token de acesso
    */
-  private static async generateAccessToken(refreshToken): Promise<string> {
+  public static async generateAccessToken(
+    refreshToken: string
+  ): Promise<string> {
     const payload = this.decodeToken(refreshToken);
     const options: SignOptions = {
       algorithm: this.algorithm as jwt.Algorithm,
@@ -31,7 +33,7 @@ export default class JwtService {
    * @param user - usuário a quem o token pertence
    * @returns token de atualização
    */
-  private static async generateRefreshToken(user: UserType): Promise<string> {
+  public static async generateRefreshToken(user: UserType): Promise<string> {
     const payload = {
       id: user.id,
       personalData: user.personalData,
@@ -88,7 +90,7 @@ export default class JwtService {
    * @param token - token a ser verificado
    * @returns true se o token for válido, false caso contrário
    */
-  private static async verifyRefreshToken(token: string): Promise<boolean> {
+  public static async verifyRefreshToken(token: string): Promise<boolean> {
     return this.verifyToken(token, this.secretKey);
   }
 
@@ -98,7 +100,7 @@ export default class JwtService {
    * @param refreshToken - token de atualização
    * @returns - true se o token for válido, false caso contrário
    */
-  private static async verifyAccessToken(
+  public static async verifyAccessToken(
     token: string,
     refreshToken: string
   ): Promise<boolean> {
@@ -110,7 +112,7 @@ export default class JwtService {
    * @param user - usuário a quem os tokens pertencem
    * @returns - um objeto contendo o token de acesso e o token de atualização
    */
-  private static async generateTokens(
+  public static async generateTokens(
     user: UserType
   ): Promise<{ accessToken: string; refreshToken: string }> {
     const refreshToken = await this.generateRefreshToken(user);
