@@ -1,8 +1,5 @@
 import express, { Request, Response, Router } from "express";
 import { UserModel } from "../models/UserModel";
-import { AppLogger } from "../config/AppLogger";
-import { User, User as UserEntity } from "../interfaces/User";
-import { UserUtils } from "../utils/UserUtils";
 import { ErrorHandler } from "../config/ErroHandler";
 
 /**
@@ -25,6 +22,19 @@ export class GetRoutes {
 
   private configureRoutes() {
     this.router.get("/user/:id", this.getUserById.bind(this));
+    this.router.get("/hello", this.sayHello.bind(this));
+  }
+
+  private async sayHello(req: Request, res: Response): Promise<void> {
+    try {
+      res.status(200).send("Hello World");
+    } catch (error) {
+      ErrorHandler.handleInternalServerError(
+        res,
+        `Erro interno do servidor. Error: ${error}`
+      );
+      res.status(500).send("Erro interno do servidor");
+    }
   }
 
   private async getUserById(req: Request, res: Response): Promise<void> {

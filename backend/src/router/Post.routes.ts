@@ -2,8 +2,9 @@ import express, { Request, Response, Router } from "express";
 import { UserModel } from "../models/UserModel";
 import { PasswordUtils } from "../utils/PasswordUtils";
 import { User as UserEntity } from "../interfaces/User";
-import { AppLogger } from "../config/AppLogger";
 import { ErrorHandler } from "../config/ErroHandler";
+import passport from "passport";
+import { AuthController } from "../controller/AuthController";
 
 /**
  * Classe de rotas para do tipo Post
@@ -32,6 +33,14 @@ export class PostRoutes {
    */
   private configureRoutes() {
     this.router.post("/createuser", this.createUser.bind(this));
+    this.router.post(
+      "/login",
+      passport.authenticate(
+        "jwt",
+        { session: false },
+        AuthController.generateTokens
+      )
+    );
   }
 
   private async createUser(req: Request, res: Response): Promise<void> {
