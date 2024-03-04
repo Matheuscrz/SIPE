@@ -4,7 +4,6 @@ import {
   User as UserEntity,
   UserPermissions,
 } from "../interfaces/User";
-import { Gender } from "../interfaces/User";
 
 /**
  * Classe UserUtils contém métodos utilitários para a entidade User.
@@ -13,6 +12,9 @@ import { Gender } from "../interfaces/User";
  * @exports UserUtils
  */
 export class UserUtils {
+  static transformEmployeeData(user: Express.User | undefined) {
+    throw new Error("Method not implemented.");
+  }
   /**
    * Função transformPersonalData transforma um objeto de usuário em um objeto do tipo PersonalData.
    * @param user - Entidade de usuário a ser transformada
