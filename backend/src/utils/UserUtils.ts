@@ -12,9 +12,6 @@ import {
  * @exports UserUtils
  */
 export class UserUtils {
-  static transformEmployeeData(user: Express.User | undefined) {
-    throw new Error("Method not implemented.");
-  }
   /**
    * Função transformPersonalData transforma um objeto de usuário em um objeto do tipo PersonalData.
    * @param user - Entidade de usuário a ser transformada
