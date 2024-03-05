@@ -1,5 +1,4 @@
 import jwt, { Secret, SignOptions, VerifyOptions } from "jsonwebtoken";
-import { TokenRevocationController } from "../controller/TokenRevocationController";
 import { User as UserType } from "../interfaces/User";
 import { AppLogger } from "../config/AppLogger";
 

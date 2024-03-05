@@ -2,6 +2,12 @@ import { Request, Response, NextFunction } from "express";
 import { AppLogger } from "../config/AppLogger";
 import { JwtService } from "../services/JwtService";
 
+/**
+ * Função para verificar se o token de acesso é válido
+ * @param req - Request
+ * @param res - Response
+ * @param next - NextFunction
+ */
 const verifyAccessToken = async (
   req: Request,
   res: Response,
@@ -30,6 +36,12 @@ const verifyAccessToken = async (
   }
 };
 
+/**
+ * Função para verificar se o token de atualização é válido
+ * @param req - Request
+ * @param res - Response
+ * @param next - NextFunction
+ */
 const verifyRefreshToken = async (
   req: Request,
   res: Response,
