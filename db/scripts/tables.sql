@@ -47,13 +47,6 @@ CREATE TYPE point.regime AS ENUM ('CLT', 'PJ', 'Estágio', 'Outro');
 -- Criar um tipo permission
 CREATE TYPE point.permission AS ENUM ('Normal', 'RH', 'Admin');
 
--- Função para retornar o id da permissão padrão
-CREATE OR REPLACE FUNCTION get_default_permission_id() RETURNS UUID AS $$
-BEGIN
-  RETURN (SELECT id FROM point.permissions WHERE name = 'Normal');
-END;
-$$ LANGUAGE plpgsql;
-
 -- Criação da tabela 'permissions'
 CREATE TABLE IF NOT EXISTS point.permissions (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -61,21 +54,23 @@ CREATE TABLE IF NOT EXISTS point.permissions (
   can_manage_users BOOLEAN DEFAULT FALSE,
   can_manage_departments BOOLEAN DEFAULT FALSE,
   can_manage_work_schedules BOOLEAN DEFAULT FALSE,
+  can_manage_roles BOOLEAN DEFAULT FALSE,
+  can_manage_permissions BOOLEAN DEFAULT FALSE,
   can_approve_absences BOOLEAN DEFAULT FALSE,
   can_generate_reports BOOLEAN DEFAULT FALSE,
   can_view_all_time_records BOOLEAN DEFAULT FALSE,
   can_manage_device_configuration BOOLEAN DEFAULT FALSE,
   can_manage_company_info BOOLEAN DEFAULT FALSE,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  created_at DATE DEFAULT NOW()
 );
 -- Criação de índice
 CREATE INDEX IF NOT EXISTS idx_permissions_name ON point.permissions (name);
 -- Inserir permissões padrão
 INSERT INTO point.permissions (name, can_view_all_time_records) VALUES ('Normal', TRUE);
 -- Inserir permissões padrão
-INSERT INTO point.permissions (name, can_manage_users, can_manage_departments, can_manage_work_schedules, can_approve_absences, can_generate_reports, can_view_all_time_records) VALUES ('RH', TRUE, TRUE, TRUE, TRUE, TRUE, TRUE);
+INSERT INTO point.permissions (name, can_manage_users, can_manage_departments, can_manage_work_schedules, can_manage_roles, can_approve_absences, can_generate_reports, can_view_all_time_records) VALUES ('RH', TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE);
 -- Inserir permissões padrão
-INSERT INTO point.permissions (name, can_manage_users, can_manage_departments, can_manage_work_schedules, can_approve_absences, can_generate_reports, can_view_all_time_records, can_manage_device_configuration, can_manage_company_info) VALUES ('Admin', TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE);
+INSERT INTO point.permissions (name, can_manage_users, can_manage_departments, can_manage_work_schedules,can_manage_roles, can_manage_permissions, can_approve_absences, can_generate_reports, can_view_all_time_records, can_manage_device_configuration, can_manage_company_info) VALUES ('Admin', TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE);
 
 -- Criação da tabela 'employees'
 CREATE TABLE IF NOT EXISTS point.employees (
@@ -92,56 +87,46 @@ CREATE TABLE IF NOT EXISTS point.employees (
   work_schedule_id UUID REFERENCES point.work_schedules(id),
   hiring_date DATE NOT NULL,
   regime point.regime NOT NULL,
-  permission_id UUID DEFAULT get_default_permission_id() REFERENCES point.permissions(id) NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  permission_id UUID REFERENCES point.permissions(id),
+  created_at DATE DEFAULT NOW() NOT NULL,
   active BOOLEAN DEFAULT TRUE
 );
-
 CREATE INDEX IF NOT EXISTS idx_name ON point.employees (name);
 CREATE INDEX IF NOT EXISTS idx_cpf ON point.employees (cpf);
 CREATE INDEX IF NOT EXISTS idx_password ON point.employees (password);
 CREATE INDEX IF NOT EXISTS idx_active ON point.employees (active);
+CREATE INDEX IF NOT EXISTS idx_permission_id ON point.employees (permission_id);
+CREATE INDEX IF NOT EXISTS idx_roles_id ON point.employees (roles_id);
+CREATE INDEX IF NOT EXISTS idx_department_id ON point.employees (department_id);
+CREATE INDEX IF NOT EXISTS idx_work_schedule_id ON point.employees (work_schedule_id);
 
 CREATE TABLE IF NOT EXISTS point.login_tokens (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  user_id UUID REFERENCES point.employees(id) UNIQUE NOT NULL,
-  refresh_token VARCHAR(500) UNIQUE NOT NULL,
-  expires_at TIMESTAMP NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+  id UUID PRIMARY KEY REFERENCES point.employees(id),
+  token VARCHAR(500) UNIQUE NOT NULL,
+  expires_at DATE NOT NULL,
+  created_at DATE DEFAULT NOW() NOT NULL
 );
 
-CREATE INDEX idx_user_id ON point.login_tokens (user_id);
-CREATE INDEX idx_refresh_token ON point.login_tokens (refresh_token);
+CREATE INDEX idx_token ON point.login_tokens (token);
 
 -- Criação da tabela 'time_records'
 CREATE TABLE IF NOT EXISTS point.time_records (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  employee_id UUID REFERENCES point.employees(id),
+  id UUID PRIMARY KEY REFERENCES point.employees(id) NOT NULL,
   record_time TIMESTAMP NOT NULL,
   record_date DATE NOT NULL, 
   location POINT,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  created_at DATE DEFAULT NOW() NOT NULL
 );
-
-CREATE INDEX IF NOT EXISTS idx_time_records_employee_id ON point.time_records (employee_id);
 CREATE INDEX IF NOT EXISTS idx_time_records_record_time ON point.time_records (record_time);
 CREATE INDEX IF NOT EXISTS idx_time_records_record_date ON point.time_records (record_date);
 
 -- Criação da tabela 'absence_justifications'
 CREATE TABLE IF NOT EXISTS point.absence_justifications (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  employee_id UUID REFERENCES point.employees(id),
+  id UUID PRIMARY KEY REFERENCES point.time_records(id) NOT NULL,
   justification TEXT NOT NULL,
   justification_date DATE NOT NULL,
-  status point.permission DEFAULT 'Normal', -- ou 'RH' ou 'Admin', conforme apropriado
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-CREATE INDEX IF NOT EXISTS idx_absence_justifications_employee_id ON point.absence_justifications (employee_id);
-
--- Alteração da tabela 'time_records' para adicionar coluna 'absence_justification_id'
-ALTER TABLE point.time_records
-ADD COLUMN absence_justification_id UUID REFERENCES point.absence_justifications(id);
 
 -- Tabela de Dispositivos (Relógios de Ponto)
 -- Armazena informações sobre os relógios de ponto físicos utilizados para registros.
@@ -162,17 +147,6 @@ CREATE TABLE IF NOT EXISTS point.company_info (
   logo BYTEA,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
--- Criação da tabela 'revoked_tokens'
-CREATE TABLE IF NOT EXISTS point.revoked_tokens (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  token VARCHAR(500) UNIQUE NOT NULL,
-  expires_at TIMESTAMP NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
-);
-
-CREATE INDEX IF NOT EXISTS idx_revoked_tokens_token ON point.revoked_tokens (token);
-
 
 -- Inserir departamento exclusivo para o usuário admin
 INSERT INTO point.departments (id, name, created_at) VALUES (uuid_generate_v4(), 'Admin Department', CURRENT_TIMESTAMP);
