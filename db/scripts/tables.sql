@@ -82,12 +82,12 @@ CREATE TABLE IF NOT EXISTS point.employees (
   pin VARCHAR(4) NOT NULL,
   gender point.gender NOT NULL,
   birth_date DATE NOT NULL,
-  department_id UUID REFERENCES point.departments(id),
-  roles_id UUID REFERENCES point.roles(id),
-  work_schedule_id UUID REFERENCES point.work_schedules(id),
+  department UUID REFERENCES point.departments(id),
+  roles UUID REFERENCES point.roles(id),
+  work_schedule UUID REFERENCES point.work_schedules(id),
   hiring_date DATE NOT NULL,
   regime point.regime NOT NULL,
-  permission_id UUID REFERENCES point.permissions(id),
+  permission UUID REFERENCES point.permissions(id) DEFAULT get_default_permission_id() NOT NULL,
   created_at DATE DEFAULT NOW() NOT NULL,
   active BOOLEAN DEFAULT TRUE
 );
@@ -95,10 +95,10 @@ CREATE INDEX IF NOT EXISTS idx_name ON point.employees (name);
 CREATE INDEX IF NOT EXISTS idx_cpf ON point.employees (cpf);
 CREATE INDEX IF NOT EXISTS idx_password ON point.employees (password);
 CREATE INDEX IF NOT EXISTS idx_active ON point.employees (active);
-CREATE INDEX IF NOT EXISTS idx_permission_id ON point.employees (permission_id);
-CREATE INDEX IF NOT EXISTS idx_roles_id ON point.employees (roles_id);
-CREATE INDEX IF NOT EXISTS idx_department_id ON point.employees (department_id);
-CREATE INDEX IF NOT EXISTS idx_work_schedule_id ON point.employees (work_schedule_id);
+CREATE INDEX IF NOT EXISTS idx_permission_id ON point.employees (permission);
+CREATE INDEX IF NOT EXISTS idx_roles_id ON point.employees (roles);
+CREATE INDEX IF NOT EXISTS idx_department_id ON point.employees (department);
+CREATE INDEX IF NOT EXISTS idx_work_schedule_id ON point.employees (work_schedule);
 
 CREATE TABLE IF NOT EXISTS point.login_tokens (
   id UUID PRIMARY KEY REFERENCES point.employees(id),
