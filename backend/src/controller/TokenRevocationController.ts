@@ -7,7 +7,7 @@ import { ErrorHandler } from "../config/ErroHandler";
  * Classe de controle para revogação de tokens
  */
 export class TokenRevocationController {
-  private static readonly TABLE_REFRESH_TOKEN = "point.login_tokens";
+  private static readonly TABLE_TOKEN = "point.login_tokens";
   private static readonly TABLE_REVOKED_TOKEN = "point.revoked_tokens";
 
   /**
@@ -42,12 +42,10 @@ export class TokenRevocationController {
    * @returns {Promise<void>}
    */
   static async revokeToken(id: string, token: string): Promise<void> {
-    const deleteQuery = `DELETE FROM ${this.TABLE_REFRESH_TOKEN} WHERE user_id = $1 AND token = $2`;
-    const insertQuery = `INSERT INTO ${this.TABLE_REVOKED_TOKEN} token VALUES ($1)`;
+    const deleteQuery = `DELETE FROM ${this.TABLE_TOKEN} WHERE id = $1 AND token = $2`;
     try {
       await Database.query(deleteQuery, [id, token]);
-      await Database.query(insertQuery, [token]);
-      // await RedisCache.set(id, token);
+      // await RedisCache.del(id, token);
       AppLogger.getInstance().info(`Token revogado com sucesso. ID: ${id}`);
     } catch (error) {
       ErrorHandler.handleGenericError(

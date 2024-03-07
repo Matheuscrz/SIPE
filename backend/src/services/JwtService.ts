@@ -35,9 +35,8 @@ export class JwtService {
   public static async generateRefreshToken(user: UserType): Promise<string> {
     const payload = {
       id: user.id,
-      personalData: user.personalData,
-      employmentData: user.employmentData,
-      permissions: user.permissions,
+      name: user.name,
+      cpf: user.cpf,
       iss: this.issuer,
     };
     const options: SignOptions = {

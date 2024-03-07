@@ -605,3 +605,62 @@
 {"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
 {"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
 {"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /createUser em Thu Mar 07 2024 09:44:49 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao executar a consulta: . Error: error: o valor nulo na coluna \"birth_date\" da relação \"employees\" viola a restrição de não-nulo","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /createuser em Thu Mar 07 2024 09:49:48 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Usuário adicionado com sucesso. ID: 0f0b1070-d9ed-4161-8d34-dcc9d2cefd9d","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /createUser em Thu Mar 07 2024 09:54:26 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Usuário adicionado com sucesso. ID: 8646c208-b7e5-4a65-a447-aa6e4514e957","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /createuser em Thu Mar 07 2024 09:58:29 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao executar a consulta: . Error: error: duplicar valor da chave viola a restrição de unicidade \"employees_cpf_key\"","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /createuser em Thu Mar 07 2024 10:00:44 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao executar a consulta: . Error: error: duplicar valor da chave viola a restrição de unicidade \"employees_cpf_key\"","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /createuser em Thu Mar 07 2024 10:01:30 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Usuário adicionado com sucesso. ID: e710b775-d7e7-453e-900b-45d7f569c37f","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /createuser em Thu Mar 07 2024 10:05:45 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao executar a consulta: . Error: error: mensagem de ligação forneceu 13 parâmetros, mas comando preparado \"\" requer 12","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /createuser em Thu Mar 07 2024 10:06:28 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Usuário adicionado com sucesso. ID: 5e1213f0-938e-4147-b9c1-ba9a3381a35f","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /createUser em Thu Mar 07 2024 10:06:54 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Usuário adicionado com sucesso. ID: d12567bf-3a91-4bd0-aec8-8a1c3412217b","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}

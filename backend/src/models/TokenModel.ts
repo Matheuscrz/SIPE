@@ -18,7 +18,7 @@ export class TokenModel {
     token: string,
     expires_at: Date
   ): Promise<void> {
-    const query = `INSERT INTO ${this.TABLE_LOGIN} (user_id, token, expires_at) VALUES ($1, $2, $3)`;
+    const query = `INSERT INTO ${this.TABLE_LOGIN} (id, token, expires_at) VALUES ($1, $2, $3)`;
     const values = [id, token, expires_at];
     try {
       await Database.query(query, values);

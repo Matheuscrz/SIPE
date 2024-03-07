@@ -1,7 +1,7 @@
 import express, { Request, Response, Router } from "express";
 import { UserModel } from "../models/UserModel";
 import { PasswordUtils } from "../utils/PasswordUtils";
-import { User as UserEntity } from "../interfaces/User";
+import { Regime, User as UserEntity } from "../interfaces/User";
 import { ErrorHandler } from "../config/ErroHandler";
 
 /**
@@ -48,37 +48,26 @@ export class PostRoutes {
       } else {
         const user: UserEntity = {
           id: "",
-          personalData: {
-            name: data.name,
-            password: data.password,
-            cpf: data.cpf,
-            pis: data.pis,
-            pin: data.pin,
-            gender: data.gender,
-            birthDate: new Date(data.birthDate),
-          },
-          employmentData: {
-            departmentId: data.departmentId,
-            roleId: data.roleId,
-            workScheduleId: data.workScheduleId,
-            hiringDate: new Date(data.hiringDate),
-            regime: data.regime,
-          },
-          permissions: {
-            permission: "Normal",
-            createdAt: new Date(),
-          },
+          name: data.name,
+          password: data.password,
+          cpf: data.cpf,
+          pis: data.pis,
+          pin: data.pin,
+          gender: data.gender,
+          birth_date: data.birth_date,
+          department: data.department,
+          roles: data.role,
+          work_schedule: data.work_schedule,
+          hiring_date: data.hiring_date,
+          regime: Regime.CLT,
+          permission: data.permission || null,
+          created_at: "",
           active: true,
         };
-        const hashedPassword = await PasswordUtils.hashPassword(
-          user.personalData.password
-        );
+        const hashedPassword = await PasswordUtils.hashPassword(user.password);
         const createUser = await UserModel.addUser({
           ...user,
-          personalData: {
-            ...user.personalData,
-            password: hashedPassword,
-          },
+          password: hashedPassword,
         });
         res.status(201).send(createUser);
       }
