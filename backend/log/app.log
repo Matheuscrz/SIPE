@@ -664,3 +664,11 @@
 {"level":"info","message":"Usuário adicionado com sucesso. ID: d12567bf-3a91-4bd0-aec8-8a1c3412217b","timestamp":"Invalid DateTime"}
 {"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
 {"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /createUser em Thu Mar 07 2024 10:11:00 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Usuário adicionado com sucesso. ID: cb687c9a-2cf1-4694-95ef-475a5c436fb2","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /user/5e1213f0-938e-4147-b9c1-ba9a3381a35f em Thu Mar 07 2024 10:12:18 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getById executada com sucesso. ID: 5e1213f0-938e-4147-b9c1-ba9a3381a35f","timestamp":"Invalid DateTime"}
