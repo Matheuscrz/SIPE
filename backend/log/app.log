@@ -672,3 +672,22 @@
 {"level":"info","message":"Solicitação GET para /user/5e1213f0-938e-4147-b9c1-ba9a3381a35f em Thu Mar 07 2024 10:12:18 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
 {"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
 {"level":"info","message":"Consulta getById executada com sucesso. ID: 5e1213f0-938e-4147-b9c1-ba9a3381a35f","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /createUser em Thu Mar 07 2024 10:29:01 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao executar a consulta: . Error: error: duplicar valor da chave viola a restrição de unicidade \"employees_cpf_key\"","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /createUser em Thu Mar 07 2024 10:29:20 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao executar a consulta: . Error: error: duplicar valor da chave viola a restrição de unicidade \"employees_cpf_key\"","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /createUser em Thu Mar 07 2024 10:38:34 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao executar a consulta: . Error: error: duplicar valor da chave viola a restrição de unicidade \"employees_cpf_key\"","timestamp":"Invalid DateTime"}
