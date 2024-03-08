@@ -1,35 +1,33 @@
 import { AppLogger } from "../config/AppLogger";
 import { Database } from "../config/Database";
-import { RedisCache } from "../config/Redis";
 import { User as UserType } from "../interfaces/User";
+import { QueryResult } from "pg";
 
 export class UserModel {
   private static readonly TABLE_USER = "point.employees";
-  private static readonly TABLE_REFRESH_TOKEN = "point.login_tokens";
-  private static readonly TABLE_REVOKED_TOKEN = "point.revoked_tokens";
-
   /**
    * Obtém um usuário por meio do CPF
    * @param cpf - CPF do usuário
    * @returns Objeto User ou null se não encontrar
    */
+
   static async getByCpf(cpf: string): Promise<UserType | null> {
     const query = `SELECT * FROM ${this.TABLE_USER} WHERE cpf = $1`;
     const values = [cpf];
     try {
-      const result = await Database.query(query, values);
+      const result: QueryResult<any> = await Database.query(query, values); // Fix the type of the result variable
       const user = result.rows.length ? result.rows[0] : null;
       AppLogger.getInstance().info(
         `Consulta getByCpf executada com sucesso. CPF: ${cpf}`
       );
       return user;
     } catch (error) {
+      let errorMessage = `Erro ao buscar usuário. ${error}`;
       AppLogger.getInstance().error(
-        `Erro ao buscar usuário por CPF. CPF: ${cpf}. Error: ${error}`
+        `Erro ao buscar usuário por CPF. CPF: ${cpf}. `,
+        error
       );
-      throw new Error(
-        `Erro ao buscar usuário por CPF. CPF: ${cpf}. Error: ${error}`
-      );
+      throw errorMessage;
     }
   }
 
@@ -42,15 +40,37 @@ export class UserModel {
     const query = `SELECT * FROM ${this.TABLE_USER} WHERE id = $1`;
     const values = [id];
     try {
-      const result = await Database.query(query, values);
-      const user = result.rows.length ? result.rows[0] : null;
+      const result: QueryResult<any> = await Database.query(query, values); // Fix the type of the result variable
+      const userFromDb = result.rows.length ? result.rows[0] : null;
+      const user: UserType = {
+        id: userFromDb.id,
+        name: userFromDb.name,
+        password: userFromDb.password,
+        cpf: userFromDb.cpf,
+        pis: userFromDb.pis,
+        pin: userFromDb.pin,
+        gender: userFromDb.gender,
+        birth_date: userFromDb.birth_date,
+        department: userFromDb.department,
+        roles: userFromDb.roles,
+        work_schedule: userFromDb.work_schedule,
+        hiring_date: userFromDb.hiring_date,
+        regime: userFromDb.regime,
+        permission: userFromDb.permission,
+        created_at: userFromDb.created_at,
+        active: userFromDb.active,
+      };
       AppLogger.getInstance().info(
         `Consulta getById executada com sucesso. ID: ${id}`
       );
       return user;
     } catch (error) {
-      AppLogger.getInstance().error(`Erro ao buscar usuário.  Error: ${error}`);
-      throw new Error(`Erro ao buscar usuário.  Error: ${error}`);
+      let errorMessage = `Erro ao buscar usuário. ${error}`;
+      AppLogger.getInstance().error(
+        `Erro ao buscar usuário por ID. ID: ${id}. `,
+        error
+      );
+      throw errorMessage;
     }
   }
 
@@ -59,34 +79,68 @@ export class UserModel {
    * @param user - Objeto User
    * @returns - Objeto User inserido no banco de dados
    */
-  static async addUser(user: UserType): Promise<UserType> {
-    const query = `INSERT INTO ${this.TABLE_USER} (name, password, cpf, pis, pin, gender, birth_date, department_id, roles_id, work_schedule_id, hiring_date, regime, permission) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *`;
-    const values = [
-      user.personalData.name,
-      user.personalData.password,
-      user.personalData.cpf,
-      user.personalData.pis,
-      user.personalData.pin,
-      user.personalData.gender,
-      user.personalData.birthDate,
-      user.employmentData.departmentId,
-      user.employmentData.roleId,
-      user.employmentData.workScheduleId,
-      user.employmentData.hiringDate,
-      user.employmentData.regime,
-      user.permissions.permission,
+  static async addUser(user: UserType): Promise<UserType | undefined> {
+    let query = `INSERT INTO ${this.TABLE_USER} (name, password, cpf, pis, pin, gender, birth_date, department, roles, work_schedule, hiring_date, regime`;
+    let values = [
+      user.name,
+      user.password,
+      user.cpf,
+      user.pis,
+      user.pin,
+      user.gender,
+      user.birth_date,
+      user.department,
+      user.roles,
+      user.work_schedule,
+      user.hiring_date,
+      user.regime,
     ];
+
+    if (user.permission) {
+      query += ", permission";
+      values.push(user.permission);
+    }
+
+    query += ") VALUES (";
+    for (let i = 1; i <= values.length; i++) {
+      query += `$${i}`;
+      if (i < values.length) {
+        query += ",";
+      }
+    }
+    query += ")";
+
     try {
       const result = await Database.query(query, values);
+      const user: UserType = {
+        id: result.rows[0].id,
+        name: result.rows[0].name,
+        password: result.rows[0].password,
+        cpf: result.rows[0].cpf,
+        pis: result.rows[0].pis,
+        pin: result.rows[0].pin,
+        gender: result.rows[0].gender,
+        birth_date: result.rows[0].birth_date,
+        department: result.rows[0].department,
+        roles: result.rows[0].roles,
+        work_schedule: result.rows[0].work_schedule,
+        hiring_date: result.rows[0].hiring_date,
+        regime: result.rows[0].regime,
+        permission: result.rows[0].permission,
+        created_at: result.rows[0].created_at,
+        active: result.rows[0].active,
+      };
       AppLogger.getInstance().info(
         `Usuário adicionado com sucesso. ID: ${result.rows[0].id}`
       );
-      return result.rows[0];
+      return user;
     } catch (error) {
+      let errorMessage = `Erro ao adicionar usuário. ${error}`;
       AppLogger.getInstance().error(
-        `Erro ao adicionar usuário. Erro: ${error}`
+        `Erro ao adicionar usuário. CPF: ${user.cpf}. `,
+        error
       );
-      throw new Error(`Erro ao adicionar usuário. Erro: ${error}`);
+      throw errorMessage;
     }
   }
 
@@ -95,32 +149,31 @@ export class UserModel {
    * @param user - Objeto User
    * @returns - Objeto User atualizado no banco de dados
    */
-  static async updateUser(user: UserType): Promise<UserType> {
-    const query = `UPDATE ${this.TABLE_USER} SET password = COALESCE($1, password), pin = COALESCE($2, pin), department_id = COALESCE($3, department_id), roles_id = COALESCE($4, roles_id), work_schedule_id = COALESCE($5, work_schedule_id), hiring_date = COALESCE($6, hiring_date), regime = COALESCE($7, regime) WHERE id = $8 RETURNING *`;
+  static async updateUser(user: UserType): Promise<UserType | null> {
+    const query = `UPDATE ${this.TABLE_USER} SET password = COALESCE($1, password), pin = COALESCE($2, pin), department = COALESCE($3, department), roles = COALESCE($4, roles), work_schedule = COALESCE($5, work_schedule), hiring_date = COALESCE($6, hiring_date), regime = COALESCE($7, regime) WHERE id = $8 RETURNING *`;
     const values = [
-      user.personalData.password ? user.personalData.password : null,
-      user.personalData.pin ? user.personalData.pin : null,
-      user.employmentData.departmentId
-        ? user.employmentData.departmentId
-        : null,
-      user.employmentData.roleId ? user.employmentData.roleId : null,
-      user.employmentData.workScheduleId
-        ? user.employmentData.workScheduleId
-        : null,
-      user.employmentData.hiringDate ? user.employmentData.hiringDate : null,
-      user.employmentData.regime ? user.employmentData.regime : null,
+      user.password,
+      user.pin,
+      user.department,
+      user.roles,
+      user.work_schedule,
+      user.hiring_date,
+      user.regime,
+      user.id,
     ];
     try {
-      const result = await Database.query(query, values);
+      const result: QueryResult<any> = await Database.query(query, values); // Fix the type of the result variable
       AppLogger.getInstance().info(
         `Usuário atualizado com sucesso. ID: ${result.rows[0].id}`
       );
       return result.rows[0];
     } catch (error) {
+      let errorMessage = `Erro ao atualizar usuário. ${error}`;
       AppLogger.getInstance().error(
-        `Erro ao atualizar usuário. Erro: ${error}`
+        `Erro ao atualizar usuário. ID: ${user.id}. `,
+        error
       );
-      throw new Error(`Erro ao atualizar usuário. Erro: ${error}`);
+      throw errorMessage;
     }
   }
 
@@ -135,91 +188,13 @@ export class UserModel {
     try {
       await Database.query(query, values);
       AppLogger.getInstance().info(`Usuário removido com sucesso. ID: ${id}`);
-    } catch (error) {
+    } catch (error: any) {
+      let errorMessage = `Erro ao remover usuário. ${error}`;
       AppLogger.getInstance().error(
-        `Erro ao remover usuário. ID: ${id}. Erro: ${error}`
-      );
-      throw new Error(`Erro ao remover usuário. ID: ${id}. Erro: ${error}`);
-    }
-  }
-
-  /**
-   * Armazena o token refresh no banco de dados e no cache.
-   * @param id - ID do usuário
-   * @param refreshToken - Token refresh
-   * @param expiresAt - Data de expiração do token
-   */
-  static async storeRefreshToken(
-    id: string,
-    refreshToken: string,
-    expiresAt: Date
-  ): Promise<void> {
-    const query = `INSERT INTO ${this.TABLE_REFRESH_TOKEN} (user_id, token, expires_at) VALUES ($1, $2, $3)`;
-    const values = [id, refreshToken, expiresAt];
-    try {
-      await Database.query(query, values);
-      // await RedisCache.set(id, refreshToken);
-      AppLogger.getInstance().info(
-        `Token refresh armazenado com sucesso. ID: ${id}`
-      );
-    } catch (error) {
-      AppLogger.getInstance().error(
-        `Erro ao armazenar token refresh. Erro: ${error}`
-      );
-      throw new Error(`Erro ao armazenar token refresh. Erro: ${error}`);
-    }
-  }
-
-  /**
-   *  Armazena o token de acesso no cache.
-   * @param id - ID do usuário
-   * @param accessToken - Token de acesso
-   * @param expiresAt - Data de expiração do token
-   */
-  static async storeAccessToken(
-    id: string,
-    accessToken: string
-  ): Promise<void> {
-    try {
-      // await RedisCache.set(id, accessToken);
-      AppLogger.getInstance().info(`Token de acesso armazenado com sucesso.`);
-    } catch (error) {
-      AppLogger.getInstance().error(
-        "Erro ao armazenar token de acesso: ",
+        `Erro ao remover usuário. ID: ${id}. `,
         error
       );
-      throw new Error(`Erro ao armazenar token de acesso: ${error}`);
-    }
-  }
-
-  /**
-   * Remove o token refresh do banco de dados e do cache.
-   * @param refreshToken - Token refresh
-   * @returns True se o token foi removido, false se não encontrou
-   */
-  static async removeRefreshToken(refreshToken: string): Promise<boolean> {
-    const deleteQuery = `DELETE FROM ${this.TABLE_REFRESH_TOKEN} WHERE refresh_token = $1 RETURNING id, expires_at`;
-    const values = [refreshToken];
-    try {
-      const result = await Database.query(deleteQuery, values);
-      if (result.rows.length > 0) {
-        const { id, expires_at } = result.rows[0];
-        const insertRevokedQuery = `INSERT INTO ${this.TABLE_REVOKED_TOKEN} (id, token, expires_at) VALUES ($1, $2, $3)`;
-        const revokedTokenValues = [id, refreshToken, expires_at];
-        await Database.query(insertRevokedQuery, revokedTokenValues);
-        // await RedisCache.del(id);
-        AppLogger.getInstance().info(
-          `Token refresh removido com sucesso. ID: ${id}`
-        );
-        return true;
-      } else {
-        return false;
-      }
-    } catch (error) {
-      AppLogger.getInstance().error(
-        `Erro ao remover token refresh. Erro: ${error}`
-      );
-      throw new Error(`Erro ao remover token refresh. Erro: ${error}`);
+      throw errorMessage;
     }
   }
 }
