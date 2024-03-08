@@ -1,8 +1,6 @@
 import { AppLogger } from "../config/AppLogger";
 import { Database } from "../config/Database";
-import { RedisCache } from "../config/Redis";
 import { User as UserType } from "../interfaces/User";
-// import { ErrorHandler } from "../config/ErroHandler";
 import { QueryResult } from "pg";
 
 export class UserModel {
@@ -24,9 +22,12 @@ export class UserModel {
       );
       return user;
     } catch (error) {
-      const errorMessage = `Erro ao buscar usuário por CPF. CPF: ${cpf}. Erro: ${error}`;
-      // ErrorHandler.handleGenericError(errorMessage);
-      throw new Error(errorMessage);
+      let errorMessage = `Erro ao buscar usuário. ${error}`;
+      AppLogger.getInstance().error(
+        `Erro ao buscar usuário por CPF. CPF: ${cpf}. `,
+        error
+      );
+      throw errorMessage;
     }
   }
 
@@ -64,9 +65,12 @@ export class UserModel {
       );
       return user;
     } catch (error) {
-      const errorMessage = `Erro ao buscar usuário por ID. ID: ${id}. Erro: ${error}`;
-      // ErrorHandler.handleGenericError(errorMessage);
-      throw new Error(errorMessage);
+      let errorMessage = `Erro ao buscar usuário. ${error}`;
+      AppLogger.getInstance().error(
+        `Erro ao buscar usuário por ID. ID: ${id}. `,
+        error
+      );
+      throw errorMessage;
     }
   }
 
@@ -131,43 +135,13 @@ export class UserModel {
       );
       return user;
     } catch (error) {
-      const errorMessage = `Erro ao adicionar usuário. CPF: ${user.cpf}. Erro: ${error}`;
-      // ErrorHandler.handleGenericError(errorMessage);
-      throw new Error(errorMessage);
+      let errorMessage = `Erro ao adicionar usuário. ${error}`;
+      AppLogger.getInstance().error(
+        `Erro ao adicionar usuário. CPF: ${user.cpf}. `,
+        error
+      );
+      throw errorMessage;
     }
-  }
-  /**
-   *
-   * @param error - Objeto de erro
-   */
-  private static handleDatabaseError(error: any): void {
-    // if (error.code) {
-    //   switch (error.code) {
-    //     case "23505":
-    //       ErrorHandler.handleConflict(
-    //         "Já existe um usuário com o mesmo CPF ou PIS."
-    //       );
-    //       break;
-    //     case "23502":
-    //       ErrorHandler.handleBadRequest(
-    //         "Preencha todos os campos obrigatórios."
-    //       );
-    //       break;
-    //     // Adicione outros casos conforme necessário
-    //     default:
-    //       ErrorHandler.handleGenericError(
-    //         `Erro ao interagir com o banco de dados. Código de erro: ${error.code}. Erro: `,
-    //         error
-    //       );
-    //       break;
-    //   }
-    // } else {
-    //   ErrorHandler.handleGenericError(
-    //     `Erro ao interagir com o banco de dados. Erro: `,
-    //     error
-    //   );
-    // }
-    throw new Error(`Erro ao interagir com o banco de dados. Erro: ${error}`);
   }
 
   /**
@@ -175,7 +149,7 @@ export class UserModel {
    * @param user - Objeto User
    * @returns - Objeto User atualizado no banco de dados
    */
-  static async updateUser(user: UserType): Promise<UserType> {
+  static async updateUser(user: UserType): Promise<UserType | null> {
     const query = `UPDATE ${this.TABLE_USER} SET password = COALESCE($1, password), pin = COALESCE($2, pin), department = COALESCE($3, department), roles = COALESCE($4, roles), work_schedule = COALESCE($5, work_schedule), hiring_date = COALESCE($6, hiring_date), regime = COALESCE($7, regime) WHERE id = $8 RETURNING *`;
     const values = [
       user.password,
@@ -194,11 +168,12 @@ export class UserModel {
       );
       return result.rows[0];
     } catch (error) {
-      // ErrorHandler.handleGenericError(
-      //   `Erro ao atualizar usuário. Erro: `,
-      //   error
-      // );
-      throw new Error(`Erro ao atualizar usuário. Erro: ${error}`);
+      let errorMessage = `Erro ao atualizar usuário. ${error}`;
+      AppLogger.getInstance().error(
+        `Erro ao atualizar usuário. ID: ${user.id}. `,
+        error
+      );
+      throw errorMessage;
     }
   }
 
@@ -214,11 +189,12 @@ export class UserModel {
       await Database.query(query, values);
       AppLogger.getInstance().info(`Usuário removido com sucesso. ID: ${id}`);
     } catch (error: any) {
-      // ErrorHandler.handleGenericError(
-      //   `Erro ao remover usuário. ID: ${id}. Erro: `,
-      //   error
-      // );
-      throw new Error(`Erro ao remover usuário. ID: ${id}. Erro: ${error}`);
+      let errorMessage = `Erro ao remover usuário. ${error}`;
+      AppLogger.getInstance().error(
+        `Erro ao remover usuário. ID: ${id}. `,
+        error
+      );
+      throw errorMessage;
     }
   }
 }

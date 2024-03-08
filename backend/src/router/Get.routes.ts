@@ -1,7 +1,6 @@
 import express, { Request, Response, Router } from "express";
 import { UserModel } from "../models/UserModel";
-// import { ErrorHandler } from "../config/ErroHandler";
-
+import { AppLogger } from "../config/AppLogger";
 /**
  * Classe de rotas para do tipo Get
  * @class GetRoutes
@@ -29,11 +28,8 @@ export class GetRoutes {
     try {
       res.status(200).send("Hello World");
     } catch (error) {
-      // ErrorHandler.handleInternalServerError(
-      //   res,
-      //   `Erro interno do servidor. Error: ${error}`
-      // );
-      res.status(500).send("Erro interno do servidor");
+      AppLogger.getInstance().error(`Erro interno do servidor. Error: `, error);
+      res.status(500).send(error);
     }
   }
 
@@ -42,19 +38,13 @@ export class GetRoutes {
       const id = req.params.id;
       const user = await UserModel.getById(id);
       if (!user) {
-        // ErrorHandler.handleNotFound(
-        //   res,
-        //   `Usuário com o ID ${id} não encontrado`
-        // );
+        res.status(404).send(`Usuário não encontrado`);
         return;
       }
       res.status(200).json(user);
     } catch (error) {
-      // ErrorHandler.handleInternalServerError(
-      //   res,
-      //   `Erro interno do servidor. Error: ${error}`
-      // );
-      res.status(500).send("Erro interno do servidor");
+      AppLogger.getInstance().error(`Erro interno do servidor. Error: `, error);
+      res.status(500).send(error);
     }
   }
 

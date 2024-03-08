@@ -1,8 +1,5 @@
 import { AppLogger } from "../config/AppLogger";
 import { Database } from "../config/Database";
-// import { ErrorHandler } from "../config/ErroHandler";
-import { RedisCache } from "../config/Redis";
-
 /**
  * @class TokenModel
  * @description Classe de modelo para tokens
@@ -28,11 +25,13 @@ export class TokenModel {
       AppLogger.getInstance().info(
         `Token refresh armazenado com sucesso. ID: ${id}`
       );
-      // await RedisCache.set(id, token);
     } catch (error) {
-      const errorMessage = `Erro ao armazenar token refresh. ID: ${id}.`;
-      // ErrorHandler.handleGenericError(errorMessage, error);
-      throw new Error(errorMessage);
+      let erroMessage = `Erro ao armazenar token. ${error}`;
+      AppLogger.getInstance().error(
+        `Erro ao armazenar token refresh. ID: ${id}. `,
+        error
+      );
+      throw erroMessage;
     }
   }
 
@@ -46,15 +45,17 @@ export class TokenModel {
     const deleteValues = [token];
     try {
       await Database.query(deleteQuery, deleteValues);
-      // await RedisCache.del(id);
       AppLogger.getInstance().info(
         `Token removido com sucesso. Token: ${token}`
       );
       return true;
     } catch (error) {
-      const errorMessage = `Erro ao remover token. Token: ${token}.`;
-      // ErrorHandler.handleGenericError(errorMessage, error);
-      throw new Error(errorMessage);
+      let errorMessage = `Erro ao remover token. ${error}`;
+      AppLogger.getInstance().error(
+        `Erro ao remover token. Token: ${token}. `,
+        error
+      );
+      throw errorMessage;
     }
   }
 }

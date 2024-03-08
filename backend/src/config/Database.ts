@@ -1,7 +1,6 @@
 import { Pool, PoolClient, QueryResult } from "pg";
 import dotenv from "dotenv";
 import { AppLogger } from "./AppLogger";
-// import { ErrorHandler } from "./ErroHandler";
 
 dotenv.config();
 
@@ -34,10 +33,8 @@ export class Database {
       AppLogger.getInstance().info("Conexão com o banco de dados inicializada");
       Database.testConnection();
     } catch (error) {
-      // ErrorHandler.handleGenericError(
-      //   "Erro ao inicializar conexão com o banco de dados:",
-      //   error
-      // );
+      AppLogger.getInstance().error("Erro: ", error);
+      throw error;
     }
   }
 
@@ -55,13 +52,21 @@ export class Database {
         "Conexão com o banco de dados realizada com sucesso"
       );
     } catch (error) {
-      // ErrorHandler.handleGenericError(
-      //   "Erro ao testar conexão com o banco de dados: ",
-      //   error
-      // );
+      let erroMessage = "Erro ao testar a conexão com o banco de dados";
+      AppLogger.getInstance().error(
+        "Erro ao testar a conexão com o banco de dados. Erro: ",
+        error
+      );
+      throw erroMessage;
     } finally {
-      if (client) {
-        client.release();
+      try {
+        if (client) {
+          await client.release();
+          AppLogger.getInstance().info("Conexão liberada com sucesso.");
+        }
+      } catch (releaseError) {
+        AppLogger.getInstance().error("Erro: ", releaseError);
+        throw releaseError;
       }
     }
   }
@@ -81,9 +86,29 @@ export class Database {
         query
       );
       return await client.query(query, params);
-    } catch (error) {
-      // ErrorHandler.handleGenericError("Erro ao executar a consulta: ", error);
-      throw error;
+    } catch (error: any) {
+      switch (error.code) {
+        case "23505":
+          throw new Error("Chave duplicada");
+        case "23503":
+          throw new Error("Chave estrangeira não encontrada");
+        case "22P02":
+          throw new Error("Erro de sintaxe");
+        case "42P01":
+          throw new Error("Tabela não encontrada");
+        case "42703":
+          throw new Error("Coluna não encontrada");
+        case "23502":
+          throw new Error("Restrição de dado não nulo violada");
+        case "23514":
+          throw new Error("Restrição de verificação violada");
+        case "22003":
+          throw new Error("Erro de valor de dado");
+        case "22001":
+          throw new Error("Restrição de comprimento de dado violada");
+        default:
+          throw new Error("Erro ao executar a query");
+      }
     } finally {
       try {
         if (client) {
@@ -91,10 +116,8 @@ export class Database {
           AppLogger.getInstance().info("Conexão liberada com sucesso.");
         }
       } catch (releaseError) {
-        // ErrorHandler.handleGenericError(
-        //   "Erro ao liberar a conexão com o banco de dados: ",
-        //   releaseError
-        // );
+        AppLogger.getInstance().error("Erro: ", releaseError);
+        throw releaseError;
       }
     }
   }

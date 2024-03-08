@@ -2,8 +2,7 @@ import express, { Request, Response, Router } from "express";
 import { UserModel } from "../models/UserModel";
 import { PasswordUtils } from "../utils/PasswordUtils";
 import { Regime, User as UserEntity } from "../interfaces/User";
-// import { ErrorHandler } from "../config/ErroHandler";
-
+import { AppLogger } from "../config/AppLogger";
 /**
  * Classe de rotas para do tipo Post
  * @class PostRoutes
@@ -72,11 +71,9 @@ export class PostRoutes {
         res.status(201).send(createUser);
       }
     } catch (error: any) {
-      // ErrorHandler.handleInternalServerError(
-      //   res,
-      //   `Erro ao criar usuário. Erro interno do servidor. Error: ${error}`
-      // );
-      res.status(500).send(error.message);
+      let errorMessage = `Erro interno do servidor. Error: `;
+      AppLogger.getInstance().error(errorMessage, error);
+      res.status(500).send(error);
     }
   }
 
