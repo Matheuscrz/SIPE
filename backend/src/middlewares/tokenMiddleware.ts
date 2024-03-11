@@ -3,65 +3,47 @@ import { AppLogger } from "../config/AppLogger";
 import { JwtService } from "../services/JwtService";
 
 /**
- * Função para verificar se o token de acesso é válido
- * @param req - Request
- * @param res - Response
- * @param next - NextFunction
+ * Middleware para verificar e renovar o token de acesso
+ * @param req - Requisição
+ * @param res - Resposta
+ * @param next - Próximo middleware
  */
-const verifyAccessToken = async (
+const verifyAndRefreshAccessToken = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
-    const token = req.headers["x-access-token"] as string;
+    const accessToken = req.headers["x-access-token"] as string;
     const refreshToken = req.headers["x-refresh-token"] as string;
-    if (!token || !refreshToken) {
+    if (!accessToken || !refreshToken) {
       res
         .status(401)
         .send("Token de acesso ou token de atualização não informados");
-    } else {
-      const isTokenValid = JwtService.verifyAccessToken(token, refreshToken);
-      if (await isTokenValid) {
-        next();
-      } else {
-        res.status(401).send("Token de acesso inválido");
-      }
     }
-  } catch (error) {
-    AppLogger.getInstance().error(
-      `Erro ao verificar token de acesso. Error: ${error}`
+    const isTokenValid = await JwtService.verifyAccessToken(
+      accessToken,
+      refreshToken
     );
-    res.status(500).send("Erro interno do servidor");
-  }
-};
-
-/**
- * Função para verificar se o token de atualização é válido
- * @param req - Request
- * @param res - Response
- * @param next - NextFunction
- */
-const verifyRefreshToken = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    const token = req.headers["x-refresh-token"] as string;
-    if (!token) {
-      res.status(401).send("Token de atualização não informado");
+    if (isTokenValid) {
+      next();
     } else {
-      const isTokenValid = JwtService.verifyRefreshToken(token);
-      if (await isTokenValid) {
+      const isRefreshTokenValid = await JwtService.verifyRefreshToken(
+        refreshToken
+      );
+      if (isRefreshTokenValid) {
+        const newAccessToken = await JwtService.generateAccessToken(
+          refreshToken
+        );
+        res.setHeader("x-access-token", newAccessToken);
         next();
       } else {
-        res.status(401).send("Token de atualização inválido");
+        res.redirect(401, "/login");
       }
     }
   } catch (error) {
     AppLogger.getInstance().error(
-      `Erro ao verificar token de atualização. Error: ${error}`
+      `Erro ao verificar e renovar token de acesso. Error: ${error}`
     );
     res.status(500).send("Erro interno do servidor");
   }

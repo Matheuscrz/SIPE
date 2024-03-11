@@ -20,8 +20,24 @@ export class GetRoutes {
   }
 
   private configureRoutes() {
-    this.router.get("/user/:id", this.getUserById.bind(this));
+    // this.router.get("/user/:id", this.getUserById.bind(this));
+    this.router.get("/user/:cpf", this.getUserByCpf.bind(this));
     this.router.get("/hello", this.sayHello.bind(this));
+  }
+
+  private async getUserByCpf(req: Request, res: Response): Promise<void> {
+    try {
+      const cpf = req.params.cpf;
+      const user = await UserModel.getByCpf(cpf);
+      if (!user) {
+        res.status(404).send(`Usuário não encontrado`);
+        return;
+      }
+      res.status(200).json(user);
+    } catch (error) {
+      AppLogger.getInstance().error(`Erro interno do servidor. Error: `, error);
+      res.status(500).send(error);
+    }
   }
 
   private async sayHello(req: Request, res: Response): Promise<void> {
