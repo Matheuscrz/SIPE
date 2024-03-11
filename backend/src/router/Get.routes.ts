@@ -1,6 +1,7 @@
 import express, { Request, Response, Router } from "express";
 import { UserModel } from "../models/UserModel";
 import { AppLogger } from "../config/AppLogger";
+import { verifyAndRefreshAccessToken } from "../middlewares/tokenMiddleware";
 /**
  * Classe de rotas para do tipo Get
  * @class GetRoutes
@@ -22,7 +23,13 @@ export class GetRoutes {
   private configureRoutes() {
     // this.router.get("/user/:id", this.getUserById.bind(this));
     this.router.get("/user/:cpf", this.getUserByCpf.bind(this));
-    this.router.get("/hello", this.sayHello.bind(this));
+    this.router.get(
+      "/hello",
+      verifyAndRefreshAccessToken,
+      (req: Request, res: Response) => {
+        res.status(200).send("Hello World");
+      }
+    );
   }
 
   private async getUserByCpf(req: Request, res: Response): Promise<void> {
@@ -34,15 +41,6 @@ export class GetRoutes {
         return;
       }
       res.status(200).json(user);
-    } catch (error) {
-      AppLogger.getInstance().error(`Erro interno do servidor. Error: `, error);
-      res.status(500).send(error);
-    }
-  }
-
-  private async sayHello(req: Request, res: Response): Promise<void> {
-    try {
-      res.status(200).send("Hello World");
     } catch (error) {
       AppLogger.getInstance().error(`Erro interno do servidor. Error: `, error);
       res.status(500).send(error);
