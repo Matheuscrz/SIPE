@@ -8,7 +8,7 @@ import { JwtService } from "../services/JwtService";
  * @param res - Resposta
  * @param next - Próximo middleware
  */
-const verifyAndRefreshAccessToken = async (
+export const verifyAndRefreshAccessToken = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -16,29 +16,33 @@ const verifyAndRefreshAccessToken = async (
   try {
     const accessToken = req.headers["x-access-token"] as string;
     const refreshToken = req.headers["x-refresh-token"] as string;
+
     if (!accessToken || !refreshToken) {
-      res
-        .status(401)
-        .send("Token de acesso ou token de atualização não informados");
+      return res.status(401).send("Tokens não informados");
     }
+
     const isTokenValid = await JwtService.verifyAccessToken(
       accessToken,
       refreshToken
     );
+
     if (isTokenValid) {
       next();
     } else {
       const isRefreshTokenValid = await JwtService.verifyRefreshToken(
         refreshToken
       );
+
       if (isRefreshTokenValid) {
         const newAccessToken = await JwtService.generateAccessToken(
           refreshToken
         );
-        res.setHeader("x-access-token", newAccessToken);
-        next();
+
+        // Adicionando o novo token ao corpo da resposta
+        res.json({ accessToken: newAccessToken });
       } else {
-        res.redirect(401, "/login");
+        // Redirecionando para a página de login
+        res.redirect(302, "/login");
       }
     }
   } catch (error) {
