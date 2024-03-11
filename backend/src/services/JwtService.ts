@@ -6,7 +6,6 @@ export class JwtService {
   private static readonly secretKey: Secret =
     process.env.JWT_SECRET_KEY_REFRESH || "secret-key";
   private static readonly algorithm: string = "HS256";
-  private static readonly issuer: string = "SIPE";
 
   /**
    * Gera um token de acesso
@@ -16,12 +15,11 @@ export class JwtService {
   public static async generateAccessToken(
     refreshToken: string
   ): Promise<string> {
-    const payload = this.decodeToken(refreshToken);
+    const payload = this.decodeToken<UserType>(refreshToken);
+    delete payload.exp;
     const options: SignOptions = {
       algorithm: this.algorithm as jwt.Algorithm,
       expiresIn: "15m",
-      issuer: this.issuer,
-      subject: payload.id,
     };
     AppLogger.getInstance().info("Token de acesso gerado com sucesso");
     return jwt.sign(payload, refreshToken, options);
@@ -37,12 +35,10 @@ export class JwtService {
       id: user.id,
       name: user.name,
       cpf: user.cpf,
-      iss: this.issuer,
     };
     const options: SignOptions = {
       algorithm: this.algorithm as jwt.Algorithm,
       expiresIn: "7d",
-      issuer: this.issuer,
       subject: user.id,
     };
     AppLogger.getInstance().info("Token de atualização gerado com sucesso");
@@ -54,8 +50,8 @@ export class JwtService {
    * @param token - token a ser decodificado
    * @returns - retorna o payload do token
    */
-  private static decodeToken(token: string): UserType {
-    return jwt.decode(token) as UserType;
+  private static decodeToken<T>(token: string): T {
+    return jwt.decode(token) as T;
   }
 
   /**
@@ -70,7 +66,6 @@ export class JwtService {
   ): Promise<boolean> {
     const options: VerifyOptions = {
       algorithms: [this.algorithm as jwt.Algorithm],
-      issuer: this.issuer,
     };
 
     try {
