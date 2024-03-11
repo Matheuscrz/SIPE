@@ -1,9 +1,7 @@
-import { User } from "../interfaces/User";
 import { UserModel } from "../models/UserModel";
 import { TokenModel } from "../models/TokenModel";
 import bcrypt from "bcrypt";
 import { JwtService } from "./JwtService";
-import { addDays } from "date-fns";
 
 export class AuthService {
   /**
@@ -42,6 +40,19 @@ export class AuthService {
       return null;
     } catch (error) {
       console.error("Erro durante o processo de login:", error);
+      throw error;
+    }
+  }
+
+  /**
+   * Método para deslogar um usuário
+   * @param userId - ID do usuário
+   */
+  public static async logout(userId: string): Promise<void> {
+    try {
+      await TokenModel.removeToken(userId);
+    } catch (error) {
+      console.error("Erro durante o processo de logout:", error);
       throw error;
     }
   }
