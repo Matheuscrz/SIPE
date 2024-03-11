@@ -16,6 +16,7 @@ export enum Regime {
  * Interface User representa um usuário.
  */
 export interface User {
+  [x: string]: any;
   id: string; // Identificador do usuário
   name: string; // Nome do usuário
   password: string; // Senha do usuário
