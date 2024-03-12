@@ -20,14 +20,14 @@ jobs:
         run: ls
 
       - name: Navigate to the directory
-        run: cd .\backend
+        run: cd /backend
 
       - name: List files
         run: ls
 
-      # - name: Install dependencies
-      #   run: |
-      #     npm install
+      - name: Install dependencies
+        run: |
+          npm install
 
-      # - name: Run tests
-      #   run: npm run test
+      - name: Run tests
+        run: npm run test
