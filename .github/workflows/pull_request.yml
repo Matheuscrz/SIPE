@@ -22,8 +22,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node_modules-
 
+      - name: Navigate to the directory
+        run: cd backend
+
       - name: Install dependencies
-        run: cd .\backend && npm install
+        run: |
+          npm install
 
       - name: Run tests
         run: npm run test
