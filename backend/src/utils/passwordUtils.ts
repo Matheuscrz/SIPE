@@ -1,5 +1,9 @@
 import bcrypt from "bcrypt";
 
+/**
+ * Classe utilitária para criptografia de senhas
+ * @class PasswordUtils
+ */
 export class PasswordUtils {
   private static readonly saltRounds: number = 10;
 

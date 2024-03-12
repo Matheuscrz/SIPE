@@ -1261,3 +1261,152 @@
 {"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
 {"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
 {"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /login em Mon Mar 11 2024 08:42:05 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 00000000001","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de atualização gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro interno do servidor. Error:  Bad \"options.issuer\" option. The payload already has an \"iss\" property.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /login em Mon Mar 11 2024 08:45:43 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 00000000001","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de atualização gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro interno do servidor. Error:  Bad \"options.issuer\" option. The payload already has an \"iss\" property.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /login em Mon Mar 11 2024 08:47:02 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 00000000001","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de atualização gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de acesso gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro interno do servidor. Error:  Bad \"options.expiresIn\" option the payload already has an \"exp\" property.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /login em Mon Mar 11 2024 08:52:22 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 00000000001","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de atualização gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de acesso gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro interno do servidor. Error:  Bad \"options.subject\" option. The payload already has an \"sub\" property.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /login em Mon Mar 11 2024 08:53:09 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 00000000001","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de atualização gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de acesso gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token refresh armazenado com sucesso. ID: 5e1213f0-938e-4147-b9c1-ba9a3381a35f","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /hello em Mon Mar 11 2024 08:54:43 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /hello em Mon Mar 11 2024 08:57:56 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /hello em Mon Mar 11 2024 08:58:15 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /hello em Mon Mar 11 2024 08:58:27 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /hello em Mon Mar 11 2024 09:07:45 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /hello em Mon Mar 11 2024 09:38:56 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao verificar token. Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlMTIxM2YwLTkzOGUtNDE0Ny1iOWMxLWJhOWEzMzgxYTM1ZiIsIm5hbWUiOiJhZG1pbiIsImNwZiI6IjAwMDAwMDAwMDAxIiwiaWF0IjoxNzEwMTU3OTkwLCJzdWIiOiI1ZTEyMTNmMC05MzhlLTQxNDctYjljMS1iYTlhMzM4MWEzNWYiLCJleHAiOjE3MTAxNTg4OTB9.VYgE7RE2NdgGn80IyJxnIRXGaJFgYYJt9hdJYNOCnnc, Erro: TokenExpiredError: jwt expired","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de acesso gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /hello em Mon Mar 11 2024 09:39:22 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao verificar token. Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlMTIxM2YwLTkzOGUtNDE0Ny1iOWMxLWJhOWEzMzgxYTM1ZiIsIm5hbWUiOiJhZG1pbiIsImNwZiI6IjAwMDAwMDAwMDAxIiwiaWF0IjoxNzEwMTU3OTkwLCJzdWIiOiI1ZTEyMTNmMC05MzhlLTQxNDctYjljMS1iYTlhMzM4MWEzNWYiLCJleHAiOjE3MTAxNTg4OTB9.VYgE7RE2NdgGn80IyJxnIRXGaJFgYYJt9hdJYNOCnnc, Erro: TokenExpiredError: jwt expired","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de acesso gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /hello em Mon Mar 11 2024 09:39:24 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao verificar token. Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlMTIxM2YwLTkzOGUtNDE0Ny1iOWMxLWJhOWEzMzgxYTM1ZiIsIm5hbWUiOiJhZG1pbiIsImNwZiI6IjAwMDAwMDAwMDAxIiwiaWF0IjoxNzEwMTU3OTkwLCJzdWIiOiI1ZTEyMTNmMC05MzhlLTQxNDctYjljMS1iYTlhMzM4MWEzNWYiLCJleHAiOjE3MTAxNTg4OTB9.VYgE7RE2NdgGn80IyJxnIRXGaJFgYYJt9hdJYNOCnnc, Erro: TokenExpiredError: jwt expired","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de acesso gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /hello em Mon Mar 11 2024 09:39:34 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao verificar token. Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlMTIxM2YwLTkzOGUtNDE0Ny1iOWMxLWJhOWEzMzgxYTM1ZiIsIm5hbWUiOiJhZG1pbiIsImNwZiI6IjAwMDAwMDAwMDAxIiwiaWF0IjoxNzEwMTU3OTkwLCJzdWIiOiI1ZTEyMTNmMC05MzhlLTQxNDctYjljMS1iYTlhMzM4MWEzNWYiLCJleHAiOjE3MTAxNTg4OTB9.VYgE7RE2NdgGn80IyJxnIRXGaJFgYYJt9hdJYNOCnnc, Erro: TokenExpiredError: jwt expired","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de acesso gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /login em Tue Mar 12 2024 08:39:30 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 00000000001","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de atualização gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de acesso gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao armazenar token refresh. ID: 5e1213f0-938e-4147-b9c1-ba9a3381a35f.  Chave duplicada","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro interno do servidor. Error: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /hello em Tue Mar 12 2024 08:39:45 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao verificar token. Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlMTIxM2YwLTkzOGUtNDE0Ny1iOWMxLWJhOWEzMzgxYTM1ZiIsIm5hbWUiOiJhZG1pbiIsImNwZiI6IjAwMDAwMDAwMDAxIiwiaWF0IjoxNzEwMTU3OTkwLCJzdWIiOiI1ZTEyMTNmMC05MzhlLTQxNDctYjljMS1iYTlhMzM4MWEzNWYiLCJleHAiOjE3MTAxNTg4OTB9.VYgE7RE2NdgGn80IyJxnIRXGaJFgYYJt9hdJYNOCnnc, Erro: TokenExpiredError: jwt expired","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de acesso gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /hello em Tue Mar 12 2024 08:39:47 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao verificar token. Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlMTIxM2YwLTkzOGUtNDE0Ny1iOWMxLWJhOWEzMzgxYTM1ZiIsIm5hbWUiOiJhZG1pbiIsImNwZiI6IjAwMDAwMDAwMDAxIiwiaWF0IjoxNzEwMTU3OTkwLCJzdWIiOiI1ZTEyMTNmMC05MzhlLTQxNDctYjljMS1iYTlhMzM4MWEzNWYiLCJleHAiOjE3MTAxNTg4OTB9.VYgE7RE2NdgGn80IyJxnIRXGaJFgYYJt9hdJYNOCnnc, Erro: TokenExpiredError: jwt expired","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de acesso gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /hello em Tue Mar 12 2024 08:40:00 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao verificar token. Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlMTIxM2YwLTkzOGUtNDE0Ny1iOWMxLWJhOWEzMzgxYTM1ZiIsIm5hbWUiOiJhZG1pbiIsImNwZiI6IjAwMDAwMDAwMDAxIiwiaWF0IjoxNzEwMTU3OTkwLCJzdWIiOiI1ZTEyMTNmMC05MzhlLTQxNDctYjljMS1iYTlhMzM4MWEzNWYiLCJleHAiOjE3MTAxNTg4OTB9.VYgE7RE2NdgGn80IyJxnIRXGaJFgYYJt9hdJYNOCnnc, Erro: TokenExpiredError: jwt expired","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de acesso gerado com sucesso","timestamp":"Invalid DateTime"}

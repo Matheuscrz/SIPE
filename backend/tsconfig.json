@@ -7,19 +7,21 @@
     "strict": true,
     "skipLibCheck": true,
     "rootDir": "./",
-    "outDir": "./dist",
+    "outDir": "./build",
     "lib": ["ES2022"],
     "esModuleInterop": true,
     "allowJs": true,
     "checkJs": false,
     "resolveJsonModule": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "paths": {
+      "@jest/*": ["./node_modules/@types/jest/*"]
+    }
   },
   "include": [
     "src/App.ts, src/**/*.ts, src/**/*.js, src/**/*.json",
     "src/**/*.d.ts",
     "src/types/**/*"
   ],
-  "exclude": ["node_modules", "build"]
+  "exclude": ["node_modules", "build"],
+  "types": ["node", "jest"]
 }

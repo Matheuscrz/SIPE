@@ -3,6 +3,10 @@ import { TokenModel } from "../models/TokenModel";
 import bcrypt from "bcrypt";
 import { JwtService } from "./JwtService";
 
+/**
+ * Classe de serviço para autenticação
+ * @class AuthService
+ */
 export class AuthService {
   /**
    * Autentica um usuário e gera tokens de acesso e atualização
