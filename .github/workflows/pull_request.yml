@@ -20,7 +20,14 @@ jobs:
         run: ls
 
       - name: Navigate to the directory
-        run: cd backend/
+        run: |
+          cd backend/ && pwd
+          if [ $? -eq 0 ]; then
+            echo "Sucesso ao navegar para o diretorio 'backend'."
+          else
+            echo "Falha ao navegar para o diretorio 'backend'."
+            exit 1
+          fi
 
       - name: List files
         run: ls
