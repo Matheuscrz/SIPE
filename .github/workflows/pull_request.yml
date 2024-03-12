@@ -20,7 +20,7 @@ jobs:
         run: ls
 
       - name: Navigate to the directory
-        run: cd ./backend
+        run: cd .\backend
 
       - name: List files
         run: ls
