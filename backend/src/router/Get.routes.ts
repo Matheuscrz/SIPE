@@ -20,6 +20,9 @@ export class GetRoutes {
     this.configureRoutes();
   }
 
+  /**
+   * Configura as rotas GET
+   */
   private configureRoutes() {
     // this.router.get("/user/:id", this.getUserById.bind(this));
     this.router.get("/user/:cpf", this.getUserByCpf.bind(this));
@@ -32,6 +35,11 @@ export class GetRoutes {
     );
   }
 
+  /**
+   * @param req - Requisição
+   * @param res - Resposta
+   * @returns - Retorna um usuário pelo CPF
+   */
   private async getUserByCpf(req: Request, res: Response): Promise<void> {
     try {
       const cpf = req.params.cpf;
@@ -47,6 +55,11 @@ export class GetRoutes {
     }
   }
 
+  /**
+   * @param req - Requisição
+   * @param res - Resposta
+   * @returns - Retorna um usuário pelo ID
+   */
   private async getUserById(req: Request, res: Response): Promise<void> {
     try {
       const id = req.params.id;
@@ -62,6 +75,12 @@ export class GetRoutes {
     }
   }
 
+  /**
+   * Retorna um objeto Router
+   * @returns {Router}
+   * @memberof GetRoutes
+   * @method getRouter
+   */
   public getRouter(): Router {
     return this.router;
   }
