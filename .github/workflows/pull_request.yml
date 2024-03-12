@@ -17,7 +17,7 @@ jobs:
           submodules: "recursive"
 
       - name: Navigate to the directory
-        run: cd backend
+        run: cd ./backend
 
       - name: Install dependencies
         run: |
