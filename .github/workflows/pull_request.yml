@@ -23,7 +23,7 @@ jobs:
             ${{ runner.os }}-node_modules-
 
       - name: Install dependencies
-        run: npm install
+        run: cd .\backend && npm install
 
       - name: Run tests
         run: npm run test
