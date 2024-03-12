@@ -29,12 +29,12 @@ jobs:
             exit 1
           fi
 
-      - name: List files
-        run: ls
+      - name: Check if package.json exists
+        run: cd backend/ && test -f package.json || { echo "package.json não encontrado"; exit 1; }
 
       - name: Install dependencies
         run: |
-          npm install
+          cd backend/ && npm install
 
       - name: Run tests
-        run: npm run test
+        run: cd backend/ && npm run test
