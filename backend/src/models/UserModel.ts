@@ -15,7 +15,7 @@ export class UserModel {
     const query = `SELECT * FROM ${this.TABLE_USER} WHERE cpf = $1`;
     const values = [cpf];
     try {
-      const result: QueryResult<any> = await Database.query(query, values); // Fix the type of the result variable
+      const result: QueryResult<any> = await Database.query(query, values);
       const user = result.rows.length ? result.rows[0] : null;
       AppLogger.getInstance().info(
         `Consulta getByCpf executada com sucesso. CPF: ${cpf}`
@@ -40,7 +40,7 @@ export class UserModel {
     const query = `SELECT * FROM ${this.TABLE_USER} WHERE id = $1`;
     const values = [id];
     try {
-      const result: QueryResult<any> = await Database.query(query, values); // Fix the type of the result variable
+      const result: QueryResult<any> = await Database.query(query, values);
       const userFromDb = result.rows.length ? result.rows[0] : null;
       const user: UserType = {
         id: userFromDb.id,
