@@ -12,7 +12,7 @@ export class AuthService {
    * Autentica um usuário e gera tokens de acesso e atualização
    * @param cpf - CPF do usuário
    * @param password - Senha do usuário
-   * @returns {Promise<{ userId: string; accessToken: string; refreshToken: string } | null>} - Dados do usuário e tokens se a autenticação for bem-sucedida, caso contrário, retorna null
+   * @returns {Promise<{ userId: string; accessToken: string; refreshToken: string } | null>} - Objeto com ID do usuário, token de acesso e token de atualização ou null se não autenticado
    */
   public static async login(
     cpf: string,
