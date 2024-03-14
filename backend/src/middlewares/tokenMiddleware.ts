@@ -37,11 +37,9 @@ export const verifyAndRefreshAccessToken = async (
         const newAccessToken = await JwtService.generateAccessToken(
           refreshToken
         );
-
-        // Adicionando o novo token ao corpo da resposta
-        res.json({ accessToken: newAccessToken });
+        req.headers["x-access-token"] = newAccessToken;
+        next();
       } else {
-        // Redirecionando para a página de login
         res.redirect(302, "/login");
       }
     }
