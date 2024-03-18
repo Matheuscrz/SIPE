@@ -2,6 +2,7 @@ import express, { Request, Response, Router } from "express";
 import { UserModel } from "../models/UserModel";
 import { AppLogger } from "../config/AppLogger";
 import { verifyAndRefreshAccessToken } from "../middlewares/tokenMiddleware";
+import { AuthService } from "../services/AuthService";
 /**
  * Classe de rotas para do tipo Get
  * @class GetRoutes
@@ -27,14 +28,32 @@ export class GetRoutes {
     // this.router.get("/user/:id", this.getUserById.bind(this));
     this.router.get("/user/:cpf", this.getUserByCpf.bind(this));
     this.router.get(
-      "/hello",
+      "/home",
       verifyAndRefreshAccessToken,
       (req: Request, res: Response) => {
-        res.status(200).send("Hello World");
+        res.status(200).send("Home");
       }
     );
+    this.router.get("/logout", this.logout.bind(this));
   }
 
+  private async logout(req: Request, res: Response): Promise<void> {
+    try {
+      const token = req.headers["x-refresh-token"];
+      if (!token) {
+        res.status(400).send("Token não informado");
+        return;
+      } else {
+        delete req.headers["x-access-token"];
+        delete req.headers["x-refresh-token"];
+        await AuthService.logout(token.toString());
+        res.status(200).send("Usuário deslogado com sucesso");
+      }
+    } catch (error) {
+      AppLogger.getInstance().error(`Erro interno do servidor. Error: `, error);
+      res.status(500).send(error);
+    }
+  }
   /**
    * @param req - Requisição
    * @param res - Resposta
