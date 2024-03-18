@@ -60,7 +60,6 @@ services:
       - DB_CONFIG_PATH=/app/db/config/config.json
     depends_on:
       - db
-      - redis
     deploy:
       replicas: 2
       resources:
@@ -96,23 +95,6 @@ services:
     networks:
       - ponto
 
-  redis:
-    image: redis:alpine
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis:/data
-    deploy:
-      replicas: 1
-      resources:
-        limits:
-          cpus: "1"
-          memory: 1GB
-      restart_policy:
-        condition: on-failure
-    networks:
-      - ponto
-
   pgadmin:
     image: dpage/pgadmin4:latest
     environment:
@@ -141,7 +123,6 @@ networks:
 
 volumes:
   db:
-  redis:
   pgadmin:
   frontend:
   backend:
