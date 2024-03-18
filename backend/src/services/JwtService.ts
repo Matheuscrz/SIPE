@@ -69,12 +69,13 @@ export class JwtService {
     };
 
     try {
-      jwt.verify(token, secretOrPublicKey, options);
-      return true;
+      if (jwt.verify(token, secretOrPublicKey, options)) {
+        return true;
+      } else {
+        return false;
+      }
     } catch (error) {
-      AppLogger.getInstance().error(
-        `Erro ao verificar token. Token: ${token}, Erro: ${error}`
-      );
+      AppLogger.getInstance().error(`Erro ao verificar token. Erro: ${error}`);
       return false;
     }
   }
