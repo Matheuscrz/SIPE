@@ -10,7 +10,7 @@ services:
       - ./nginx/mime.types:/etc/nginx/mime.types
     depends_on:
       - backend
-      - frontend
+      # - frontend
     deploy:
       replicas: 1
       resources:
@@ -22,28 +22,28 @@ services:
     networks:
       - ponto
 
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile.prod
-    ports:
-      - "3000:3000"
-    volumes:
-      - frontend:/app
-    environment:
-      - NODE_ENV=production
-    depends_on:
-      - backend
-    deploy:
-      replicas: 2
-      resources:
-        limits:
-          cpus: "0.5"
-          memory: 1GB
-      restart_policy:
-        condition: on-failure
-    networks:
-      - ponto
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile.prod
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - frontend:/app
+  #   environment:
+  #     - NODE_ENV=production
+  #   depends_on:
+  #     - backend
+  #   deploy:
+  #     replicas: 2
+  #     resources:
+  #       limits:
+  #         cpus: "0.5"
+  #         memory: 1GB
+  #     restart_policy:
+  #       condition: on-failure
+  #   networks:
+  #     - ponto
 
   backend:
     build:
@@ -124,5 +124,5 @@ networks:
 volumes:
   db:
   pgadmin:
-  frontend:
+  # frontend:
   backend:

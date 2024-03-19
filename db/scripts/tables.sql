@@ -2,7 +2,7 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- Criação do Schema 'point'
-CREATE SCHEMA IF NOT EXISTS point;
+CREATE SCHEMA IF NOT EXISTS point;  
 
 -- Criação da tabela 'departments'
 CREATE TABLE IF NOT EXISTS point.departments (
@@ -17,7 +17,7 @@ CREATE INDEX IF NOT EXISTS idx_departments_name ON point.departments (name);
 CREATE TABLE IF NOT EXISTS point.roles (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   name VARCHAR(255) UNIQUE NOT NULL,
-  department_id UUID REFERENCES point.departments(id),
+  department_id UUID REFERENCES point.departments(id) NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -29,8 +29,7 @@ CREATE TABLE IF NOT EXISTS point.work_schedules (
   name VARCHAR(255) UNIQUE NOT NULL,
   start_time TIME NOT NULL,
   end_time TIME NOT NULL,
-  lunch_start_time TIME,
-  lunch_end_time TIME,
+  lunch_duration TIME,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -40,9 +39,6 @@ CREATE INDEX IF NOT EXISTS idx_work_schedules_end_time ON point.work_schedules (
 
 -- Criar um tipo gender
 CREATE TYPE point.gender AS ENUM ('Masculino', 'Feminino', 'Outros');
-
--- Criar um tipo regime
-CREATE TYPE point.regime AS ENUM ('CLT', 'PJ', 'Estágio', 'Outro');
 
 -- Criar um tipo permission
 CREATE TYPE point.permission AS ENUM ('Normal', 'RH', 'Admin');
@@ -82,11 +78,9 @@ CREATE TABLE IF NOT EXISTS point.employees (
   pin VARCHAR(4) NOT NULL,
   gender point.gender NOT NULL,
   birth_date DATE NOT NULL,
-  department UUID REFERENCES point.departments(id),
   roles UUID REFERENCES point.roles(id),
   work_schedule UUID REFERENCES point.work_schedules(id),
   hiring_date DATE NOT NULL,
-  regime point.regime NOT NULL,
   permission UUID REFERENCES point.permissions(id) DEFAULT get_default_permission_id() NOT NULL,
   created_at DATE DEFAULT NOW() NOT NULL,
   active BOOLEAN DEFAULT TRUE
@@ -97,7 +91,6 @@ CREATE INDEX IF NOT EXISTS idx_password ON point.employees (password);
 CREATE INDEX IF NOT EXISTS idx_active ON point.employees (active);
 CREATE INDEX IF NOT EXISTS idx_permission_id ON point.employees (permission);
 CREATE INDEX IF NOT EXISTS idx_roles_id ON point.employees (roles);
-CREATE INDEX IF NOT EXISTS idx_department_id ON point.employees (department);
 CREATE INDEX IF NOT EXISTS idx_work_schedule_id ON point.employees (work_schedule);
 
 CREATE TABLE IF NOT EXISTS point.login_tokens (

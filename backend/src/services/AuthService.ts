@@ -52,9 +52,9 @@ export class AuthService {
    * Método para deslogar um usuário
    * @param userId - ID do usuário
    */
-  public static async logout(userId: string): Promise<void> {
+  public static async logout(token: string): Promise<void> {
     try {
-      await TokenModel.removeToken(userId);
+      await TokenModel.removeToken(token);
     } catch (error) {
       console.error("Erro durante o processo de logout:", error);
       throw error;

@@ -32,7 +32,6 @@ export class PostRoutes {
   private configureRoutes() {
     this.router.post("/createuser", this.createUser.bind(this));
     this.router.post("/login", this.login.bind(this));
-    this.router.post("/logout", this.logout.bind(this));
   }
 
   /**
@@ -54,29 +53,6 @@ export class PostRoutes {
         } else {
           res.status(401).send("Usuário ou senha inválidos");
         }
-      }
-    } catch (error) {
-      let errorMessage = `Erro interno do servidor. Error: `;
-      AppLogger.getInstance().error(errorMessage, error);
-      res.status(500).send(error);
-    }
-  }
-
-  /**
-   * Método para realizar logout
-   * @param req - Request
-   * @param res - Response
-   * @returns
-   */
-  private async logout(req: Request, res: Response): Promise<void> {
-    try {
-      const userId = req.body.userId;
-      if (!userId) {
-        res.status(400).send("ID do usuário não informado");
-        return;
-      } else {
-        await AuthService.logout(userId);
-        res.status(200).send("Usuário deslogado com sucesso");
       }
     } catch (error) {
       let errorMessage = `Erro interno do servidor. Error: `;

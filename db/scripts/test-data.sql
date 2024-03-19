@@ -15,6 +15,6 @@ INSERT INTO point.work_schedules(name, start_time, end_time, lunch_start_time, l
 
 
 -- Inserir dados de teste para a tabela 'employees'
-INSERT INTO point.employees (name, password, cpf, pis, pin, gender, birth_date, department, roles, work_schedule, hiring_date, regime) VALUES (
-  'Test', '123456', '12345678900', '12345678900', '1234', 'Outros', '1990-01-01', (SELECT id FROM point.departments WHERE name = 'Department 1'), (SELECT id FROM point.roles WHERE name = 'Role 1'), (SELECT id FROM point.work_schedules WHERE name = 'Work Schedule 1'), '2020-01-01', 'CLT'
+INSERT INTO point.employees (name, password, cpf, pis, pin, gender, birth_date, roles, work_schedule, hiring_date, regime) VALUES (
+  'Test', '123456', '12345678900', '12345678900', '1234', 'Outros', '1990-01-01', (SELECT id FROM point.roles WHERE name = 'Role 1'), (SELECT id FROM point.work_schedules WHERE name = 'Work Schedule 1'), '2020-01-01', 'CLT'
 )

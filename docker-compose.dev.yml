@@ -17,15 +17,6 @@ services:
     networks:
       - ponto
 
-  redis:
-    image: redis:alpine
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis:/data
-    networks:
-      - ponto
-
   pgadmin:
     image: dpage/pgadmin4:latest
     environment:
@@ -43,7 +34,6 @@ services:
 volumes:
   logs:
   data:
-  redis:
   pgadmin:
 
 networks:
