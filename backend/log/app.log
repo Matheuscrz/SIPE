@@ -7,3 +7,28 @@
 {"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
 {"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
 {"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /user/5e1213f0-938e-4147-b9c1-ba9a3381a35f em Tue Mar 19 2024 08:02:11 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 5e1213f0-938e-4147-b9c1-ba9a3381a35f","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /user/5e1213f0-938e-4147-b9c1-ba9a3381a35f em Tue Mar 19 2024 08:02:43 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 5e1213f0-938e-4147-b9c1-ba9a3381a35f","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /user/00000000001 em Tue Mar 19 2024 08:05:22 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 00000000001","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /user/00000000001 em Tue Mar 19 2024 08:08:08 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 00000000001","timestamp":"Invalid DateTime"}
