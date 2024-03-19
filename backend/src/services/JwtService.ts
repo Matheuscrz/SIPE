@@ -5,7 +5,7 @@ import { AppLogger } from "../config/AppLogger";
 export class JwtService {
   private static readonly secretKey: Secret =
     process.env.JWT_SECRET_KEY_REFRESH || "secret";
-  private static readonly algorithm: string = "HS256";
+  private static readonly algorithm: string = "HS512";
 
   /**
    * Gera um token de acesso

@@ -32,3 +32,6 @@
 {"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
 {"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
 {"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 00000000001","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
