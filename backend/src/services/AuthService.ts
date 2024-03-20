@@ -4,8 +4,8 @@ import bcrypt from "bcrypt";
 import { JwtService } from "./JwtService";
 
 /**
- * Classe de serviço para autenticação
  * @class AuthService
+ * @description Classe de serviço que contém os métodos para autenticação de usuários
  */
 export class AuthService {
   /**

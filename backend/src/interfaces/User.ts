@@ -14,7 +14,7 @@ export enum Permission {
 }
 
 /**
- * Interface User representa um usuário.
+ * Interface User representa um usuário no banco de dados
  */
 export interface User {
   [x: string]: any;

@@ -5,9 +5,9 @@ import { PostRoutes } from "./Post.routes";
 import { GetRoutes } from "./Get.routes";
 
 /**
- * Classe de configuração de rotas
  * @class Routes
  * @method getRouter - retorna um objeto Router
+ * @description Classe de configuração de rotas
  */
 export class Routes {
   private readonly app: express.Application;
