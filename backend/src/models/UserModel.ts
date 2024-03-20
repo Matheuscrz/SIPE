@@ -51,14 +51,12 @@ export class UserModel {
         pin: userFromDb.pin,
         gender: userFromDb.gender,
         birth_date: userFromDb.birth_date,
-        department: userFromDb.department,
-        roles: userFromDb.roles,
+        role_id: userFromDb.role_id,
         work_schedule: userFromDb.work_schedule,
         hiring_date: userFromDb.hiring_date,
-        regime: userFromDb.regime,
         permission: userFromDb.permission,
-        created_at: userFromDb.created_at,
         active: userFromDb.active,
+        created_at: userFromDb.created_at,
       };
       AppLogger.getInstance().info(
         `Consulta getById executada com sucesso. ID: ${id}`
@@ -80,7 +78,7 @@ export class UserModel {
    * @returns - Objeto User inserido no banco de dados
    */
   static async addUser(user: UserType): Promise<UserType | undefined> {
-    let query = `INSERT INTO ${this.TABLE_USER} (name, password, cpf, pis, pin, gender, birth_date, department, roles, work_schedule, hiring_date, regime`;
+    let query = `INSERT INTO ${this.TABLE_USER} (name, password, cpf, pis, pin, gender, birth_date, role_id, work_schedule, hiring_date`;
     let values = [
       user.name,
       user.password,
@@ -89,13 +87,10 @@ export class UserModel {
       user.pin,
       user.gender,
       user.birth_date,
-      user.department,
-      user.roles,
+      user.role_id,
       user.work_schedule,
       user.hiring_date,
-      user.regime,
     ];
-
     if (user.permission) {
       query += ", permission";
       values.push(user.permission);
@@ -108,8 +103,7 @@ export class UserModel {
         query += ",";
       }
     }
-    query += ")";
-
+    query += ") RETURNING *";
     try {
       const result = await Database.query(query, values);
       const user: UserType = {
@@ -121,14 +115,12 @@ export class UserModel {
         pin: result.rows[0].pin,
         gender: result.rows[0].gender,
         birth_date: result.rows[0].birth_date,
-        department: result.rows[0].department,
-        roles: result.rows[0].roles,
+        role_id: result.rows[0].role_id,
         work_schedule: result.rows[0].work_schedule,
         hiring_date: result.rows[0].hiring_date,
-        regime: result.rows[0].regime,
         permission: result.rows[0].permission,
-        created_at: result.rows[0].created_at,
         active: result.rows[0].active,
+        created_at: result.rows[0].created_at,
       };
       AppLogger.getInstance().info(
         `Usuário adicionado com sucesso. ID: ${result.rows[0].id}`
@@ -150,7 +142,7 @@ export class UserModel {
    * @returns - Objeto User atualizado no banco de dados
    */
   static async updateUser(user: UserType): Promise<UserType | null> {
-    const query = `UPDATE ${this.TABLE_USER} SET password = COALESCE($1, password), pin = COALESCE($2, pin), department = COALESCE($3, department), roles = COALESCE($4, roles), work_schedule = COALESCE($5, work_schedule), hiring_date = COALESCE($6, hiring_date), regime = COALESCE($7, regime) WHERE id = $8 RETURNING *`;
+    const query = `UPDATE ${this.TABLE_USER} SET password = COALESCE($1, password), pin = COALESCE($2, pin), role_id = COALESCE($4, roles), work_schedule = COALESCE($5, work_schedule), hiring_date = COALESCE($6, hiring_date) WHERE id = $7 RETURNING *`;
     const values = [
       user.password,
       user.pin,
@@ -158,7 +150,6 @@ export class UserModel {
       user.roles,
       user.work_schedule,
       user.hiring_date,
-      user.regime,
       user.id,
     ];
     try {

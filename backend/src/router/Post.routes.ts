@@ -1,7 +1,7 @@
 import express, { Request, Response, Router } from "express";
 import { UserModel } from "../models/UserModel";
 import { PasswordUtils } from "../utils/PasswordUtils";
-import { Regime, User as UserEntity } from "../interfaces/User";
+import { User as UserEntity } from "../interfaces/User";
 import { AppLogger } from "../config/AppLogger";
 import { AuthService } from "../services/AuthService";
 /**
@@ -83,14 +83,12 @@ export class PostRoutes {
           pin: data.pin,
           gender: data.gender,
           birth_date: data.birth_date,
-          department: data.department,
-          roles: data.role,
+          role_id: data.role,
           work_schedule: data.work_schedule,
           hiring_date: data.hiring_date,
-          regime: Regime.CLT,
           permission: data.permission || null,
-          created_at: "",
           active: true,
+          created_at: "",
         };
         const hashedPassword = await PasswordUtils.hashPassword(user.password);
         const createUser = await UserModel.addUser({
