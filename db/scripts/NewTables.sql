@@ -25,22 +25,22 @@ create table if not exists point.departments (
 );
 
 -- Create the table 'department_roles'
-create table department_roles(
+create table if not exists point.department_roles(
     department VARCHAR references point.departments(name) not null,
     role_id uuid references point.roles(id) not null,
     primary key (department, role_id)
 );
 
 -- Create the table 'work_schedules'
-create table if not exists point.work_schedules(
+create table if not exists point.work_schedule(
     name VARCHAR(100) primary key not null,
     start_time time not null,
     end_time time not null,
     lunch_duration time,
     created_at timestamp default current_timestamp
 );
-create index if not exists idx_work_schedules_start_time on point.work_schedules (start_time);
-create index if not exists idx_work_schedules_end_time on point.work_schedules (end_time);
+create index if not exists idx_work_schedules_start_time on point.work_schedule (start_time);
+create index if not exists idx_work_schedules_end_time on point.work_schedule (end_time);
 
 -- Create the type permission
 create type point.permission as enum ('Normal', 'RH', 'Admin');
@@ -80,7 +80,7 @@ create table if not exists point.employees(
     gender point.gender not null default 'Outro',
     birth_date date not null,
     role_id uuid references point.roles(id) not null,
-    work_schedule varchar references point.work_schedules(name) not null,
+    work_schedule varchar references point.work_schedule(name) not null,
     hiring_date date not null,
     permission point.permission references point.permissions(name) default 'Normal' not null,
     active boolean default true,
@@ -88,18 +88,15 @@ create table if not exists point.employees(
 );
 create index if not exists idx_cpf on point.employees (cpf);
 create index if not exists idx_active on point.employees (active);
-create index if not exists idx_permission on point.permissions (name);
-create index if not exists idx_role on point.roles (name);
-create index if not exists idx_work_schedule on point.work_schedules (name);
 
 -- Create the table 'login'
-create table if not exists login (
+create table if not exists point.login_tokens (
     id uuid primary key references point.employees(id) not null,
     token varchar(500) unique not null,
     expires_at date not null,
     created_at timestamp default current_timestamp
 );
-create index if not exists idx_token on login (token);
+create index if not exists idx_token on login_tokens (token);
 
 -- Create the table 'time_records'
 create table if not exists point.time_records(
@@ -144,3 +141,19 @@ create table if not exists point.company(
     certificate Text not null,
     created_at timestamp default current_timestamp
 );
+
+-- Inserir uma role
+INSERT INTO point.roles (name, description) 
+VALUES ('AdminRole', 'Cargo de administrador do sistema');
+
+-- Inserir um departamento
+INSERT INTO point.departments (name, responsible) 
+VALUES ('AdminDepartment', (SELECT id FROM point.roles WHERE name = 'AdminRole'));
+
+-- Inserir uma jornada de trabalho
+INSERT INTO point.department_roles (department, role_id) 
+VALUES ('AdminDepartment', (SELECT id FROM point.roles WHERE name = 'AdminRole'));
+
+-- Inserir uma jornada de trabalho
+INSERT INTO point.work_schedule (name, start_time, end_time, lunch_duration)
+VALUES ('Estagio', '07:00:00', '13:00:00', '01:00:00');
