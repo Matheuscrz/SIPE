@@ -3,6 +3,10 @@ import { Database } from "../config/Database";
 import { WorkSchedule as WorkScheduleType } from "../interfaces/WorkSchedule";
 import { QueryResult } from "pg";
 
+/**
+ * @class WorkScheduleModel
+ * @description Classe de modelo que contém os métodos para manipulação de dados de horários de trabalho no banco de dados
+ */
 export class WorkScheduleModel {
   private static readonly TABLE_WORK_SCHEDULE = "point.work_schedule";
   /**

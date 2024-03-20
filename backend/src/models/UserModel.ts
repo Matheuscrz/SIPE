@@ -3,6 +3,10 @@ import { Database } from "../config/Database";
 import { User as UserType } from "../interfaces/User";
 import { QueryResult } from "pg";
 
+/**
+ * @class UserModel
+ * @description Classe de modelo que contém os métodos para manipulação de dados de usuários no banco de dados
+ */
 export class UserModel {
   private static readonly TABLE_USER = "point.employees";
   /**

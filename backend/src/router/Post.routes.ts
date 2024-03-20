@@ -5,9 +5,9 @@ import { User as UserEntity } from "../interfaces/User";
 import { AppLogger } from "../config/AppLogger";
 import { AuthService } from "../services/AuthService";
 /**
- * Classe de rotas para do tipo Post
  * @class PostRoutes
  * @extends {Router}
+ * @description Classe de rotas do tipo Post
  */
 export class PostRoutes {
   private readonly router: Router;

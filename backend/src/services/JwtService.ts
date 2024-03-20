@@ -2,6 +2,10 @@ import jwt, { Secret, SignOptions, VerifyOptions } from "jsonwebtoken";
 import { User as UserType } from "../interfaces/User";
 import { AppLogger } from "../config/AppLogger";
 
+/**
+ * @class JwtService
+ * @description Classe de serviço para manipulação de tokens JWT
+ */
 export class JwtService {
   private static readonly secretKey: Secret =
     process.env.JWT_SECRET_KEY_REFRESH || "secret";

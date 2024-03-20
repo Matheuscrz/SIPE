@@ -4,9 +4,9 @@ import { AppLogger } from "../config/AppLogger";
 import { verifyAndRefreshAccessToken } from "../middlewares/tokenMiddleware";
 import { AuthService } from "../services/AuthService";
 /**
- * Classe de rotas para do tipo Get
  * @class GetRoutes
  * @extends {Router}
+ * @description Classe de rotas do tipo GET
  */
 export class GetRoutes {
   private readonly router: Router;

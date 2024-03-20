@@ -4,8 +4,8 @@ import { QueryResult } from "pg";
 import { AppLogger } from "../config/AppLogger";
 
 /**
- * Modelo de departamento
  * @class DepartmentModel
+ * @description Class de modelo que contém os métodos para manipulação de dados de departamentos no banco de dados
  */
 export class DepartmentModel {
   private static readonly TABLE_DEPARTMENT = "point.departments";

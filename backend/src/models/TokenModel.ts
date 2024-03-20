@@ -2,7 +2,7 @@ import { AppLogger } from "../config/AppLogger";
 import { Database } from "../config/Database";
 /**
  * @class TokenModel
- * @description Classe de modelo para tokens
+ * @description Classe de modelo que contém os métodos para manipulação de tokens no banco de dados
  */
 export class TokenModel {
   private static readonly TABLE_LOGIN = "point.login_tokens";

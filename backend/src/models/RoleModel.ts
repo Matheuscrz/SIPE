@@ -3,6 +3,10 @@ import { AppLogger } from "../config/AppLogger";
 import { QueryResult } from "pg";
 import { Role as RoleType } from "../interfaces/Role";
 
+/**
+ * @class RoleModel
+ * @description Class de modelo que contém os métodos para manipulação de dados de cargos no banco de dados
+ */
 export class RoleModel {
   private static readonly TABLE_ROLE = "point.roles";
 
