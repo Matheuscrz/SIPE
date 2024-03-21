@@ -32,13 +32,6 @@ O SIPE (Sistema Integrado de Ponto Eletrônico) é uma aplicação robusta desen
 
   - Gere relatórios detalhados sobre os registros de ponto e justificativas.
 
-- **Importação e Exportação de Dados:**
-
-  - Importe e exporte dados dos relógios de ponto para facilitar o gerenciamento.
-
-- **Geração de AFDs (Arquivo Fonte de Dados):**
-  - Crie Arquivos Fonte de Dados conforme necessário.
-
 ### Para Administradores:
 
 - **Gerenciamento de Dados da Empresa:**
@@ -56,7 +49,7 @@ O SIPE (Sistema Integrado de Ponto Eletrônico) é uma aplicação robusta desen
 
 - **Frontend Web:**
 
-  - Utilizando Next.js para uma experiência de usuário dinâmica e responsiva.
+  - Utilizando Vue.js para uma experiência de usuário dinâmica e responsiva.
 
 - **Aplicativo Móvel:**
 
@@ -66,10 +59,6 @@ O SIPE (Sistema Integrado de Ponto Eletrônico) é uma aplicação robusta desen
 
   - PostgreSQL para armazenamento de dados.
 
-- **Cache:**
-
-  - Redis para otimização de cache.
-
 - **Proxy Reverso e Balanceamento de Carga:**
   - NGinx para garantir escalabilidade e alta disponibilidade.
 
@@ -77,7 +66,6 @@ O SIPE (Sistema Integrado de Ponto Eletrônico) é uma aplicação robusta desen
 
 - Node.js e npm/yarn
 - PostgreSQL
-- Redis
 - NGinx
 
 ## Contribuições
