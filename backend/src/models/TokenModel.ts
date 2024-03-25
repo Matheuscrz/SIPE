@@ -1,5 +1,6 @@
 import { AppLogger } from "../config/AppLogger";
 import { Database } from "../config/Database";
+import { ErrorHandler } from "../config/ErrorHandler";
 /**
  * @class TokenModel
  * @description Classe de modelo que contém os métodos para manipulação de tokens no banco de dados
@@ -25,13 +26,13 @@ export class TokenModel {
       AppLogger.getInstance().info(
         `Token refresh armazenado com sucesso. ID: ${id}`
       );
-    } catch (error) {
+    } catch (error: any) {
       let erroMessage = `Erro ao armazenar token. ${error}`;
       AppLogger.getInstance().error(
         `Erro ao armazenar token refresh. ID: ${id}. `,
         error
       );
-      throw erroMessage;
+      throw new ErrorHandler(error.code, erroMessage);
     }
   }
 
@@ -49,13 +50,13 @@ export class TokenModel {
         `Token removido com sucesso. Token: ${token}`
       );
       return true;
-    } catch (error) {
+    } catch (error: any) {
       let errorMessage = `Erro ao remover token. ${error}`;
       AppLogger.getInstance().error(
         `Erro ao remover token. Token: ${token}. `,
         error
       );
-      throw errorMessage;
+      throw new ErrorHandler(error.code, errorMessage);
     }
   }
 }

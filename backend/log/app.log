@@ -327,3 +327,307 @@
 {"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
 {"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
 {"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /user/0000000000 em Thu Mar 21 2024 11:03:35 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 0000000000","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /logout em Thu Mar 21 2024 11:05:45 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /logout em Thu Mar 21 2024 11:05:49 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token removido com sucesso. Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlMTIxM2YwLTkzOGUtNDE0Ny1iOWMxLWJhOWEzMzgxYTM1ZiIsIm5hbWUiOiJhZG1pbiIsImNwZiI6IjAwMDAwMDAwMDAxIiwiaWF0IjoxNzEwNDE3NDM3LCJleHAiOjE3MTEwMjIyMzcsInN1YiI6IjVlMTIxM2YwLTkzOGUtNDE0Ny1iOWMxLWJhOWEzMzgxYTM1ZiJ9.vL5I_uGkST8Gq-mtHtMV_cuu2c48Vx1wegwuibSaWD0","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /user/5e1213f0-938e-4147-b9c1-ba9a3381a35 em Thu Mar 21 2024 11:42:16 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 5e1213f0-938e-4147-b9c1-ba9a3381a35","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /user/5e1213f0-938e-4147-b9c1-ba9a3381a35 em Thu Mar 21 2024 11:42:48 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 5e1213f0-938e-4147-b9c1-ba9a3381a35","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /user/5e1213f0-938e-4147-b9c1-ba9a3381a35 em Thu Mar 21 2024 11:43:35 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 5e1213f0-938e-4147-b9c1-ba9a3381a35","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /user/5e1213f0-938e-4147-b9c1-ba9a3381a35 em Thu Mar 21 2024 11:43:38 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 5e1213f0-938e-4147-b9c1-ba9a3381a35","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /user/5e1213f0-938e-4147-b9c1-ba9a3381a35 em Thu Mar 21 2024 11:44:14 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 5e1213f0-938e-4147-b9c1-ba9a3381a35","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /user/5e1213f0-938e-4147-b9c1-ba9a3381a35 em Thu Mar 21 2024 11:45:12 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 5e1213f0-938e-4147-b9c1-ba9a3381a35","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /user/5e1213f0-938e-4147-b9c1-ba9a3381a35 em Thu Mar 21 2024 11:46:26 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 5e1213f0-938e-4147-b9c1-ba9a3381a35","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /user/5e1213f0-938e-4147-b9c1-ba9a3381a35 em Mon Mar 25 2024 07:45:50 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 5e1213f0-938e-4147-b9c1-ba9a3381a35","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /user/00000000001 em Mon Mar 25 2024 07:46:00 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 00000000001","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /home em Mon Mar 25 2024 07:46:05 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao verificar token. Erro: JsonWebTokenError: invalid algorithm","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao verificar token. Erro: JsonWebTokenError: invalid algorithm","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /login em Mon Mar 25 2024 07:46:05 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /home em Mon Mar 25 2024 07:46:08 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao verificar token. Erro: JsonWebTokenError: invalid algorithm","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao verificar token. Erro: JsonWebTokenError: invalid algorithm","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /login em Mon Mar 25 2024 07:46:08 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /home em Mon Mar 25 2024 07:46:46 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao verificar token. Erro: JsonWebTokenError: invalid algorithm","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao verificar token. Erro: JsonWebTokenError: invalid algorithm","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /login em Mon Mar 25 2024 07:46:46 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /login em Mon Mar 25 2024 07:46:57 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 00000000001","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de atualização gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de acesso gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao armazenar token refresh. ID: ddba562e-a3bb-429c-87ba-3448fbe10b64.  Chave duplicada","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro interno do servidor. Error: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /logout em Mon Mar 25 2024 07:47:03 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token removido com sucesso. Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlMTIxM2YwLTkzOGUtNDE0Ny1iOWMxLWJhOWEzMzgxYTM1ZiIsIm5hbWUiOiJhZG1pbiIsImNwZiI6IjAwMDAwMDAwMDAxIiwiaWF0IjoxNzEwNDE3NDM3LCJleHAiOjE3MTEwMjIyMzcsInN1YiI6IjVlMTIxM2YwLTkzOGUtNDE0Ny1iOWMxLWJhOWEzMzgxYTM1ZiJ9.vL5I_uGkST8Gq-mtHtMV_cuu2c48Vx1wegwuibSaWD0","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /user/5e1213f0-938e-4147-b9c1-ba9a3381a35 em Mon Mar 25 2024 09:18:14 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 5e1213f0-938e-4147-b9c1-ba9a3381a35","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /user/4002c4ec-4810-408f-abe1-f702880a307b em Mon Mar 25 2024 09:18:21 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 4002c4ec-4810-408f-abe1-f702880a307b","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /user/00000000001 em Mon Mar 25 2024 09:18:25 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 00000000001","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /home em Mon Mar 25 2024 09:18:33 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao verificar token. Erro: JsonWebTokenError: invalid algorithm","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao verificar token. Erro: JsonWebTokenError: invalid algorithm","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /login em Mon Mar 25 2024 09:18:34 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /logout em Mon Mar 25 2024 09:18:42 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token removido com sucesso. Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlMTIxM2YwLTkzOGUtNDE0Ny1iOWMxLWJhOWEzMzgxYTM1ZiIsIm5hbWUiOiJhZG1pbiIsImNwZiI6IjAwMDAwMDAwMDAxIiwiaWF0IjoxNzEwNDE3NDM3LCJleHAiOjE3MTEwMjIyMzcsInN1YiI6IjVlMTIxM2YwLTkzOGUtNDE0Ny1iOWMxLWJhOWEzMzgxYTM1ZiJ9.vL5I_uGkST8Gq-mtHtMV_cuu2c48Vx1wegwuibSaWD0","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /logout em Mon Mar 25 2024 09:20:59 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token removido com sucesso. Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlMTIxM2YwLTkzOGUtNDE0Ny1iOWMxLWJhOWEzMzgxYTM1ZiIsIm5hbWUiOiJhZG1pbiIsImNwZiI6IjAwMDAwMDAwMDAxIiwiaWF0IjoxNzEwNDE3NDM3LCJleHAiOjE3MTEwMjIyMzcsInN1YiI6IjVlMTIxM2YwLTkzOGUtNDE0Ny1iOWMxLWJhOWEzMzgxYTM1ZiJ9.vL5I_uGkST8Gq-mtHtMV_cuu2c48Vx1wegwuibSaWD0","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /logout em Mon Mar 25 2024 09:21:28 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token removido com sucesso. Token: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRkYmE1NjJlLWEzYmItNDI5Yy04N2JhLTM0NDhmYmUxMGI2NCIsIm5hbWUiOiJhZG1pbiIsImNwZiI6IjAwMDAwMDAwMDAxIiwiaWF0IjoxNzEwOTM0Njg0LCJleHAiOjE3MTE1Mzk0ODQsInN1YiI6ImRkYmE1NjJlLWEzYmItNDI5Yy04N2JhLTM0NDhmYmUxMGI2NCJ9.zrqlD2OG-azeAPdSyjlDCQM6zVflbnQa1k37NwC0T9htoP-ZnbRStERu1h2N9xW6VCDFM5eVqA25aAzlLm-cdg","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /login em Mon Mar 25 2024 09:28:25 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 00000000001","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de atualização gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de acesso gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token refresh armazenado com sucesso. ID: ddba562e-a3bb-429c-87ba-3448fbe10b64","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /user/4002c4ec-4810-408f-abe1-f702880a307b em Mon Mar 25 2024 09:36:05 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 4002c4ec-4810-408f-abe1-f702880a307b","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /login em Mon Mar 25 2024 09:36:13 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 00000000001","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de atualização gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de acesso gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao armazenar token refresh. ID: ddba562e-a3bb-429c-87ba-3448fbe10b64.  Chave duplicada","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro interno do servidor. Error:  Erro ao armazenar token. Error: Chave duplicada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /logout em Mon Mar 25 2024 09:36:29 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token removido com sucesso. Token: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRkYmE1NjJlLWEzYmItNDI5Yy04N2JhLTM0NDhmYmUxMGI2NCIsIm5hbWUiOiJhZG1pbiIsImNwZiI6IjAwMDAwMDAwMDAxIiwiaWF0IjoxNzExMzY5NzA1LCJleHAiOjE3MTE5NzQ1MDUsInN1YiI6ImRkYmE1NjJlLWEzYmItNDI5Yy04N2JhLTM0NDhmYmUxMGI2NCJ9.CXmhdiGGI03uoNoh9Lds9BZcdsTZeB7JQ_jm95L1MUDgFLQPVVAqy76ozF9KEqCrrSoOk7j1gMM4dkqnG2wEgQ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /login em Mon Mar 25 2024 09:36:37 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 00000000001","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de atualização gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de acesso gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token refresh armazenado com sucesso. ID: ddba562e-a3bb-429c-87ba-3448fbe10b64","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /home em Mon Mar 25 2024 09:37:47 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /user/5e1213f0-938e-4147-b9c1-ba9a3381a35 em Mon Mar 25 2024 09:38:04 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 5e1213f0-938e-4147-b9c1-ba9a3381a35","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /createUser em Mon Mar 25 2024 09:38:09 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao adicionar usuário. CPF: 00000000000.  Erro de sintaxe","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro interno do servidor. Error:  Erro ao adicionar usuário. Error: Erro de sintaxe","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /login em Mon Mar 25 2024 09:52:35 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 00000000001","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de atualização gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de acesso gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao armazenar token refresh. ID: ddba562e-a3bb-429c-87ba-3448fbe10b64.  Chave duplicada","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Usuário já está logado Erro ao armazenar token. Error: Chave duplicada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /login em Mon Mar 25 2024 09:54:25 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 00000000001","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de atualização gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de acesso gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao armazenar token refresh. ID: ddba562e-a3bb-429c-87ba-3448fbe10b64.  Chave duplicada","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Usuário já está logado Erro ao armazenar token. Error: Chave duplicada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /login em Mon Mar 25 2024 09:55:41 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 00000000001","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de atualização gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de acesso gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao armazenar token refresh. ID: ddba562e-a3bb-429c-87ba-3448fbe10b64.  Chave duplicada","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Usuário já está logado Erro ao armazenar token. Error: Chave duplicada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação POST para /createUser em Mon Mar 25 2024 09:55:46 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao adicionar usuário. CPF: 00000000000.  Chave duplicada","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Usuário já cadastrado. Error:  Erro ao adicionar usuário. Error: Chave duplicada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /home em Mon Mar 25 2024 09:57:47 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"error","message":"Erro ao verificar token. Erro: TokenExpiredError: jwt expired","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token de acesso gerado com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /user/5e1213f0-938e-4147-b9c1-ba9a3381a35 em Mon Mar 25 2024 09:58:00 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 5e1213f0-938e-4147-b9c1-ba9a3381a35","timestamp":"Invalid DateTime"}

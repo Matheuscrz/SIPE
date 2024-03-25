@@ -2,6 +2,7 @@ import { UserModel } from "../models/UserModel";
 import { TokenModel } from "../models/TokenModel";
 import bcrypt from "bcrypt";
 import { JwtService } from "./JwtService";
+import { ErrorHandler } from "../config/ErrorHandler";
 
 /**
  * @class AuthService
@@ -42,9 +43,9 @@ export class AuthService {
       }
 
       return null;
-    } catch (error) {
+    } catch (error: any) {
       console.error("Erro durante o processo de login:", error);
-      throw error;
+      throw new ErrorHandler(error.code, error.message, error);
     }
   }
 
@@ -55,9 +56,9 @@ export class AuthService {
   public static async logout(token: string): Promise<void> {
     try {
       await TokenModel.removeToken(token);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Erro durante o processo de logout:", error);
-      throw error;
+      throw new ErrorHandler(error.code, error.message, error);
     }
   }
 }

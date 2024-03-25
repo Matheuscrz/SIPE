@@ -1,12 +1,13 @@
 import { Pool, PoolClient, QueryResult } from "pg";
 import dotenv from "dotenv";
 import { AppLogger } from "./AppLogger";
+import { ErrorHandler } from "./ErrorHandler";
 
 dotenv.config();
 
 /**
+ * Classe responsável por gerenciar a conexão com o banco de dados e executar queries.
  * @class Database
- * @description Classe de configuração do banco de dados
  */
 export class Database {
   private static pool: Pool;
@@ -17,9 +18,8 @@ export class Database {
   private static readonly port = process.env.DB_PORT || "5432";
 
   /**
-   * Inicializa a conexão com o banco de dados
+   * Inicializa a conexão com o banco de dados.
    * @static
-   * @memberof Database
    */
   static initialize() {
     try {
@@ -39,10 +39,8 @@ export class Database {
   }
 
   /**
-   * Testa a conexão com o banco de dados
-   * @private
+   * Testa a conexão com o banco de dados.
    * @static
-   * @memberof Database
    */
   private static async testConnection() {
     let client: PoolClient | null = null;
@@ -51,28 +49,29 @@ export class Database {
       AppLogger.getInstance().info(
         "Conexão com o banco de dados realizada com sucesso"
       );
-    } catch (error) {
-      let erroMessage = "Erro ao testar a conexão com o banco de dados";
-      AppLogger.getInstance().error(
-        "Erro ao testar a conexão com o banco de dados. Erro: ",
-        error
-      );
-      throw erroMessage;
+    } catch (error: any) {
+      const errorMessage = "Erro ao testar a conexão com o banco de dados";
+      AppLogger.getInstance().error(errorMessage, error);
+      throw new ErrorHandler(error.code, errorMessage);
     } finally {
       try {
         if (client) {
           await client.release();
           AppLogger.getInstance().info("Conexão liberada com sucesso.");
         }
-      } catch (releaseError) {
+      } catch (releaseError: any) {
         AppLogger.getInstance().error("Erro: ", releaseError);
-        throw releaseError;
+        throw new ErrorHandler(
+          releaseError.code,
+          "Erro ao liberar conexão com o banco de dados",
+          releaseError
+        );
       }
     }
   }
 
   /**
-   * Método para executar uma query no banco de dados
+   * Executa uma query no banco de dados.
    * @param query - Query a ser executada
    * @param params - Parâmetros da query
    * @returns - Resultado da query
@@ -87,37 +86,49 @@ export class Database {
       );
       return await client.query(query, params);
     } catch (error: any) {
+      let errorMessage = "Erro ao executar a query";
       switch (error.code) {
         case "23505":
-          throw new Error("Chave duplicada");
+          errorMessage = "Chave duplicada";
+          break;
         case "23503":
-          throw new Error("Chave estrangeira não encontrada");
+          errorMessage = "Chave estrangeira não encontrada";
+          break;
         case "22P02":
-          throw new Error("Erro de sintaxe");
+          errorMessage = "Erro de sintaxe";
+          break;
         case "42P01":
-          throw new Error("Tabela não encontrada");
+          errorMessage = "Tabela não encontrada";
+          break;
         case "42703":
-          throw new Error("Coluna não encontrada");
+          errorMessage = "Coluna não encontrada";
+          break;
         case "23502":
-          throw new Error("Restrição de dado não nulo violada");
+          errorMessage = "Restrição de dado não nulo violada";
+          break;
         case "23514":
-          throw new Error("Restrição de verificação violada");
+          errorMessage = "Restrição de verificação violada";
+          break;
         case "22003":
-          throw new Error("Erro de valor de dado");
-        case "22001":
-          throw new Error("Restrição de comprimento de dado violada");
+          errorMessage = "Erro de valor de dado";
+          break;
         default:
-          throw new Error("Erro ao executar a query");
+          break;
       }
+      throw new ErrorHandler(error.code, errorMessage);
     } finally {
       try {
         if (client) {
           await client.release();
           AppLogger.getInstance().info("Conexão liberada com sucesso.");
         }
-      } catch (releaseError) {
+      } catch (releaseError: any) {
         AppLogger.getInstance().error("Erro: ", releaseError);
-        throw releaseError;
+        throw new ErrorHandler(
+          releaseError.code,
+          "Erro ao liberar conexão com o banco de dados",
+          releaseError
+        );
       }
     }
   }

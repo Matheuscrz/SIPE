@@ -4,6 +4,7 @@ import { PasswordUtils } from "../utils/PasswordUtils";
 import { User as UserEntity } from "../interfaces/User";
 import { AppLogger } from "../config/AppLogger";
 import { AuthService } from "../services/AuthService";
+import { ErrorHandler } from "../config/ErrorHandler";
 /**
  * @class PostRoutes
  * @extends {Router}
@@ -54,10 +55,28 @@ export class PostRoutes {
           res.status(401).send("Usuário ou senha inválidos");
         }
       }
-    } catch (error) {
-      let errorMessage = `Erro interno do servidor. Error: `;
-      AppLogger.getInstance().error(errorMessage, error);
-      res.status(500).send(error);
+    } catch (error: any) {
+      let errorMessage;
+      if (error instanceof ErrorHandler) {
+        switch (error.code) {
+          case "23505":
+            errorMessage = "Usuário já está logado";
+            AppLogger.getInstance().error(errorMessage, error);
+            res.status(401).send(errorMessage);
+            break;
+          default:
+            errorMessage = `Erro interno do servidor. Error: `;
+            AppLogger.getInstance().error(errorMessage, error);
+            res.status(500).send(errorMessage);
+            break;
+        }
+      } else {
+        AppLogger.getInstance().error(
+          `Erro interno do servidor. Error: `,
+          error
+        );
+        res.status(500).send("Erro interno do servidor");
+      }
     }
   }
 
@@ -98,9 +117,34 @@ export class PostRoutes {
         res.status(201).send(createUser);
       }
     } catch (error: any) {
-      let errorMessage = `Erro interno do servidor. Error: `;
-      AppLogger.getInstance().error(errorMessage, error);
-      res.status(500).send(error);
+      if (error instanceof ErrorHandler) {
+        switch (error.code) {
+          case "23505":
+            AppLogger.getInstance().error(
+              "Usuário já cadastrado. Error: ",
+              error
+            );
+            res.status(400).send("Usuário já cadastrado");
+            break;
+          case "22P02":
+            AppLogger.getInstance().error("Dado inválido. Error: ", error);
+            res.status(400).send("Dado inválido");
+            break;
+          default:
+            AppLogger.getInstance().error(
+              "Erro interno do servidor. Error: ",
+              error
+            );
+            res.status(500).send("Erro interno do servidor");
+            break;
+        }
+      } else {
+        AppLogger.getInstance().error(
+          "Erro interno do servidor. Error: ",
+          error
+        );
+        res.status(500).send("Erro interno do servidor");
+      }
     }
   }
 

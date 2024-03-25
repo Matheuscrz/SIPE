@@ -2,6 +2,7 @@ import { Department } from "../interfaces/Department";
 import { Database } from "../config/Database";
 import { QueryResult } from "pg";
 import { AppLogger } from "../config/AppLogger";
+import { ErrorHandler } from "../config/ErrorHandler";
 
 /**
  * @class DepartmentModel
@@ -30,13 +31,13 @@ export class DepartmentModel {
         `Consulta getByName executada com sucesso. Nome: ${name}`
       );
       return department;
-    } catch (error) {
+    } catch (error: any) {
       let errorMessage = `Erro ao buscar departamento. ${error}`;
       AppLogger.getInstance().error(
         `Erro ao buscar departamento por nome. Nome: ${name}. `,
         error
       );
-      throw errorMessage;
+      throw new ErrorHandler(error.code, errorMessage);
     }
   }
 
@@ -58,10 +59,10 @@ export class DepartmentModel {
       });
       AppLogger.getInstance().info(`Consulta getAll executada com sucesso.`);
       return departments;
-    } catch (error) {
+    } catch (error: any) {
       let errorMessage = `Erro ao buscar departamentos. ${error}`;
       AppLogger.getInstance().error(`Erro ao buscar departamentos. `, error);
-      throw errorMessage;
+      throw new ErrorHandler(error.code, errorMessage);
     }
   }
 
@@ -79,10 +80,10 @@ export class DepartmentModel {
         `Departamento criado com sucesso. Nome: ${name}`
       );
       return result.rows[0].name;
-    } catch (error) {
+    } catch (error: any) {
       let errorMessage = `Erro ao criar departamento. ${error}`;
       AppLogger.getInstance().error(`Erro ao criar departamento. `, error);
-      throw errorMessage;
+      throw new ErrorHandler(error.code, errorMessage);
     }
   }
   /**
@@ -97,10 +98,10 @@ export class DepartmentModel {
       AppLogger.getInstance().info(
         `Departamento removido com sucesso. Nome: ${name}`
       );
-    } catch (error) {
+    } catch (error: any) {
       let errorMessage = `Erro ao remover departamento. ${error}`;
       AppLogger.getInstance().error(`Erro ao remover departamento. `, error);
-      throw errorMessage;
+      throw new ErrorHandler(error.code, errorMessage);
     }
   }
 }
