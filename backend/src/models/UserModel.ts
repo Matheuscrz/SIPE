@@ -2,6 +2,7 @@ import { AppLogger } from "../config/AppLogger";
 import { Database } from "../config/Database";
 import { User as UserType } from "../interfaces/User";
 import { QueryResult } from "pg";
+import { ErrorHandler } from "../config/ErrorHandler";
 
 /**
  * @class UserModel
@@ -25,13 +26,13 @@ export class UserModel {
         `Consulta getByCpf executada com sucesso. CPF: ${cpf}`
       );
       return user;
-    } catch (error) {
+    } catch (error: any) {
       let errorMessage = `Erro ao buscar usuário. ${error}`;
       AppLogger.getInstance().error(
         `Erro ao buscar usuário por CPF. CPF: ${cpf}. `,
         error
       );
-      throw errorMessage;
+      throw new ErrorHandler(error.code, errorMessage);
     }
   }
 
@@ -66,13 +67,13 @@ export class UserModel {
         `Consulta getById executada com sucesso. ID: ${id}`
       );
       return user;
-    } catch (error) {
+    } catch (error: any) {
       let errorMessage = `Erro ao buscar usuário. ${error}`;
       AppLogger.getInstance().error(
         `Erro ao buscar usuário por ID. ID: ${id}. `,
         error
       );
-      throw errorMessage;
+      throw new ErrorHandler(error.code, errorMessage);
     }
   }
 
@@ -130,13 +131,13 @@ export class UserModel {
         `Usuário adicionado com sucesso. ID: ${result.rows[0].id}`
       );
       return user;
-    } catch (error) {
+    } catch (error: any) {
       let errorMessage = `Erro ao adicionar usuário. ${error}`;
       AppLogger.getInstance().error(
         `Erro ao adicionar usuário. CPF: ${user.cpf}. `,
         error
       );
-      throw errorMessage;
+      throw new ErrorHandler(error.code, errorMessage);
     }
   }
 
@@ -162,13 +163,13 @@ export class UserModel {
         `Usuário atualizado com sucesso. ID: ${result.rows[0].id}`
       );
       return result.rows[0];
-    } catch (error) {
+    } catch (error: any) {
       let errorMessage = `Erro ao atualizar usuário. ${error}`;
       AppLogger.getInstance().error(
         `Erro ao atualizar usuário. ID: ${user.id}. `,
         error
       );
-      throw errorMessage;
+      throw new ErrorHandler(error.code, errorMessage);
     }
   }
 
@@ -189,7 +190,7 @@ export class UserModel {
         `Erro ao remover usuário. ID: ${id}. `,
         error
       );
-      throw errorMessage;
+      throw new ErrorHandler(error.code, errorMessage);
     }
   }
 }

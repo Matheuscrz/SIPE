@@ -3,6 +3,7 @@ import { UserModel } from "../models/UserModel";
 import { AppLogger } from "../config/AppLogger";
 import { verifyAndRefreshAccessToken } from "../middlewares/tokenMiddleware";
 import { AuthService } from "../services/AuthService";
+import { ErrorHandler } from "../config/ErrorHandler";
 /**
  * @class GetRoutes
  * @extends {Router}
@@ -49,7 +50,7 @@ export class GetRoutes {
         await AuthService.logout(token.toString());
         res.status(200).send("Usuário deslogado com sucesso");
       }
-    } catch (error) {
+    } catch (error: any) {
       AppLogger.getInstance().error(`Erro interno do servidor. Error: `, error);
       res.status(500).send(error);
     }
@@ -69,28 +70,34 @@ export class GetRoutes {
       }
       res.status(200).json(user);
     } catch (error) {
-      AppLogger.getInstance().error(`Erro interno do servidor. Error: `, error);
-      res.status(500).send(error);
-    }
-  }
-
-  /**
-   * @param req - Requisição
-   * @param res - Resposta
-   * @returns - Retorna um usuário pelo ID
-   */
-  private async getUserById(req: Request, res: Response): Promise<void> {
-    try {
-      const id = req.params.id;
-      const user = await UserModel.getById(id);
-      if (!user) {
-        res.status(404).send(`Usuário não encontrado`);
-        return;
+      if (error instanceof ErrorHandler) {
+        switch (error.code) {
+          case "23503":
+            AppLogger.getInstance().error(
+              "Chave estrangeira não encontrada. Error: ",
+              error
+            );
+            res.status(404).send("Usuário não encontrado");
+            break;
+          case "22P02":
+            AppLogger.getInstance().error("CPF inválido. Error: ", error);
+            res.status(400).send("CPF inválido");
+            break;
+          default:
+            AppLogger.getInstance().error(
+              "Erro interno do servidor. Error: ",
+              error
+            );
+            res.status(500).send("Erro interno do servidor");
+            break;
+        }
+      } else {
+        AppLogger.getInstance().error(
+          "Erro interno do servidor. Error: ",
+          error
+        );
+        res.status(500).send("Erro interno do servidor");
       }
-      res.status(200).json(user);
-    } catch (error) {
-      AppLogger.getInstance().error(`Erro interno do servidor. Error: `, error);
-      res.status(500).send(error);
     }
   }
 

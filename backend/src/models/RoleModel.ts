@@ -2,6 +2,7 @@ import { Database } from "../config/Database";
 import { AppLogger } from "../config/AppLogger";
 import { QueryResult } from "pg";
 import { Role as RoleType } from "../interfaces/Role";
+import { ErrorHandler } from "../config/ErrorHandler";
 
 /**
  * @class RoleModel
@@ -31,13 +32,13 @@ export class RoleModel {
         `Consulta getById executada com sucesso. ID: ${id}`
       );
       return role;
-    } catch (error) {
+    } catch (error: any) {
       let errorMessage = `Erro ao buscar role. ${error}`;
       AppLogger.getInstance().error(
         `Erro ao buscar role por ID. ID: ${id}. `,
         error
       );
-      throw errorMessage;
+      throw new ErrorHandler(error.code, errorMessage);
     }
   }
 
@@ -62,13 +63,13 @@ export class RoleModel {
         `Consulta getByName executada com sucesso. Nome: ${name}`
       );
       return role;
-    } catch (error) {
+    } catch (error: any) {
       let errorMessage = `Erro ao buscar role. ${error}`;
       AppLogger.getInstance().error(
         `Erro ao buscar role por nome. Nome: ${name}. `,
         error
       );
-      throw errorMessage;
+      throw new ErrorHandler(error.code, errorMessage);
     }
   }
 
@@ -90,10 +91,10 @@ export class RoleModel {
       });
       AppLogger.getInstance().info(`Consulta getAll executada com sucesso.`);
       return roles;
-    } catch (error) {
+    } catch (error: any) {
       let errorMessage = `Erro ao buscar roles. ${error}`;
       AppLogger.getInstance().error(`Erro ao buscar roles. `, error);
-      throw errorMessage;
+      throw new ErrorHandler(error.code, errorMessage);
     }
   }
 
@@ -111,10 +112,10 @@ export class RoleModel {
       const id = result.rows[0].id;
       AppLogger.getInstance().info(`Cargo criado com sucesso. ID: ${id}`);
       return id;
-    } catch (error) {
+    } catch (error: any) {
       let errorMessage = `Erro ao criar cargo. ${error}`;
       AppLogger.getInstance().error(`Erro ao criar cargo. `, error);
-      throw errorMessage;
+      throw new ErrorHandler(error.code, errorMessage);
     }
   }
 
@@ -130,10 +131,10 @@ export class RoleModel {
       const result: QueryResult<any> = await Database.query(query, values);
       AppLogger.getInstance().info(`Cargo removido com sucesso. ID: ${id}`);
       return true;
-    } catch (error) {
+    } catch (error: any) {
       let errorMessage = `Erro ao remover cargo. ${error}`;
       AppLogger.getInstance().error(`Erro ao remover cargo. `, error);
-      throw errorMessage;
+      throw new ErrorHandler(error.code, errorMessage);
     }
   }
 }

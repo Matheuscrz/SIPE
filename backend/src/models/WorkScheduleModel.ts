@@ -2,6 +2,7 @@ import { AppLogger } from "../config/AppLogger";
 import { Database } from "../config/Database";
 import { WorkSchedule as WorkScheduleType } from "../interfaces/WorkSchedule";
 import { QueryResult } from "pg";
+import { ErrorHandler } from "../config/ErrorHandler";
 
 /**
  * @class WorkScheduleModel
@@ -24,13 +25,13 @@ export class WorkScheduleModel {
         `Consulta getByName executada com sucesso. Nome: ${name}`
       );
       return workSchedule;
-    } catch (error) {
+    } catch (error: any) {
       let errorMessage = `Erro ao buscar horário de trabalho. ${error}`;
       AppLogger.getInstance().error(
         `Erro ao buscar horário de trabalho por nome. Nome: ${name}. `,
         error
       );
-      throw errorMessage;
+      throw new ErrorHandler(error.code, errorMessage);
     }
   }
 
@@ -62,13 +63,13 @@ export class WorkScheduleModel {
         `Inserção de horário de trabalho executada com sucesso. Nome: ${workSchedule.name}`
       );
       return workSchedule;
-    } catch (error) {
+    } catch (error: any) {
       let errorMessage = `Erro ao inserir horário de trabalho. ${error}`;
       AppLogger.getInstance().error(
         `Erro ao inserir horário de trabalho. Nome: ${workSchedule.name}. `,
         error
       );
-      throw errorMessage;
+      throw new ErrorHandler(error.code, errorMessage);
     }
   }
 
@@ -85,13 +86,13 @@ export class WorkScheduleModel {
       AppLogger.getInstance().info(
         `Remoção de horário de trabalho executada com sucesso. Nome: ${name}`
       );
-    } catch (error) {
+    } catch (error: any) {
       let errorMessage = `Erro ao remover horário de trabalho. ${error}`;
       AppLogger.getInstance().error(
         `Erro ao remover horário de trabalho por nome. Nome: ${name}. `,
         error
       );
-      throw errorMessage;
+      throw new ErrorHandler(error.code, errorMessage);
     }
   }
 }
