@@ -12,9 +12,10 @@ export class RoleModel {
   private static readonly TABLE_ROLE = "point.roles";
 
   /**
-   * Método para buscar um cargo por ID
-   * @param id - ID da cargo
-   * @returns - Objeto Cargo ou null se não encontrar
+   * @param id ID da cargo
+   * @returns Objeto Cargo ou null se não encontrar
+   * @throws {ErrorHandler} Erro ao buscar cargo
+   * @description Método para buscar um cargo por ID
    */
   static async getById(id: string): Promise<RoleType | null> {
     const query = `SELECT * FROM ${this.TABLE_ROLE} WHERE id = $1`;
@@ -43,9 +44,10 @@ export class RoleModel {
   }
 
   /**
-   * Método para buscar um cargo por nome
-   * @param name - Nome da cargo
-   * @returns - Objeto Cargo ou null se não encontrar
+   * @param name Nome da cargo
+   * @returns Objeto Cargo ou null se não encontrar
+   * @throws {ErrorHandler} Erro ao buscar cargo
+   * @description Método para buscar um cargo por nome
    */
   static async getByName(name: string): Promise<RoleType | null> {
     const query = `SELECT * FROM ${this.TABLE_ROLE} WHERE name = $1`;
@@ -74,8 +76,9 @@ export class RoleModel {
   }
 
   /**
-   * Método para buscar todos os cargos
-   * @returns - Array de objetos Cargo
+   * @returns Array de objetos Cargo
+   * @throws {ErrorHandler} Erro ao buscar cargos
+   * @description Método para buscar todos os cargos
    */
   static async getAll(): Promise<RoleType[]> {
     const query = `SELECT * FROM ${this.TABLE_ROLE}`;
@@ -99,10 +102,11 @@ export class RoleModel {
   }
 
   /**
-   * Método para criar um cargo
-   * @param name - Nome do cargo
-   * @param description - Descrição do cargo
-   * @returns - ID do cargo criado
+   * @param name Nome do cargo
+   * @param description Descrição do cargo
+   * @returns ID do cargo criado
+   * @throws {ErrorHandler} Erro ao criar cargo
+   * @description Método para criar um cargo
    */
   static async create(name: string, description: string): Promise<string> {
     const query = `INSERT INTO ${this.TABLE_ROLE} (name, description) VALUES ($1, $2) RETURNING id`;
@@ -120,9 +124,10 @@ export class RoleModel {
   }
 
   /**
-   * Método para remover um cargo
-   * @param id - ID do cargo
-   * @returns - ID do cargo removido
+   * @param id ID do cargo
+   * @returns ID do cargo removido
+   * @throws {ErrorHandler} Erro ao remover cargo
+   * @description Método para remover um cargo
    */
   static async remove(id: string): Promise<boolean> {
     const query = `DELETE FROM ${this.TABLE_ROLE} WHERE id = $1`;

@@ -8,10 +8,11 @@ export class PasswordUtils {
   private static readonly saltRounds: number = 10;
 
   /**
-   * Criptografa uma senha com bcrypt.
-   * @param password - A senha a ser criptografada.
-   * @param saltRounds - O número de salt rounds a serem utilizados na criptografia.
+   * @param password Senha
+   * @param saltRounds Número de rounds de salt (padrão: 10)
    * @returns Uma promise que resolve para a senha criptografada.
+   * @throws {Error} Erro ao criptografar a senha.
+   * @description Método para criptografar uma senha com bcrypt.
    */
   static async hashPassword(
     password: string,
@@ -21,10 +22,11 @@ export class PasswordUtils {
   }
 
   /**
-   * Compara uma senha em texto plano com uma senha criptografada.
-   * @param password - A senha em texto plano a ser comparada.
-   * @param hashedPassword - A senha criptografada a ser comparada.
-   * @returns Uma promise que resolve para um boolean indicando se as senhas são iguais.
+   * @param password Senha
+   * @param hashedPassword Senha criptografada
+   * @returns Uma promise que resolve para true se as senhas coincidirem, caso contrário, false.
+   * @throws {Error} Erro ao comparar as senhas.
+   * @description Método para comparar uma senha em texto plano com uma senha criptografada.
    */
   static async comparePasswords(
     password: string,

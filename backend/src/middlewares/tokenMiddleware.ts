@@ -3,10 +3,11 @@ import { AppLogger } from "../config/AppLogger";
 import { JwtService } from "../services/JwtService";
 
 /**
- * Middleware para verificar e renovar o token de acesso
  * @param req - Requisição
  * @param res - Resposta
  * @param next - Próximo middleware
+ * @returns
+ * @description Verifica e renova o token de acesso
  */
 export const verifyAndRefreshAccessToken = async (
   req: Request,

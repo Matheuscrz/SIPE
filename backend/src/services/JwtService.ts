@@ -12,9 +12,10 @@ export class JwtService {
   private static readonly algorithm: string = "HS512";
 
   /**
-   * Gera um token de acesso
-   * @param refreshToken - token de atualização
-   * @returns token de acesso
+   * @param refreshToken Token de atualização
+   * @returns Token de acesso
+   * @throws {ErrorHandler} Erro ao gerar token de acesso
+   * @description Método para gerar um token de acesso
    */
   public static async generateAccessToken(
     refreshToken: string
@@ -30,9 +31,10 @@ export class JwtService {
   }
 
   /**
-   * Gera um token de atualização
-   * @param user - usuário a quem o token pertence
-   * @returns token de atualização
+   * @param user Usuário
+   * @returns Token de atualização
+   * @throws {ErrorHandler} Erro ao gerar token de atualização
+   * @description Método para gerar um token de atualização
    */
   public static async generateRefreshToken(user: UserType): Promise<string> {
     const payload = {
@@ -50,19 +52,20 @@ export class JwtService {
   }
 
   /**
-   * Decodifica um token
-   * @param token - token a ser decodificado
-   * @returns - retorna o payload do token
+   * @param token Token
+   * @returns Objeto decodificado
+   * @description Método para decodificar um token
    */
   private static decodeToken<T>(token: string): T {
     return jwt.decode(token) as T;
   }
 
   /**
-   * Verifica se um token é válido
-   * @param token - token a ser verificado
-   * @param secretOrPublicKey - chave secreta ou pública
-   * @returns - true se o token for válido, false caso contrário
+   * @param token Token
+   * @param secretOrPublicKey Chave secreta ou pública
+   * @returns true se o token for válido, false caso contrário
+   * @description Método para verificar se um token é válido
+   * @throws {ErrorHandler} Erro ao verificar token
    */
   private static async verifyToken(
     token: string,
@@ -84,19 +87,20 @@ export class JwtService {
     }
   }
   /**
-   * Verifica se um token é válido
-   * @param token - token a ser verificado
+   * @param token Token
    * @returns true se o token for válido, false caso contrário
+   * @description Método para verificar se um token de acesso é válido
+   * @throws {ErrorHandler} Erro ao verificar token
    */
   public static async verifyRefreshToken(token: string): Promise<boolean> {
     return this.verifyToken(token, this.secretKey);
   }
 
   /**
-   * Verifica se um token é válido
-   * @param token - token a ser verificado
-   * @param refreshToken - token de atualização
-   * @returns - true se o token for válido, false caso contrário
+   * @param token
+   * @param refreshToken
+   * @returns true se o token for válido, false caso contrário
+   * @description Método para verificar se um token de acesso é válido
    */
   public static async verifyAccessToken(
     token: string,
@@ -106,9 +110,9 @@ export class JwtService {
   }
 
   /**
-   * Gera um token de acesso e um token de atualização
-   * @param user - usuário a quem os tokens pertencem
-   * @returns - um objeto contendo o token de acesso e o token de atualização
+   * @param user Usuário
+   * @returns Objeto com accessToken e refreshToken
+   * @description Método para gerar tokens de acesso e atualização
    */
   public static async generateTokens(
     user: UserType

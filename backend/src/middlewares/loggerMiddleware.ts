@@ -2,10 +2,11 @@ import { Request, Response, NextFunction } from "express";
 import { AppLogger } from "../config/AppLogger";
 
 /**
- * Middleware para log de requisições
  * @param req - requisição
  * @param res - resposta
  * @param next - próximo middleware
+ * @returns void
+ * @description Middleware para log de requisições
  */
 const loggerMiddleware = (req: Request, res: Response, next: NextFunction) => {
   try {

@@ -14,9 +14,9 @@ export class PostRoutes {
   private readonly router: Router;
 
   /**
-   * Cria uma instância de PostRoutes.
    * @memberof PostRoutes
    * @constructor
+   * @description Construtor da classe
    */
   constructor() {
     this.router = express.Router();
@@ -24,11 +24,9 @@ export class PostRoutes {
   }
 
   /**
-   * Configura as rotas para o tipo Post
    * @private
    * @memberof PostRoutes
-   * @method configureRoutes
-   * @returns {void}
+   * @description Configura as rotas para o tipo Post
    */
   private configureRoutes() {
     this.router.post("/createuser", this.createUser.bind(this));
@@ -36,10 +34,10 @@ export class PostRoutes {
   }
 
   /**
-   * Método para realizar login
-   * @param req - Request
-   * @param res - Response
+   * @param req Request
+   * @param res Response
    * @returns
+   * @description Método para realizar login
    */
   private async login(req: Request, res: Response): Promise<void> {
     try {
@@ -81,10 +79,10 @@ export class PostRoutes {
   }
 
   /**
-   * Método para criar um usuário
-   * @param req - Request
-   * @param res - Response
+   * @param req Request
+   * @param res Response
    * @returns
+   * @description Método para criar um usuário
    */
   private async createUser(req: Request, res: Response): Promise<void> {
     try {
@@ -149,10 +147,10 @@ export class PostRoutes {
   }
 
   /**
-   * Retorna um objeto Router
    * @returns {Router}
    * @memberof PostRoutes
    * @method getRouter
+   * @description Retorna um objeto Router
    */
   public getRouter(): Router {
     return this.router;

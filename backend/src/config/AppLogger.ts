@@ -2,7 +2,10 @@ import * as winston from "winston";
 import { DateTime } from "luxon";
 
 /**
- * Formatação do log
+ * @constant logFormat Formato do log
+ * @type {winston.Logform.Format}
+ * @default
+ * @description Formato do log
  */
 const logFormat = winston.format.printf(
   ({ level, message, timestamp, ...meta }) => {
@@ -23,10 +26,16 @@ const logFormat = winston.format.printf(
 );
 
 /**
- * Esta classe é responsável por criar um singleton do winston para logar as requisições e respostas da aplicação.
  * @class AppLogger
+ * @description Singleton do winston para logar as requisições e respostas da aplicação
  */
 export class AppLogger {
+  /**
+   * @private
+   * @static
+   * @type {winston.Logger}
+   * @description Instância do winston
+   */
   private static instance: winston.Logger = winston.createLogger({
     level: "info",
     format: winston.format.combine(winston.format.timestamp(), logFormat),
@@ -42,7 +51,7 @@ export class AppLogger {
   private constructor() {}
 
   /**
-   * Loga uma requisição
+   * @static
    * @returns {winston.Logger} Retorna a instância do winston
    */
   public static getInstance(): winston.Logger {
@@ -50,11 +59,11 @@ export class AppLogger {
   }
 
   /**
-   * Registra um log de requisição
-   * @param level - Nível do log
-   * @param message - Mensagem do log
-   * @param meta - Metadados do log
-   * @param req - Requisição
+   * @param level Nível do log
+   * @param message Mensagem do log
+   * @param meta Metadados do log
+   * @param req Requisição
+   * @description Registra um log de requisição
    */
   private log(level: string, message: string, meta: any = {}, req?: any): void {
     const logInfo: any = {

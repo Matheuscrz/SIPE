@@ -13,6 +13,12 @@ export class JustificationModel {
   private static readonly TABLE_JUSTIFICATION_RECORD =
     "point.justification_time_records";
 
+  /**
+   * @param justification Justificativa
+   * @returns Objeto Justification
+   * @throws {ErrorHandler} Erro ao criar justificativa
+   * @description Método para criar uma justificativa
+   */
   static async create(justification: Justification): Promise<Justification> {
     const query = `INSERT INTO ${this.TABLE_JUSTIFICATION} (user_id, justification, justification_date) VALUES ($1, $2, $3) RETURNING *`;
     const values = [
