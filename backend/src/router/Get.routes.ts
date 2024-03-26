@@ -13,9 +13,9 @@ export class GetRoutes {
   private readonly router: Router;
 
   /**
-   * Cria uma instância de GetRoutes.
    * @memberof GetRoutes
    * @constructor
+   * @description Construtor da classe
    */
   constructor() {
     this.router = express.Router();
@@ -23,10 +23,11 @@ export class GetRoutes {
   }
 
   /**
-   * Configura as rotas GET
+   * @private
+   * @memberof GetRoutes
+   * @description Configura as rotas para o tipo GET
    */
   private configureRoutes() {
-    // this.router.get("/user/:id", this.getUserById.bind(this));
     this.router.get("/user/:cpf", this.getUserByCpf.bind(this));
     this.router.get(
       "/home",
@@ -38,6 +39,12 @@ export class GetRoutes {
     this.router.get("/logout", this.logout.bind(this));
   }
 
+  /**
+   * @param req Requisição
+   * @param res Resposta
+   * @returns Realiza o logout do usuário
+   * @description Método para realizar logout
+   */
   private async logout(req: Request, res: Response): Promise<void> {
     try {
       const token = req.headers["x-refresh-token"];
@@ -56,9 +63,10 @@ export class GetRoutes {
     }
   }
   /**
-   * @param req - Requisição
-   * @param res - Resposta
-   * @returns - Retorna um usuário pelo CPF
+   * @param req Requisição
+   * @param res Resposta
+   * @returns Retorna um usuário pelo CPF
+   * @description Método para retornar um usuário pelo CPF
    */
   private async getUserByCpf(req: Request, res: Response): Promise<void> {
     try {
@@ -102,10 +110,10 @@ export class GetRoutes {
   }
 
   /**
-   * Retorna um objeto Router
    * @returns {Router}
    * @memberof GetRoutes
    * @method getRouter
+   * @description Retorna um objeto Router
    */
   public getRouter(): Router {
     return this.router;

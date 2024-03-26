@@ -11,9 +11,10 @@ import { ErrorHandler } from "../config/ErrorHandler";
 export class UserModel {
   private static readonly TABLE_USER = "point.employees";
   /**
-   * Obtém um usuário por meio do CPF
-   * @param cpf - CPF do usuário
+   * @param cpf CPF do usuário
    * @returns Objeto User ou null se não encontrar
+   * @throws {ErrorHandler} Erro ao buscar usuário
+   * @description Método para buscar um usuário por CPF
    */
 
   static async getByCpf(cpf: string): Promise<UserType | null> {
@@ -37,9 +38,10 @@ export class UserModel {
   }
 
   /**
-   * Obtém um usuário por meio do ID
-   * @param id - ID do usuário
-   * @returns - Objeto User ou null se não encontrar
+   * @param id ID do usuário
+   * @returns Objeto User ou null se não encontrar
+   * @throws {ErrorHandler} Erro ao buscar usuário
+   * @description Método para buscar um usuário por ID
    */
   static async getById(id: string): Promise<UserType | null> {
     const query = `SELECT * FROM ${this.TABLE_USER} WHERE id = $1`;
@@ -78,9 +80,10 @@ export class UserModel {
   }
 
   /**
-   * Adiciona um usuário no banco de dados.
-   * @param user - Objeto User
-   * @returns - Objeto User inserido no banco de dados
+   * @param user Objeto User
+   * @returns Objeto User inserido no banco de dados
+   * @throws {ErrorHandler} Erro ao adicionar usuário
+   * @description Método para adicionar um usuário
    */
   static async addUser(user: UserType): Promise<UserType | undefined> {
     let query = `INSERT INTO ${this.TABLE_USER} (name, password, cpf, pis, pin, gender, birth_date, role_id, work_schedule, hiring_date`;
@@ -142,9 +145,10 @@ export class UserModel {
   }
 
   /**
-   * Atualiza um usuário no banco de dados.
-   * @param user - Objeto User
-   * @returns - Objeto User atualizado no banco de dados
+   * @param user Objeto User
+   * @returns Objeto User atualizado no banco de dados
+   * @throws {ErrorHandler} Erro ao atualizar usuário
+   * @description Método para atualizar um usuário
    */
   static async updateUser(user: UserType): Promise<UserType | null> {
     const query = `UPDATE ${this.TABLE_USER} SET password = COALESCE($1, password), pin = COALESCE($2, pin), role_id = COALESCE($4, roles), work_schedule = COALESCE($5, work_schedule), hiring_date = COALESCE($6, hiring_date) WHERE id = $7 RETURNING *`;
@@ -174,9 +178,10 @@ export class UserModel {
   }
 
   /**
-   * Remove um usuário do banco de dados.
-   * @param id - ID do usuário
-   * @returns - Objeto User removido do banco de dados
+   * @param id ID do usuário
+   * @returns Objeto User removido do banco de dados
+   * @throws {ErrorHandler} Erro ao remover usuário
+   * @description Método para remover um usuário
    */
   static async removeUser(id: string): Promise<void> {
     const query = `DELETE FROM ${this.TABLE_USER} WHERE id = $1`;

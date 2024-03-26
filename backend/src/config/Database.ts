@@ -6,8 +6,8 @@ import { ErrorHandler } from "./ErrorHandler";
 dotenv.config();
 
 /**
- * Classe responsável por gerenciar a conexão com o banco de dados e executar queries.
  * @class Database
+ * @description Singleton para conexão com o banco de dados
  */
 export class Database {
   private static pool: Pool;
@@ -18,8 +18,10 @@ export class Database {
   private static readonly port = process.env.DB_PORT || "5432";
 
   /**
-   * Inicializa a conexão com o banco de dados.
    * @static
+   * @throws {Error} Erro ao inicializar a conexão com o banco de dados
+   * @memberof Database
+   * @description Inicializa a conexão com o banco de dados
    */
   static initialize() {
     try {
@@ -39,8 +41,10 @@ export class Database {
   }
 
   /**
-   * Testa a conexão com o banco de dados.
    * @static
+   * @throws {ErrorHandler} Erro ao testar a conexão com o banco de dados
+   * @memberof Database
+   * @description Testa a conexão com o banco de dados
    */
   private static async testConnection() {
     let client: PoolClient | null = null;
@@ -71,10 +75,12 @@ export class Database {
   }
 
   /**
-   * Executa uma query no banco de dados.
-   * @param query - Query a ser executada
-   * @param params - Parâmetros da query
-   * @returns - Resultado da query
+   * @memberof Database
+   * @param query Query a ser executada
+   * @param params Parâmetros da query
+   * @returns Resultado da query
+   * @throws {ErrorHandler} Erro ao executar a query
+   * @description Executa uma query no banco de dados
    */
   static async query(query: string, params: any[] = []): Promise<QueryResult> {
     let client: PoolClient | null = null;
@@ -133,6 +139,4 @@ export class Database {
     }
   }
 }
-
-// Inicialize a conexão quando o arquivo for carregado
 Database.initialize();

@@ -9,10 +9,11 @@ export class TokenModel {
   private static readonly TABLE_LOGIN = "point.login_tokens";
 
   /**
-   * Armazena um token refresh
-   * @param {string} id - ID do usuário
-   * @param {string} token - Token refresh
-   * @param {Date} expiresAt - Data de expiração do token
+   * @param {string} id ID do usuário
+   * @param {string} token Token refresh
+   * @param {Date} expiresAt Data de expiração do token
+   * @throws {ErrorHandler} Erro ao armazenar token refresh
+   * @description Método para armazenar um token refresh
    */
   static async storeToken(
     id: string,
@@ -37,9 +38,10 @@ export class TokenModel {
   }
 
   /**
-   * Remove um token refresh
-   * @param {string} token - Token refresh
+   * @param {string} token Token refresh
    * @returns {boolean} Retorna true se o token foi removido com sucesso, caso contrário, retorna false
+   * @throws {ErrorHandler} Erro ao remover token refresh
+   * @description Método para remover um token refresh
    */
   static async removeToken(token: string): Promise<boolean> {
     const deleteQuery = `DELETE FROM ${this.TABLE_LOGIN} WHERE token = $1`;

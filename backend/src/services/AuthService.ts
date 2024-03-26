@@ -10,10 +10,11 @@ import { ErrorHandler } from "../config/ErrorHandler";
  */
 export class AuthService {
   /**
-   * Autentica um usuário e gera tokens de acesso e atualização
-   * @param cpf - CPF do usuário
-   * @param password - Senha do usuário
-   * @returns {Promise<{ userId: string; accessToken: string; refreshToken: string } | null>} - Objeto com ID do usuário, token de acesso e token de atualização ou null se não autenticado
+   * @param cpf CPF do usuário
+   * @param password Senha do usuário
+   * @returns {Promise<{ userId: string; accessToken: string; refreshToken: string } | null>} Objeto com ID do usuário, token de acesso e token de atualização ou null se não autenticado
+   * @throws {ErrorHandler} Erro durante o processo de login
+   * @description Método para autenticar um usuário
    */
   public static async login(
     cpf: string,
@@ -50,8 +51,10 @@ export class AuthService {
   }
 
   /**
-   * Método para deslogar um usuário
-   * @param userId - ID do usuário
+   * @param token Token de atualização
+   * @returns {Promise<void>} Retorna void
+   * @throws {ErrorHandler} Erro durante o processo de logout
+   * @description Método para deslogar um usuário
    */
   public static async logout(token: string): Promise<void> {
     try {

@@ -11,9 +11,10 @@ import { ErrorHandler } from "../config/ErrorHandler";
 export class WorkScheduleModel {
   private static readonly TABLE_WORK_SCHEDULE = "point.work_schedule";
   /**
-   * Obtém um horário de trabalho por meio do nome
-   * @param name - Nome do horário de trabalho
+   * @param name Nome do horário de trabalho
    * @returns Objeto WorkSchedule ou null se não encontrar
+   * @throws {ErrorHandler} Erro ao buscar horário de trabalho
+   * @description Método para buscar um horário de trabalho por nome
    */
   static async getByName(name: string): Promise<WorkScheduleType | null> {
     const query = `SELECT * FROM ${this.TABLE_WORK_SCHEDULE} WHERE name = $1`;
@@ -36,9 +37,10 @@ export class WorkScheduleModel {
   }
 
   /**
-   * Adiciona um novo horário de trabalho
-   * @param workSchedule - Objeto WorkSchedule
-   * @returns - Objeto WorkSchedule inserido
+   * @param workSchedule Objeto WorkSchedule
+   * @returns Objeto WorkSchedule inserido
+   * @throws {ErrorHandler} Erro ao inserir horário de trabalho
+   * @description Método para adicionar um novo horário de trabalho
    */
   static async add(workSchedule: WorkScheduleType): Promise<WorkScheduleType> {
     const query = `INSERT INTO ${this.TABLE_WORK_SCHEDULE} (name, start_time, end_time, lunch_duration, created_at) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
@@ -74,9 +76,10 @@ export class WorkScheduleModel {
   }
 
   /**
-   * Remove um horário de trabalho por meio do nome
-   * @param name - Nome do horário de trabalho
-   * @returns
+   * @param name Nome do horário de trabalho
+   * @returns void
+   * @throws {ErrorHandler} Erro ao remover horário de trabalho
+   * @description Método para remover um horário de trabalho por nome
    */
   static async removeByName(name: string): Promise<void> {
     const query = `DELETE FROM ${this.TABLE_WORK_SCHEDULE} WHERE name = $1`;

@@ -12,9 +12,10 @@ export class DepartmentModel {
   private static readonly TABLE_DEPARTMENT = "point.departments";
 
   /**
-   * Método para buscar um departamento por nome
-   * @param name - Nome do departamento
-   * @returns - Objeto Department ou null se não encontrar
+   * @param name Nome do departamento
+   * @returns Objeto Department ou null se não encontrar
+   * @throws {ErrorHandler} Erro ao buscar departamento
+   * @description Método para buscar um departamento por nome
    */
   static async getByName(name: string): Promise<Department | null> {
     const query = `SELECT * FROM ${this.TABLE_DEPARTMENT} WHERE name = $1`;
@@ -42,8 +43,9 @@ export class DepartmentModel {
   }
 
   /**
-   * Método para buscar todos os departamentos
-   * @returns - Array de objetos Department
+   * @returns Array de objetos Department
+   * @throws {ErrorHandler} Erro ao buscar departamentos
+   * @description Método para buscar todos os departamentos
    */
   static async getAll(): Promise<Department[]> {
     const query = `SELECT * FROM ${this.TABLE_DEPARTMENT}`;
@@ -67,9 +69,10 @@ export class DepartmentModel {
   }
 
   /**
-   * Método para criar um departamento
-   * @param name - Nome do departamento
-   * @returns - ID do departamento criado
+   * @param name Nome do departamento
+   * @returns ID do departamento criado
+   * @throws {ErrorHandler} Erro ao criar departamento
+   * @description Método para criar um departamento
    */
   static async create(name: string, responsible: string): Promise<string> {
     const query = `INSERT INTO ${this.TABLE_DEPARTMENT} (name, responsible) VALUES ($1, $2) RETURNING id`;
@@ -87,8 +90,10 @@ export class DepartmentModel {
     }
   }
   /**
-   * Método para remover um departamento
-   * @param id - ID do departamento
+   * @param id ID do departamento
+   * @returns void
+   * @throws {ErrorHandler} Erro ao remover departamento
+   * @description Método para remover um departamento
    */
   static async remove(name: string): Promise<void> {
     const query = `DELETE FROM ${this.TABLE_DEPARTMENT} WHERE name = $1`;

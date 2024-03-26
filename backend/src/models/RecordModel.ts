@@ -12,9 +12,10 @@ export class RecordModel {
   private static readonly TABLE_RECORD = "point.time_records";
 
   /**
-   * @description Cria um registro de ponto
-   * @param record - Objeto RecordType
-   * @returns - Objeto RecordType
+   * @param record Objeto RecordType
+   * @returns Objeto RecordType
+   * @throws {ErrorHandler} Erro ao criar registro de ponto
+   * @description Método para criar um registro de ponto
    */
   static async create(record: RecordType): Promise<RecordType> {
     const query = `INSERT INTO ${this.TABLE_RECORD} (user_id, record, location) VALUES ($1, $2, $3) RETURNING *`;
@@ -41,9 +42,10 @@ export class RecordModel {
   }
 
   /**
-   * @description Obtém um registro de ponto por ID
-   * @param id - ID do registro
-   * @returns - Objeto RecordType ou null se não encontrar
+   * @param id ID do registro
+   * @returns Objeto RecordType ou null se não encontrar
+   * @throws {ErrorHandler} Erro ao buscar registro de ponto
+   * @description Método para buscar um registro de ponto por ID
    */
   static async getById(id: string): Promise<RecordType | null> {
     const query = `SELECT * FROM ${this.TABLE_RECORD} WHERE id = $1`;
@@ -73,9 +75,10 @@ export class RecordModel {
   }
 
   /**
-   * @description Obtém todos os registros de ponto de um usuário
-   * @param userId - ID do usuário
-   * @returns - Array de objetos RecordType
+   * @param userId ID do usuário
+   * @returns Array de objetos RecordType
+   * @throws {ErrorHandler} Erro ao buscar registros de ponto
+   * @description Método para buscar todos os registros de ponto de um usuário
    */
   static async getAllByUserId(userId: string): Promise<RecordType[]> {
     const query = `SELECT * FROM ${this.TABLE_RECORD} WHERE user_id = $1`;
