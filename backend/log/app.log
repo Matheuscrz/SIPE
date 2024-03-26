@@ -631,3 +631,14 @@
 {"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
 {"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
 {"level":"info","message":"Consulta getByCpf executada com sucesso. CPF: 5e1213f0-938e-4147-b9c1-ba9a3381a35","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados inicializada","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão com o banco de dados realizada com sucesso","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /logout em Mon Mar 25 2024 11:23:26 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token removido com sucesso. Token: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRkYmE1NjJlLWEzYmItNDI5Yy04N2JhLTM0NDhmYmUxMGI2NCIsIm5hbWUiOiJhZG1pbiIsImNwZiI6IjAwMDAwMDAwMDAxIiwiaWF0IjoxNzExMzY5NzA1LCJleHAiOjE3MTE5NzQ1MDUsInN1YiI6ImRkYmE1NjJlLWEzYmItNDI5Yy04N2JhLTM0NDhmYmUxMGI2NCJ9.CXmhdiGGI03uoNoh9Lds9BZcdsTZeB7JQ_jm95L1MUDgFLQPVVAqy76ozF9KEqCrrSoOk7j1gMM4dkqnG2wEgQ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Solicitação GET para /logout em Mon Mar 25 2024 11:24:04 GMT-0300 (Horário Padrão de Brasília)","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Consulta executada com sucesso. Query: ","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Conexão liberada com sucesso.","timestamp":"Invalid DateTime"}
+{"level":"info","message":"Token removido com sucesso. Token: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRkYmE1NjJlLWEzYmItNDI5Yy04N2JhLTM0NDhmYmUxMGI2NCIsIm5hbWUiOiJhZG1pbiIsImNwZiI6IjAwMDAwMDAwMDAxIiwiaWF0IjoxNzExMzcwMTk3LCJleHAiOjE3MTE5NzQ5OTcsInN1YiI6ImRkYmE1NjJlLWEzYmItNDI5Yy04N2JhLTM0NDhmYmUxMGI2NCJ9.i6ElkmZCKZmFOPwsp3UoHwTv-pUshVEnsrsyAmobMd8vsk-m0X0i1p84-ZyGQ-pYrTvhuDzsjghUxDrysSYlNg","timestamp":"Invalid DateTime"}

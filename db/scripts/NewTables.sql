@@ -119,7 +119,7 @@ create table if not exists point.justifications(
 
 -- Create the table 'justification_time_records'
 create table if not exists point.justification_time_records(
-    justification uuid references point.justifications(id) not null,
+    id uuid references point.justifications(id) not null,
     time_record uuid references point.time_records(id) not null,
     primary key (justification, time_record)
 );
