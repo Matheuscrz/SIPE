@@ -20,7 +20,7 @@ export const verifyAndRefreshAccessToken = async (
     const refreshToken = req.headers["x-refresh-token"] as string;
 
     if (!accessToken || !refreshToken) {
-      return res.status(401).send("Tokens não informados");
+      return res.status(302).redirect("/login");
     }
 
     const isTokenValid = await JwtService.verifyAccessToken(
@@ -51,7 +51,7 @@ export const verifyAndRefreshAccessToken = async (
         req.headers["x-access-token"] = newAccessToken;
         next();
       } else {
-        res.redirect(302, "/login");
+        res.status(302).redirect("/login");
       }
     }
   } catch (error) {
