@@ -1,6 +1,7 @@
 import jwt, { Secret, SignOptions, VerifyOptions } from "jsonwebtoken";
 import { User as UserType, Permission } from "../interfaces/User";
 import { AppLogger } from "../config/AppLogger";
+import { TokenModel } from "../models/TokenModel";
 
 /**
  * @class JwtService
@@ -96,7 +97,19 @@ export class JwtService {
    * @throws {ErrorHandler} Erro ao verificar token
    */
   public static async verifyRefreshToken(token: string): Promise<boolean> {
-    return this.verifyToken(token, this.secretKey);
+    try {
+      const result = await TokenModel.getToken(token);
+      if (result.rows.length === 0) {
+        return false;
+      } else {
+        return this.verifyToken(token, this.secretKey);
+      }
+    } catch (error) {
+      AppLogger.getInstance().error(
+        `Erro ao verificar token de atualização. Erro: ${error}`
+      );
+      return false;
+    }
   }
 
   /**
@@ -109,7 +122,12 @@ export class JwtService {
     token: string,
     refreshToken: string
   ): Promise<boolean> {
-    return this.verifyToken(token, refreshToken);
+    const isRefreshTokenValid = this.verifyRefreshToken(refreshToken);
+    if (!isRefreshTokenValid) {
+      return false;
+    } else {
+      return this.verifyToken(token, refreshToken);
+    }
   }
 
   /**
