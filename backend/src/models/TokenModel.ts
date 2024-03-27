@@ -9,6 +9,27 @@ export class TokenModel {
   private static readonly TABLE_LOGIN = "point.login_tokens";
 
   /**
+   * @param token Token refresh
+   * @returns Retorna um objeto com os dados do token
+   * @description Método para buscar um token refresh
+   */
+  static async getToken(token: string): Promise<any> {
+    const query = `SELECT * FROM ${this.TABLE_LOGIN} WHERE token = $1`;
+    const values = [token];
+    try {
+      const result = await Database.query(query, values);
+      return result.rows[0];
+    } catch (error: any) {
+      let errorMessage = `Erro ao buscar token. ${error}`;
+      AppLogger.getInstance().error(
+        `Erro ao buscar token. Token: ${token}. `,
+        error
+      );
+      throw new ErrorHandler(error.code, errorMessage);
+    }
+  }
+
+  /**
    * @param {string} id ID do usuário
    * @param {string} token Token refresh
    * @param {Date} expiresAt Data de expiração do token
