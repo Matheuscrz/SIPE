@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { AppLogger } from "../config/AppLogger";
 import { JwtService } from "../services/JwtService";
+import { Permission } from "../interfaces/User";
 
 /**
  * @param req - Requisição
@@ -28,6 +29,15 @@ export const verifyAndRefreshAccessToken = async (
     );
 
     if (isTokenValid) {
+      const decodedToken: any = JwtService.decodeToken(accessToken);
+      const userPermission: Permission = decodedToken.permission;
+
+      if (!checkUserPermission(userPermission, req.path)) {
+        return res
+          .status(403)
+          .send("Usuário não tem permissão para acessar este recurso");
+      }
+
       next();
     } else {
       const isRefreshTokenValid = await JwtService.verifyRefreshToken(
@@ -50,4 +60,23 @@ export const verifyAndRefreshAccessToken = async (
     );
     res.status(500).send("Erro interno do servidor");
   }
+};
+
+/**
+ * @param userPermission Tipo de permissão do usuário
+ * @param route Rota que o usuário está tentando acessar
+ * @returns true se o usuário tem permissão para acessar a rota, false caso contrário
+ * @description Verifica se o tipo de permissão do usuário permite acessar a rota
+ */
+const checkUserPermission = (
+  userPermission: Permission,
+  route: string
+): boolean => {
+  const routePermissionMap: Record<string, Permission[]> = {
+    "/home": [Permission.Normal, Permission.RH, Permission.Admin],
+  };
+
+  const allowedUserPermissions = routePermissionMap[route];
+  if (!allowedUserPermissions) return true;
+  return allowedUserPermissions.includes(userPermission);
 };
