@@ -1,5 +1,5 @@
 import jwt, { Secret, SignOptions, VerifyOptions } from "jsonwebtoken";
-import { User as UserType } from "../interfaces/User";
+import { User as UserType, Permission } from "../interfaces/User";
 import { AppLogger } from "../config/AppLogger";
 
 /**
@@ -13,6 +13,7 @@ export class JwtService {
 
   /**
    * @param refreshToken Token de atualização
+   * @param permission Permissão do usuário
    * @returns Token de acesso
    * @throws {ErrorHandler} Erro ao gerar token de acesso
    * @description Método para gerar um token de acesso
@@ -41,6 +42,7 @@ export class JwtService {
       id: user.id,
       name: user.name,
       cpf: user.cpf,
+      permission: user.permission,
     };
     const options: SignOptions = {
       algorithm: this.algorithm as jwt.Algorithm,
@@ -56,7 +58,7 @@ export class JwtService {
    * @returns Objeto decodificado
    * @description Método para decodificar um token
    */
-  private static decodeToken<T>(token: string): T {
+  static decodeToken<T>(token: string): T {
     return jwt.decode(token) as T;
   }
 
@@ -86,6 +88,7 @@ export class JwtService {
       return false;
     }
   }
+
   /**
    * @param token Token
    * @returns true se o token for válido, false caso contrário
