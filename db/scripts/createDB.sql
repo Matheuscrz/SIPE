@@ -175,11 +175,11 @@ VALUES ('AdminRole', 'Cargo de administrador do sistema');
 
 -- Inserir um departamento
 INSERT INTO point.departments (name, responsible) 
-VALUES ('AdminDepartment', (SELECT name FROM point.roles WHERE name = 'AdminRole'));
+VALUES ('AdminDepartment', 'AdminRole');
 
 -- Inserir uma jornada de trabalho
 INSERT INTO point.department_roles (department, role_name) 
-VALUES ('AdminDepartment', (SELECT name FROM point.roles WHERE name = 'AdminRole'));
+VALUES ('AdminDepartment','AdminRole');
 
 -- Inserir uma jornada de trabalho
 INSERT INTO point.work_schedules (name, start_time, end_time, lunch_duration)
