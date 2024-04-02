@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { AppLogger } from "../config/AppLogger";
 import { JwtService } from "../services/JwtService";
 import { Permission } from "../interfaces/User";
+import { routePermissionMap } from "../router/map.routes";
 
 /**
  * @param req - Requisição
@@ -63,20 +64,22 @@ export const verifyAndRefreshAccessToken = async (
 };
 
 /**
- * @param userPermission Tipo de permissão do usuário
+ * @param permission Permissão do usuário
  * @param route Rota que o usuário está tentando acessar
  * @returns true se o usuário tem permissão para acessar a rota, false caso contrário
  * @description Verifica se o tipo de permissão do usuário permite acessar a rota
  */
 const checkUserPermission = (
-  userPermission: Permission,
+  permission: Permission,
   route: string
 ): boolean => {
-  const routePermissionMap: Record<string, Permission[]> = {
-    "/home": [Permission.Normal, Permission.RH, Permission.Admin],
-  };
-
-  const allowedUserPermissions = routePermissionMap[route];
-  if (!allowedUserPermissions) return true;
-  return allowedUserPermissions.includes(userPermission);
+  for (const allowedRoute in routePermissionMap) {
+    if (
+      route.startsWith(allowedRoute) &&
+      routePermissionMap[allowedRoute].includes(permission)
+    ) {
+      return true;
+    }
+  }
+  return false;
 };
