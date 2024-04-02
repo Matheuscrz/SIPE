@@ -2,14 +2,14 @@ import { AppLogger } from "../config/AppLogger";
 import { Database } from "../config/Database";
 import { WorkSchedule as WorkScheduleType } from "../interfaces/WorkSchedule";
 import { QueryResult } from "pg";
-import { ErrorHandler } from "../config/ErrorHandler";
+import { ErrorHandler } from "../error/ErrorHandler";
 
 /**
  * @class WorkScheduleModel
  * @description Classe de modelo que contém os métodos para manipulação de dados de horários de trabalho no banco de dados
  */
 export class WorkScheduleModel {
-  private static readonly TABLE_WORK_SCHEDULE = "point.work_schedule";
+  private static readonly TABLE_WORK_SCHEDULE = "point.work_schedules";
   /**
    * @param name Nome do horário de trabalho
    * @returns Objeto WorkSchedule ou null se não encontrar

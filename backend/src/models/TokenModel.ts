@@ -1,6 +1,6 @@
 import { AppLogger } from "../config/AppLogger";
 import { Database } from "../config/Database";
-import { ErrorHandler } from "../config/ErrorHandler";
+import { ErrorHandler } from "../error/ErrorHandler";
 /**
  * @class TokenModel
  * @description Classe de modelo que contém os métodos para manipulação de tokens no banco de dados

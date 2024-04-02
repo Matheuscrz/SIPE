@@ -2,7 +2,7 @@ import { AppLogger } from "../config/AppLogger";
 import { Database } from "../config/Database";
 import { User as UserType } from "../interfaces/User";
 import { QueryResult } from "pg";
-import { ErrorHandler } from "../config/ErrorHandler";
+import { ErrorHandler } from "../error/ErrorHandler";
 
 /**
  * @class UserModel
@@ -58,7 +58,7 @@ export class UserModel {
         pin: userFromDb.pin,
         gender: userFromDb.gender,
         birth_date: userFromDb.birth_date,
-        role_id: userFromDb.role_id,
+        role_name: userFromDb.role_name,
         work_schedule: userFromDb.work_schedule,
         hiring_date: userFromDb.hiring_date,
         permission: userFromDb.permission,
@@ -86,7 +86,7 @@ export class UserModel {
    * @description Método para adicionar um usuário
    */
   static async addUser(user: UserType): Promise<UserType | undefined> {
-    let query = `INSERT INTO ${this.TABLE_USER} (name, password, cpf, pis, pin, gender, birth_date, role_id, work_schedule, hiring_date`;
+    let query = `INSERT INTO ${this.TABLE_USER} (name, password, cpf, pis, pin, gender, birth_date, role_name, work_schedule, hiring_date`;
     let values = [
       user.name,
       user.password,
@@ -95,7 +95,7 @@ export class UserModel {
       user.pin,
       user.gender,
       user.birth_date,
-      user.role_id,
+      user.role_name,
       user.work_schedule,
       user.hiring_date,
     ];
@@ -123,7 +123,7 @@ export class UserModel {
         pin: result.rows[0].pin,
         gender: result.rows[0].gender,
         birth_date: result.rows[0].birth_date,
-        role_id: result.rows[0].role_id,
+        role_name: result.rows[0].role_name,
         work_schedule: result.rows[0].work_schedule,
         hiring_date: result.rows[0].hiring_date,
         permission: result.rows[0].permission,
@@ -151,12 +151,11 @@ export class UserModel {
    * @description Método para atualizar um usuário
    */
   static async updateUser(user: UserType): Promise<UserType | null> {
-    const query = `UPDATE ${this.TABLE_USER} SET password = COALESCE($1, password), pin = COALESCE($2, pin), role_id = COALESCE($4, roles), work_schedule = COALESCE($5, work_schedule), hiring_date = COALESCE($6, hiring_date) WHERE id = $7 RETURNING *`;
+    const query = `UPDATE ${this.TABLE_USER} SET password = COALESCE($1, password), pin = COALESCE($2, pin), role_name = COALESCE($3, role_name), work_schedule = COALESCE($4, work_schedule), hiring_date = COALESCE($5, hiring_date) WHERE id = $6 RETURNING *`;
     const values = [
       user.password,
       user.pin,
-      user.department,
-      user.roles,
+      user.role_name,
       user.work_schedule,
       user.hiring_date,
       user.id,
