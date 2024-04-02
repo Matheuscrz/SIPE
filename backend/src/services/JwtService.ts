@@ -1,5 +1,5 @@
 import jwt, { Secret, SignOptions, VerifyOptions } from "jsonwebtoken";
-import { User as UserType, Permission } from "../interfaces/User";
+import { User as UserType } from "../interfaces/User";
 import { AppLogger } from "../config/AppLogger";
 import { TokenModel } from "../models/TokenModel";
 
@@ -99,7 +99,7 @@ export class JwtService {
   public static async verifyRefreshToken(token: string): Promise<boolean> {
     try {
       const result = await TokenModel.getToken(token);
-      if (result.rows.length === 0) {
+      if (result === undefined) {
         return false;
       } else {
         return this.verifyToken(token, this.secretKey);
@@ -122,7 +122,7 @@ export class JwtService {
     token: string,
     refreshToken: string
   ): Promise<boolean> {
-    const isRefreshTokenValid = this.verifyRefreshToken(refreshToken);
+    const isRefreshTokenValid = await this.verifyRefreshToken(refreshToken);
     if (!isRefreshTokenValid) {
       return false;
     } else {
