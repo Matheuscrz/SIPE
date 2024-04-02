@@ -1,7 +1,7 @@
 import { Pool, PoolClient, QueryResult } from "pg";
 import dotenv from "dotenv";
 import { AppLogger } from "./AppLogger";
-import { ErrorHandler } from "./ErrorHandler";
+import { ErrorHandler } from "../error/ErrorHandler";
 
 dotenv.config();
 

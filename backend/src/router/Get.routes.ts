@@ -3,7 +3,7 @@ import { UserModel } from "../models/UserModel";
 import { AppLogger } from "../config/AppLogger";
 import { verifyAndRefreshAccessToken } from "../middlewares/tokenMiddleware";
 import { AuthService } from "../services/AuthService";
-import { ErrorHandler } from "../config/ErrorHandler";
+import { ErrorHandler } from "../error/ErrorHandler";
 /**
  * @class GetRoutes
  * @extends {Router}
