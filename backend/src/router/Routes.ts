@@ -3,6 +3,8 @@ import { rateLimit } from "express-rate-limit";
 import helmet from "helmet";
 import cors, { CorsOptions } from "cors";
 import loggerMiddleware from "../middlewares/loggerMiddleware";
+import { permissionMiddleware } from "../middlewares/permissionMiddleware";
+import { tokenMiddleware } from "../middlewares/tokenMiddleware";
 import { PostRoutes } from "./Post.routes";
 import { GetRoutes } from "./Get.routes";
 
@@ -63,6 +65,8 @@ export class Routes {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(limiter);
     this.app.use(loggerMiddleware);
+    this.app.use(permissionMiddleware);
+    this.app.use(tokenMiddleware);
   }
 
   /**
