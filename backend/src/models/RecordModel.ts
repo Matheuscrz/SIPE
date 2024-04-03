@@ -2,7 +2,7 @@ import { AppLogger } from "../config/AppLogger";
 import { Database } from "../config/Database";
 import { TimeRecord as RecordType } from "../interfaces/TimeRecords";
 import { QueryResult } from "pg";
-import { ErrorHandler } from "../config/ErrorHandler";
+import { ErrorHandler } from "../error/ErrorHandler";
 
 /**
  * @class RecordModel

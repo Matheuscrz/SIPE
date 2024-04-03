@@ -3,13 +3,13 @@ import { AppLogger } from "../config/AppLogger";
 import { JwtService } from "../services/JwtService";
 
 /**
- * @param req - Requisição
- * @param res - Resposta
- * @param next - Próximo middleware
+ * @param req Requisição
+ * @param res Resposta
+ * @param next Próximo middleware
  * @returns
  * @description Verifica e renova o token de acesso
  */
-export const verifyAndRefreshAccessToken = async (
+export const tokenMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -19,7 +19,7 @@ export const verifyAndRefreshAccessToken = async (
     const refreshToken = req.headers["x-refresh-token"] as string;
 
     if (!accessToken || !refreshToken) {
-      return res.status(401).send("Tokens não informados");
+      return res.status(302).redirect("/login");
     }
 
     const isTokenValid = await JwtService.verifyAccessToken(
@@ -41,7 +41,7 @@ export const verifyAndRefreshAccessToken = async (
         req.headers["x-access-token"] = newAccessToken;
         next();
       } else {
-        res.redirect(302, "/login");
+        res.status(302).redirect("/login");
       }
     }
   } catch (error) {

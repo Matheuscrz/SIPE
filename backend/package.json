@@ -6,40 +6,19 @@
   "scripts": {
     "start": "node build/src/App.js",
     "dev": "nodemon",
-    "build": "rimraf build/src && tsc",
-    "test": "jest"
-  },
-  "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "node",
-    "testMatch": [
-      "**/*.test.ts"
-    ],
-    "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/src/$1"
-    },
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/build/"
-    ],
-    "collectCoverage": true
+    "build": "rimraf build/src && tsc"
   },
   "keywords": [],
   "author": "Matheus Lima da Cruz <matheuslimasof.eng@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "@jest/globals": "^29.7.0",
-    "@types/jest": "^29.5.12",
     "@types/node": "^20.11.29",
     "@types/randombytes": "^2.0.3",
-    "@types/supertest": "^2.0.16",
-    "jest": "^29.7.0",
     "moment": "^2.29.4",
     "nodemailer": "^6.9.7",
     "nodemon": "^3.0.1",
     "rimraf": "^5.0.5",
     "supertest": "^6.3.4",
-    "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2"
   },
   "dependencies": {

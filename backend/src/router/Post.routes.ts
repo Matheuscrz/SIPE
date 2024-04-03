@@ -4,7 +4,7 @@ import { PasswordUtils } from "../utils/PasswordUtils";
 import { User as UserEntity } from "../interfaces/User";
 import { AppLogger } from "../config/AppLogger";
 import { AuthService } from "../services/AuthService";
-import { ErrorHandler } from "../config/ErrorHandler";
+import { ErrorHandler } from "../error/ErrorHandler";
 /**
  * @class PostRoutes
  * @extends {Router}
@@ -41,16 +41,23 @@ export class PostRoutes {
    */
   private async login(req: Request, res: Response): Promise<void> {
     try {
-      const data = req.body;
-      if (!data) {
-        res.status(400).send("Dados de usuário não informados");
+      const accessToken = req.headers["x-access-token"] as string;
+      const refreshToken = req.headers["x-refresh-token"] as string;
+      if (accessToken && refreshToken) {
+        res.redirect("/home");
         return;
       } else {
-        const user = await AuthService.login(data.cpf, data.password);
-        if (user) {
-          res.status(200).send(user);
+        const data = req.body;
+        if (!data) {
+          res.status(400).send("Dados de usuário não informados");
+          return;
         } else {
-          res.status(401).send("Usuário ou senha inválidos");
+          const user = await AuthService.login(data.cpf, data.password);
+          if (user) {
+            res.status(200).send(user);
+          } else {
+            res.status(401).send("Usuário ou senha inválidos");
+          }
         }
       }
     } catch (error: any) {
@@ -100,7 +107,7 @@ export class PostRoutes {
           pin: data.pin,
           gender: data.gender,
           birth_date: data.birth_date,
-          role_id: data.role,
+          role_name: data.role,
           work_schedule: data.work_schedule,
           hiring_date: data.hiring_date,
           permission: data.permission || null,

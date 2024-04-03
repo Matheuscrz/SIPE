@@ -32,7 +32,7 @@ export interface User {
   pin: string;
   gender: Gender;
   birth_date: string;
-  role_id: string;
+  role_name: string;
   work_schedule: string;
   hiring_date: string;
   permission: Permission;

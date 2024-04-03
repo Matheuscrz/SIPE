@@ -2,7 +2,7 @@ import { Department } from "../interfaces/Department";
 import { Database } from "../config/Database";
 import { QueryResult } from "pg";
 import { AppLogger } from "../config/AppLogger";
-import { ErrorHandler } from "../config/ErrorHandler";
+import { ErrorHandler } from "../error/ErrorHandler";
 
 /**
  * @class DepartmentModel

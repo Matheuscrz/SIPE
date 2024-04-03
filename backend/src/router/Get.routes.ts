@@ -1,9 +1,8 @@
 import express, { Request, Response, Router } from "express";
 import { UserModel } from "../models/UserModel";
 import { AppLogger } from "../config/AppLogger";
-import { verifyAndRefreshAccessToken } from "../middlewares/tokenMiddleware";
 import { AuthService } from "../services/AuthService";
-import { ErrorHandler } from "../config/ErrorHandler";
+import { ErrorHandler } from "../error/ErrorHandler";
 /**
  * @class GetRoutes
  * @extends {Router}
@@ -29,13 +28,9 @@ export class GetRoutes {
    */
   private configureRoutes() {
     this.router.get("/user/:cpf", this.getUserByCpf.bind(this));
-    this.router.get(
-      "/home",
-      verifyAndRefreshAccessToken,
-      (req: Request, res: Response) => {
-        res.status(200).send("Home");
-      }
-    );
+    this.router.get("/home", (req: Request, res: Response) => {
+      res.status(200).send("Bem-vindo à página inicial");
+    });
     this.router.get("/logout", this.logout.bind(this));
   }
 

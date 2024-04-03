@@ -1,6 +1,7 @@
 import jwt, { Secret, SignOptions, VerifyOptions } from "jsonwebtoken";
 import { User as UserType } from "../interfaces/User";
 import { AppLogger } from "../config/AppLogger";
+import { TokenModel } from "../models/TokenModel";
 
 /**
  * @class JwtService
@@ -13,6 +14,7 @@ export class JwtService {
 
   /**
    * @param refreshToken Token de atualização
+   * @param permission Permissão do usuário
    * @returns Token de acesso
    * @throws {ErrorHandler} Erro ao gerar token de acesso
    * @description Método para gerar um token de acesso
@@ -41,6 +43,7 @@ export class JwtService {
       id: user.id,
       name: user.name,
       cpf: user.cpf,
+      permission: user.permission,
     };
     const options: SignOptions = {
       algorithm: this.algorithm as jwt.Algorithm,
@@ -56,7 +59,7 @@ export class JwtService {
    * @returns Objeto decodificado
    * @description Método para decodificar um token
    */
-  private static decodeToken<T>(token: string): T {
+  static decodeToken<T>(token: string): T {
     return jwt.decode(token) as T;
   }
 
@@ -86,6 +89,7 @@ export class JwtService {
       return false;
     }
   }
+
   /**
    * @param token Token
    * @returns true se o token for válido, false caso contrário
@@ -93,7 +97,19 @@ export class JwtService {
    * @throws {ErrorHandler} Erro ao verificar token
    */
   public static async verifyRefreshToken(token: string): Promise<boolean> {
-    return this.verifyToken(token, this.secretKey);
+    try {
+      const result = await TokenModel.getToken(token);
+      if (result === undefined) {
+        return false;
+      } else {
+        return this.verifyToken(token, this.secretKey);
+      }
+    } catch (error) {
+      AppLogger.getInstance().error(
+        `Erro ao verificar token de atualização. Erro: ${error}`
+      );
+      return false;
+    }
   }
 
   /**
@@ -106,7 +122,12 @@ export class JwtService {
     token: string,
     refreshToken: string
   ): Promise<boolean> {
-    return this.verifyToken(token, refreshToken);
+    const isRefreshTokenValid = await this.verifyRefreshToken(refreshToken);
+    if (!isRefreshTokenValid) {
+      return false;
+    } else {
+      return this.verifyToken(token, refreshToken);
+    }
   }
 
   /**

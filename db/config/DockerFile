@@ -1,28 +1,24 @@
 # Use a imagem oficial do PostgreSQL
-FROM postgres:alpine
+FROM postgres:latest
+LABEL AUTHOR="Matheus Lima"
 
-# Adicione configurações ao arquivo postgresql.conf
-RUN echo "log_statement = 'all'" >> /usr/local/share/postgresql/postgresql.conf && \
-    echo "logging_collector = on" >> /usr/local/share/postgresql/postgresql.conf && \
-    echo "log_directory = '/var/log/postgresql'" >> /usr/local/share/postgresql/postgresql.conf && \
-    echo "log_filename = 'postgresql.log'" >> /usr/local/share/postgresql/postgresql.conf && \
-    echo "log_rotation_age = 1d" >> /usr/local/share/postgresql/postgresql.conf && \
-    echo "log_rotation_size = 10MB" >> /usr/local/share/postgresql/postgresql.conf && \
-    echo "log_min_duration_statement = 0" >> /usr/local/share/postgresql/postgresql.conf && \
-    echo "log_connections = on" >> /usr/local/share/postgresql/postgresql.conf && \
-    echo "log_disconnections = on" >> /usr/local/share/postgresql/postgresql.conf && \
-    echo "log_lock_waits = on" >> /usr/local/share/postgresql/postgresql.conf && \
-    echo "log_temp_files = 0" >> /usr/local/share/postgresql/postgresql.conf && \
-    echo "log_autovacuum_min_duration = 0" >> /usr/local/share/postgresql/postgresql.conf && \
-    echo "log_checkpoints = on" >> /usr/local/share/postgresql/postgresql.conf && \
-    echo "log_error_verbosity = default" >> /usr/local/share/postgresql/postgresql.conf && \
-    echo "log_timezone = 'America/Sao_Paulo'" >> /usr/local/share/postgresql/postgresql.conf && 
+# Instala o cron no container
+RUN apt-get update && apt-get install -y cron
 
-# Exemplo: instale extensões ou faça outras personalizações, se necessário
-RUN apk --no-cache add postgresql-contrib
+# Copia os scripts de criação e triggers do banco de dados para dentro do container
+COPY createDB.sql /docker-entrypoint-init.d/
+COPY triggers.sql /docker-entrypoint-initdb.d/
 
-# Diretório para armazenar dados persistentes
-VOLUME ["/var/lib/postgresql/data", "/var/log/postgresql"]
 
-# CMD padrão fornecido pela imagem oficial do PostgreSQL
-CMD ["postgres", "-c", "config_file=/usr/local/share/postgresql/postgresql.conf"]
+# Copia o script de backup para dentro do container
+COPY backup.sh /usr/local/bin/
+
+# Define as permissões de execução para o script de backup
+RUN chmod +x /usr/local/bin/backup.sh
+
+# Adiciona a tarefa de backup no cron para ser executada todos os dias às 22h
+RUN echo "0 22 * * * root /usr/local/bin/backup.sh" >> /etc/cron.d/postgres-backup
+
+# Inicia o cron em segundo plano ao iniciar o container
+CMD ["cron", "-f"]
+

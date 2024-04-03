@@ -2,7 +2,7 @@ import { UserModel } from "../models/UserModel";
 import { TokenModel } from "../models/TokenModel";
 import bcrypt from "bcrypt";
 import { JwtService } from "./JwtService";
-import { ErrorHandler } from "../config/ErrorHandler";
+import { ErrorHandler } from "../error/ErrorHandler";
 
 /**
  * @class AuthService
