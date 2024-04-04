@@ -42,7 +42,9 @@ export class WorkScheduleModel {
    * @throws {ErrorHandler} Erro ao inserir horário de trabalho
    * @description Método para adicionar um novo horário de trabalho
    */
-  static async add(workSchedule: WorkScheduleType): Promise<WorkScheduleType> {
+  static async create(
+    workSchedule: WorkScheduleType
+  ): Promise<WorkScheduleType> {
     const query = `INSERT INTO ${this.TABLE_WORK_SCHEDULE} (name, start_time, end_time, lunch_duration, created_at) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
     const values = [
       workSchedule.name,
@@ -81,7 +83,7 @@ export class WorkScheduleModel {
    * @throws {ErrorHandler} Erro ao remover horário de trabalho
    * @description Método para remover um horário de trabalho por nome
    */
-  static async removeByName(name: string): Promise<void> {
+  static async remove(name: string): Promise<void> {
     const query = `DELETE FROM ${this.TABLE_WORK_SCHEDULE} WHERE name = $1`;
     const values = [name];
     try {

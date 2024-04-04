@@ -1,7 +1,7 @@
 import { Database } from "../config/Database";
 import { AppLogger } from "../config/AppLogger";
 import { QueryResult } from "pg";
-import { Role as RoleType } from "../interfaces/Role";
+import { Role, Role as RoleType } from "../interfaces/Role";
 import { ErrorHandler } from "../error/ErrorHandler";
 
 /**
@@ -12,52 +12,17 @@ export class RoleModel {
   private static readonly TABLE_ROLE = "point.roles";
 
   /**
-   * @param name Nome da cargo
-   * @returns Objeto Cargo ou null se não encontrar
-   * @throws {ErrorHandler} Erro ao buscar cargo
-   * @description Método para buscar um cargo por nome
-   */
-  static async getByName(name: string): Promise<RoleType | null> {
-    const query = `SELECT * FROM ${this.TABLE_ROLE} WHERE name = $1`;
-    const values = [name];
-    try {
-      const result: QueryResult<any> = await Database.query(query, values);
-      const roleFromDb = result.rows.length ? result.rows[0] : null;
-      const role: RoleType = {
-        name: roleFromDb.name,
-        description: roleFromDb.description,
-        created_at: roleFromDb.created_at,
-      };
-      AppLogger.getInstance().info(
-        `Consulta getByName executada com sucesso. Nome: ${name}`
-      );
-      return role;
-    } catch (error: any) {
-      let errorMessage = `Erro ao buscar role. ${error}`;
-      AppLogger.getInstance().error(
-        `Erro ao buscar role por nome. Nome: ${name}. `,
-        error
-      );
-      throw new ErrorHandler(error.code, errorMessage);
-    }
-  }
-
-  /**
-   * @returns Array de objetos Cargo
+   * @returns Array de nomes de cargos
    * @throws {ErrorHandler} Erro ao buscar cargos
    * @description Método para buscar todos os cargos
    */
-  static async getAll(): Promise<RoleType[]> {
+  static async getAll(): Promise<string[]> {
     const query = `SELECT * FROM ${this.TABLE_ROLE}`;
     try {
       const result: QueryResult<any> = await Database.query(query);
-      const roles: RoleType[] = result.rows.map((roleFromDb) => {
-        return {
-          name: roleFromDb.name,
-          description: roleFromDb.description,
-          created_at: roleFromDb.created_at,
-        };
-      });
+      const roles: string[] = result.rows.map(
+        (rolesFromDb) => rolesFromDb.name
+      );
       AppLogger.getInstance().info(`Consulta getAll executada com sucesso.`);
       return roles;
     } catch (error: any) {
@@ -68,20 +33,20 @@ export class RoleModel {
   }
 
   /**
-   * @param name Nome do cargo
-   * @param description Descrição do cargo
+   * @param role Entidade de cargo
    * @returns Nome do cargo criado
    * @throws {ErrorHandler} Erro ao criar cargo
    * @description Método para criar um cargo
    */
-  static async create(name: string, description: string): Promise<string> {
+  static async create(role: Role): Promise<string> {
     const query = `INSERT INTO ${this.TABLE_ROLE} (name, description) VALUES ($1, $2) RETURNING name`;
-    const values = [name, description];
+    const values = [role.name, role.description];
     try {
       const result: QueryResult<any> = await Database.query(query, values);
-      const name = result.rows[0].name;
-      AppLogger.getInstance().info(`Cargo criado com sucesso. Nome: ${name}`);
-      return name;
+      AppLogger.getInstance().info(
+        `Cargo criado com sucesso. Nome: ${role.name}`
+      );
+      return result.rows[0].name;
     } catch (error: any) {
       let errorMessage = `Erro ao criar cargo. ${error}`;
       AppLogger.getInstance().error(`Erro ao criar cargo. `, error);
