@@ -23,7 +23,6 @@ export class App {
   }
 }
 
-// TODO: Implementar sistema de gerenciamento de permissões RBAC
 const port = 8000;
 const application = new App(port);
 application.start();
