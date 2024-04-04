@@ -1,8 +1,10 @@
 import express, { Request, Response, Router } from "express";
 import { UserModel } from "../models/UserModel";
+import { DepartmentModel } from "../models/DepartmentModel";
 import { AppLogger } from "../config/AppLogger";
 import { AuthService } from "../services/AuthService";
 import { ErrorHandler } from "../error/ErrorHandler";
+import { RoleModel } from "../models/RoleModel";
 /**
  * @class GetRoutes
  * @extends {Router}
@@ -27,11 +29,13 @@ export class GetRoutes {
    * @description Configura as rotas para o tipo GET
    */
   private configureRoutes() {
-    this.router.get("/user/:cpf", this.getUserByCpf.bind(this));
+    this.router.get("/user/:cpf", this.getUser.bind(this));
     this.router.get("/home", (req: Request, res: Response) => {
       res.status(200).send("Bem-vindo à página inicial");
     });
     this.router.get("/logout", this.logout.bind(this));
+    this.router.get("/departments", this.getDepartments.bind(this));
+    this.router.get("/roles", this.getRoles.bind(this));
   }
 
   /**
@@ -63,7 +67,7 @@ export class GetRoutes {
    * @returns Retorna um usuário pelo CPF
    * @description Método para retornar um usuário pelo CPF
    */
-  private async getUserByCpf(req: Request, res: Response): Promise<void> {
+  private async getUser(req: Request, res: Response): Promise<void> {
     try {
       const cpf = req.params.cpf;
       const user = await UserModel.getByCpf(cpf);
@@ -104,6 +108,69 @@ export class GetRoutes {
     }
   }
 
+  private async getDepartments(req: Request, res: Response): Promise<void> {
+    try {
+      const departments = await DepartmentModel.getAll();
+      res.status(200).json(departments);
+    } catch (error) {
+      if (error instanceof ErrorHandler) {
+        switch (error.code) {
+          case "23503":
+            AppLogger.getInstance().error(
+              "Chave estrangeira não encontrada. Error: ",
+              error
+            );
+            res.status(404).send("Departamento não encontrado");
+            break;
+          default:
+            AppLogger.getInstance().error(
+              "Erro interno do servidor. Error: ",
+              error
+            );
+            res.status(500).send("Erro interno do servidor");
+            break;
+        }
+      } else {
+        AppLogger.getInstance().error(
+          "Erro interno do servidor. Error: ",
+          error
+        );
+        res.status(500).send("Erro interno do servidor");
+      }
+    }
+  }
+
+  private async getRoles(req: Request, res: Response): Promise<void> {
+    try {
+      const roles = await RoleModel.getAll();
+      res.status(200).json(roles);
+    } catch (error) {
+      if (error instanceof ErrorHandler) {
+        switch (error.code) {
+          case "23503":
+            AppLogger.getInstance().error(
+              "Chave estrangeira não encontrada. Error: ",
+              error
+            );
+            res.status(404).send("Cargo não encontrado");
+            break;
+          default:
+            AppLogger.getInstance().error(
+              "Erro interno do servidor. Error: ",
+              error
+            );
+            res.status(500).send("Erro interno do servidor");
+            break;
+        }
+      } else {
+        AppLogger.getInstance().error(
+          "Erro interno do servidor. Error: ",
+          error
+        );
+        res.status(500).send("Erro interno do servidor");
+      }
+    }
+  }
   /**
    * @returns {Router}
    * @memberof GetRoutes

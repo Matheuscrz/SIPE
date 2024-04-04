@@ -13,54 +13,46 @@ export class DepartmentModel {
 
   /**
    * @param name Nome do departamento
-   * @returns Objeto Department ou null se não encontrar
+   * @returns Objeto Department
    * @throws {ErrorHandler} Erro ao buscar departamento
-   * @description Método para buscar um departamento por nome
+   * @description Método para buscar um departamento pelo nome
    */
-  static async getByName(name: string): Promise<Department | null> {
+  static async getDepartmentByName(name: string): Promise<Department> {
     const query = `SELECT * FROM ${this.TABLE_DEPARTMENT} WHERE name = $1`;
     const values = [name];
     try {
       const result: QueryResult<any> = await Database.query(query, values);
-      const departmentFromDb = result.rows.length ? result.rows[0] : null;
+      const departmentFromDb = result.rows[0];
       const department: Department = {
         name: departmentFromDb.name,
         responsible: departmentFromDb.responsible,
         created_at: departmentFromDb.created_at,
       };
       AppLogger.getInstance().info(
-        `Consulta getByName executada com sucesso. Nome: ${name}`
+        `Consulta getDepartmentByName executada com sucesso. Nome: ${name}`
       );
       return department;
     } catch (error: any) {
       let errorMessage = `Erro ao buscar departamento. ${error}`;
-      AppLogger.getInstance().error(
-        `Erro ao buscar departamento por nome. Nome: ${name}. `,
-        error
-      );
+      AppLogger.getInstance().error(`Erro ao buscar departamento. `, error);
       throw new ErrorHandler(error.code, errorMessage);
     }
   }
 
   /**
-   * @returns Array de objetos Department
+   * @returns Array de nomes de departamentos
    * @throws {ErrorHandler} Erro ao buscar departamentos
-   * @description Método para buscar todos os departamentos
+   * @description Método para buscar todos os departamentos e retornar o nome de cada departamento
    */
-  static async getAll(): Promise<Department[]> {
-    const query = `SELECT * FROM ${this.TABLE_DEPARTMENT}`;
+  static async getAll(): Promise<string[]> {
+    const query = `SELECT name FROM ${this.TABLE_DEPARTMENT}`;
     try {
       const result: QueryResult<any> = await Database.query(query);
-      const departments: Department[] = result.rows.map((departmentFromDb) => {
-        return {
-          id: departmentFromDb.id,
-          name: departmentFromDb.name,
-          responsible: departmentFromDb.responsible,
-          created_at: departmentFromDb.created_at,
-        };
-      });
+      const departmentNames: string[] = result.rows.map(
+        (departmentFromDb) => departmentFromDb.name
+      );
       AppLogger.getInstance().info(`Consulta getAll executada com sucesso.`);
-      return departments;
+      return departmentNames;
     } catch (error: any) {
       let errorMessage = `Erro ao buscar departamentos. ${error}`;
       AppLogger.getInstance().error(`Erro ao buscar departamentos. `, error);
@@ -75,7 +67,7 @@ export class DepartmentModel {
    * @description Método para criar um departamento
    */
   static async create(name: string, responsible: string): Promise<string> {
-    const query = `INSERT INTO ${this.TABLE_DEPARTMENT} (name, responsible) VALUES ($1, $2) RETURNING id`;
+    const query = `INSERT INTO ${this.TABLE_DEPARTMENT} (name, responsible) VALUES ($1, $2) RETURNING name`;
     const values = [name, responsible];
     try {
       const result: QueryResult<any> = await Database.query(query, values);

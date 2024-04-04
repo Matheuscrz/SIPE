@@ -1,7 +1,11 @@
 import express, { Request, Response, Router } from "express";
 import { UserModel } from "../models/UserModel";
+import { DepartmentModel } from "../models/DepartmentModel";
+import { RoleModel } from "../models/RoleModel";
 import { PasswordUtils } from "../utils/PasswordUtils";
 import { User as UserEntity } from "../interfaces/User";
+import { Role as RoleEntity } from "../interfaces/Role";
+import { Department as DepartmentEntity } from "../interfaces/Department";
 import { AppLogger } from "../config/AppLogger";
 import { AuthService } from "../services/AuthService";
 import { ErrorHandler } from "../error/ErrorHandler";
@@ -31,6 +35,7 @@ export class PostRoutes {
   private configureRoutes() {
     this.router.post("/createuser", this.createUser.bind(this));
     this.router.post("/login", this.login.bind(this));
+    this.router.post("/createrole", this.createRole.bind(this));
   }
 
   /**
@@ -130,6 +135,59 @@ export class PostRoutes {
               error
             );
             res.status(400).send("Usuário já cadastrado");
+            break;
+          case "22P02":
+            AppLogger.getInstance().error("Dado inválido. Error: ", error);
+            res.status(400).send("Dado inválido");
+            break;
+          default:
+            AppLogger.getInstance().error(
+              "Erro interno do servidor. Error: ",
+              error
+            );
+            res.status(500).send("Erro interno do servidor");
+            break;
+        }
+      } else {
+        AppLogger.getInstance().error(
+          "Erro interno do servidor. Error: ",
+          error
+        );
+        res.status(500).send("Erro interno do servidor");
+      }
+    }
+  }
+
+  /**
+   * @param req Requisição
+   * @param res Resposta
+   * @returns Retorna um cargo criado
+   * @description Método para criar um cargo
+   */
+  private async createRole(req: Request, res: Response): Promise<void> {
+    try {
+      const data = req.body;
+      if (!data) {
+        res.status(400).send("Dados de cargo não informados");
+        return;
+      } else {
+        const role: RoleEntity = {
+          name: data.name,
+          description: data.description,
+          created_at: "",
+        };
+        const createRole = await RoleModel.create(role);
+        res.status(201).send(createRole);
+      }
+    } catch (error: any) {
+      if (error instanceof ErrorHandler) {
+        switch (error.code) {
+          case "23505":
+            AppLogger.getInstance().error(
+              "Cargo já cadastrado. Error: ",
+              error
+            );
+            res.status(400).send("Cargo já cadastrado");
             break;
           case "22P02":
             AppLogger.getInstance().error("Dado inválido. Error: ", error);
