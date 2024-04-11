@@ -60,13 +60,16 @@ O SIPE (Sistema Integrado de Ponto Eletrônico) é uma aplicação robusta desen
   - PostgreSQL para armazenamento de dados.
 
 - **Proxy Reverso e Balanceamento de Carga:**
+
   - NGinx para garantir escalabilidade e alta disponibilidade.
+
+- **Docker:**
+  - Utilizado para containerizar e gerenciar os ambientes de desenvolvimento, teste e produção de forma consistente e isolada.
 
 ## Pré-requisitos para Desenvolvimento
 
-- Node.js e npm/yarn
-- PostgreSQL
-- NGinx
+- Node.js e npm
+- Docker
 
 ## Contribuições
 
