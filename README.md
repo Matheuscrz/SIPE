@@ -4,7 +4,7 @@ O SIPE (Sistema Integrado de Ponto Eletrônico) é uma aplicação robusta desen
 
 ## Funcionalidades Principais
 
-### Para Usuários Comuns:
+### Para Usuários Comuns
 
 - **Login e Registro de Ponto:**
 
@@ -14,7 +14,7 @@ O SIPE (Sistema Integrado de Ponto Eletrônico) é uma aplicação robusta desen
 - **Pedido de Justificativa de Falta:**
   - Envie pedidos de justificativa para faltas, incluindo detalhes relevantes.
 
-### Para Usuários com Perfil RH:
+### Para Usuários com Perfil RH
 
 - **Acompanhamento de Ponto:**
 
@@ -32,7 +32,7 @@ O SIPE (Sistema Integrado de Ponto Eletrônico) é uma aplicação robusta desen
 
   - Gere relatórios detalhados sobre os registros de ponto e justificativas.
 
-### Para Administradores:
+### Para Administradores
 
 - **Gerenciamento de Dados da Empresa:**
 
