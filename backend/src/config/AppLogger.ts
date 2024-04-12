@@ -53,6 +53,7 @@ export class AppLogger {
   /**
    * @static
    * @returns {winston.Logger} Retorna a instância do winston
+   * @description Retorna a instância do winston
    */
   public static getInstance(): winston.Logger {
     return AppLogger.instance;

@@ -1,5 +1,6 @@
 import { Permission } from "../interfaces/User";
 /**
+ * @constant routePermissionMap
  * @description Mapa de rotas e permissões
  */
 export const routePermissionMap: Record<string, string[]> = {

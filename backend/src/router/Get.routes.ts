@@ -108,6 +108,12 @@ export class GetRoutes {
     }
   }
 
+  /**
+   * @param req Requisição
+   * @param res Resposta
+   * @returns Retorna todos os departamentos
+   * @description Método para retornar todos os departamentos
+   */
   private async getDepartments(req: Request, res: Response): Promise<void> {
     try {
       const departments = await DepartmentModel.getAll();
@@ -140,6 +146,12 @@ export class GetRoutes {
     }
   }
 
+  /**
+   * @param req Requisição
+   * @param res Resposta
+   * @returns Retorna todos os cargos
+   * @description Método para retornar todos os cargos
+   */
   private async getRoles(req: Request, res: Response): Promise<void> {
     try {
       const roles = await RoleModel.getAll();
