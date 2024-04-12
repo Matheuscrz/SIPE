@@ -34,6 +34,12 @@ services:
     environment:
       - NODE_ENV=production
       - DB_CONFIG_PATH=/app/db/config/config.json
+      - DB_HOST=localhost
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres2416
+      - DB_DATABASE=ponto
+      - JWT_SECRET_KEY_REFRESH=667407774cc33f93ff969b963481e6d8f8e7dafdb49f851e369d64ccdf7ea4772de398f857cfac5237a6dde5127de954f3e4a629753642b31547d17a0d9acb55
     depends_on:
       - db
     deploy:
